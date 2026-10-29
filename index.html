@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudheer Kumar | Database Specialist</title>
+    <style>
+        :root {
+            --bg: #0b0f19;
+            --surface: #111827;
+            --surface-hover: #1f2937;
+            --border: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        .bento-grid {
+            max-width: 900px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        /* Profile Main Card */
+        .card-profile {
+            grid-column: span 2;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+        .profile-info h1 { font-size: 1.6rem; font-weight: 700; }
+        .profile-info p.role { color: var(--accent); font-weight: 500; font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .profile-info p.bio { color: var(--text-muted); font-size: 0.88rem; line-height: 1.4; }
+ 
+        /* Status Pill */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+ 
+        /* Tech Stack Card */
+        .card-stack {
+            grid-column: span 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .card-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 0.75rem; }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .tag {
+            background: #1e293b;
+            color: #cbd5e1;
+            padding: 0.3rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            border: 1px solid #334155;
+        }
+ 
+        /* Visual Banner Card */
+        .card-visual {
+            grid-column: span 3;
+            height: 160px;
+            padding: 0;
+            position: relative;
+        }
+        .card-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7) contrast(1.1);
+        }
+        .visual-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 20%, rgba(17, 24, 39, 0.95) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+ 
+        /* Quick Links Card */
+        .card-links {
+            grid-column: span 3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .social-links { display: flex; gap: 0.75rem; }
+        .social-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+        .social-links a:hover {
+            background: var(--accent);
+            color: #0b0f19;
+            border-color: var(--accent);
+        }
+        .server-tag {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+ 
+        @media (max-width: 768px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .card-profile, .card-stack, .card-visual, .card-links { grid-column: span 1; }
+            .card-profile { flex-direction: column; text-align: center; }
+            .card-links { flex-direction: column; align-items: stretch; text-align: center; }
+            .social-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bento-grid">
+        <!-- Profile Card -->
+        <div class="card card-profile">
+            <!-- Replace with your actual photo or an avatar URL -->
+            <img class="avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Sudheer Kumar">
+            <div class="profile-info">
+                <div class="status-pill"><span class="status-dot"></span> Available for Architecture & Consulting</div>
+                <h1>Sudheer Kumar</h1>
+                <p class="role">Database Specialist & Infrastructure Engineer</p>
+                <p class="bio">Architecting enterprise High-Availability databases, Nutanix Database Service (NDB) ecosystems, and low-latency infrastructure.</p>
+            </div>
+        </div>
+ 
+        <!-- Tech Stack Card -->
+        <div class="card card-stack">
+            <div class="card-title">Core Stack</div>
+            <div class="tags">
+                <span class="tag">SQL Server AlwaysOn</span>
+                <span class="tag">Nutanix NDB</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Cloudflare Tunnel</span>
+                <span class="tag">Apple Silicon</span>
+            </div>
+        </div>
+ 
+        <!-- Banner Visual Card -->
+        <div class="card card-visual">
+            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80" alt="Server Infrastructure">
+            <div class="visual-overlay">
+                <p style="font-size: 0.85rem; color: #cbd5e1;">Mission-Critical Reliability • 99.999% Database Availability</p>
+            </div>
+        </div>
+ 
+        <!-- Links Card -->
+        <div class="card card-links">
+            <div class="social-links">
+                <a href="https://github.com/sudheer16695" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/sudheer-kumar-swaminathan/" target="_blank">LinkedIn</a>
+                <a href="mailto:contact@sudheerqk.com">Get in Touch</a>
+            </div>
+            <div class="server-tag">
+                <span>⚡ Hosted locally on M1 MacBook Air • sudheerqk.com</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
