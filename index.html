@@ -3,222 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sudheer Kumar | Database Specialist</title>
+    <title>Sudheer Kumar | Database Specialist & Infrastructure Engineer</title>
+    <meta name="description" content="Personal portfolio and technical profile of Sudheer Kumar, Senior Database Specialist and Infrastructure Engineer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0b0f19;
-            --surface: #111827;
-            --surface-hover: #1f2937;
-            --border: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.15);
+            --bg-page: #f8fafc;
+            --surface-card: #ffffff;
+            --text-heading: #0f172a;
+            --text-body: #475569;
+            --text-muted: #64748b;
+            --border-subtle: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --brand-primary: #0284c7;
+            --brand-accent: #0ea5e9;
+            --tag-bg: #f1f5f9;
+            --tag-text: #334155;
+            --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 12px 24px -4px rgba(15, 23, 42, 0.08);
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-body);
+            line-height: 1.6;
             min-height: 100vh;
-            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3.5rem 1.25rem 2rem;
+            -webkit-font-smoothing: antialiased;
         }
-        .bento-grid {
-            max-width: 900px;
+
+        .main-wrapper {
+            max-width: 720px;
             width: 100%;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: border-color 0.2s ease, transform 0.2s ease;
+
+        /* Profile Card */
+        .profile-container {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 2.75rem 2.5rem;
+            box-shadow: var(--shadow-card);
+            transition: all 0.25s ease;
         }
-        .card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
+
+        .profile-container:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--border-hover);
         }
-        /* Profile Main Card */
-        .card-profile {
-            grid-column: span 2;
+
+        .profile-header {
             display: flex;
             align-items: center;
             gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
+
         .avatar {
-            width: 96px;
-            height: 96px;
+            width: 88px;
+            height: 88px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
+            border: 3px solid #ffffff;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            background-color: #e2e8f0;
+            flex-shrink: 0;
         }
-        .profile-info h1 { font-size: 1.6rem; font-weight: 700; }
-        .profile-info p.role { color: var(--accent); font-weight: 500; font-size: 0.95rem; margin-bottom: 0.5rem; }
-        .profile-info p.bio { color: var(--text-muted); font-size: 0.88rem; line-height: 1.4; }
- 
-        /* Status Pill */
+
         .status-pill {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 4px 10px;
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-            color: #4ade80;
-            border-radius: 999px;
+            padding: 4px 12px;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #047857;
+            border-radius: 9999px;
             font-size: 0.75rem;
             font-weight: 600;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
+
         .status-dot {
             width: 7px;
             height: 7px;
-            background: #22c55e;
+            background: #10b981;
             border-radius: 50%;
-            animation: pulse 2s infinite;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
         }
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            letter-spacing: -0.03em;
+            line-height: 1.2;
         }
- 
-        /* Tech Stack Card */
-        .card-stack {
-            grid-column: span 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: var(--brand-primary);
+            font-weight: 600;
+            margin-top: 0.25rem;
         }
-        .card-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 0.75rem; }
-        .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-        .tag {
-            background: #1e293b;
-            color: #cbd5e1;
-            padding: 0.3rem 0.65rem;
-            border-radius: 6px;
+
+        .bio {
+            color: var(--text-body);
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-top: 1.25rem;
+        }
+
+        /* Pillars / Expertise Grid */
+        .section-label {
             font-size: 0.75rem;
-            border: 1px solid #334155;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin: 1.75rem 0 0.85rem;
         }
- 
-        /* Visual Banner Card */
-        .card-visual {
-            grid-column: span 3;
-            height: 160px;
-            padding: 0;
-            position: relative;
-        }
-        .card-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.7) contrast(1.1);
-        }
-        .visual-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 20%, rgba(17, 24, 39, 0.95) 100%);
+
+        .expertise-tags {
             display: flex;
-            align-items: flex-end;
-            padding: 1.5rem;
-        }
- 
-        /* Quick Links Card */
-        .card-links {
-            grid-column: span 3;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.5rem;
         }
-        .social-links { display: flex; gap: 0.75rem; }
-        .social-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            background: #1e293b;
-            border: 1px solid #334155;
+
+        .tag {
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 0.45rem 0.85rem;
             border-radius: 8px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
+            font-weight: 500;
+            border: 1px solid var(--border-subtle);
             transition: all 0.2s ease;
         }
-        .social-links a:hover {
-            background: var(--accent);
-            color: #0b0f19;
-            border-color: var(--accent);
+
+        .tag:hover {
+            border-color: var(--brand-accent);
+            color: var(--brand-primary);
+            background-color: #f0f9ff;
         }
-        .server-tag {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+
+        /* Social Channels Grid */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.85rem;
+            margin-top: 1.75rem;
+        }
+
+        .social-button {
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1rem;
+            background: #ffffff;
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-heading);
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
         }
- 
-        @media (max-width: 768px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .card-profile, .card-stack, .card-visual, .card-links { grid-column: span 1; }
-            .card-profile { flex-direction: column; text-align: center; }
-            .card-links { flex-direction: column; align-items: stretch; text-align: center; }
-            .social-links { justify-content: center; }
+
+        .social-button svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .social-button:hover {
+            border-color: var(--text-heading);
+            background-color: #f8fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px -3px rgba(15, 23, 42, 0.08);
+        }
+
+        .social-button:hover svg {
+            transform: scale(1.1);
+        }
+
+        /* Specific Brand Color Accents on Hover */
+        .social-button.btn-linkedin:hover { color: #0a66c2; border-color: #0a66c2; }
+        .social-button.btn-github:hover { color: #181717; border-color: #181717; }
+        .social-button.btn-x:hover { color: #000000; border-color: #000000; }
+        .social-button.btn-instagram:hover { color: #e1306c; border-color: #e1306c; }
+        .social-button.btn-snapchat:hover { color: #eab308; border-color: #eab308; }
+        .social-button.btn-email:hover { color: #0284c7; border-color: #0284c7; }
+
+        /* Footer */
+        footer {
+            margin-top: 3.5rem;
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            letter-spacing: -0.01em;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .footer-credit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-weight: 500;
+            color: var(--text-body);
+        }
+
+        .sparkle-icon {
+            width: 14px;
+            height: 14px;
+            fill: #2563eb;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 2rem 1rem;
+            }
+            .profile-container {
+                padding: 1.75rem 1.5rem;
+            }
+            .profile-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            h1 {
+                font-size: 1.65rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="bento-grid">
-        <!-- Profile Card -->
-        <div class="card card-profile">
-            <!-- Replace with your actual photo or an avatar URL -->
-            <img class="avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Sudheer Kumar">
-            <div class="profile-info">
-                <div class="status-pill"><span class="status-dot"></span> Available for Architecture & Consulting</div>
-                <h1>Sudheer Kumar</h1>
-                <p class="role">Database Specialist & Infrastructure Engineer</p>
-                <p class="bio">Architecting enterprise High-Availability databases, Nutanix Database Service (NDB) ecosystems, and low-latency infrastructure.</p>
+
+    <main class="main-wrapper">
+        <section class="profile-container">
+            <div class="status-pill">
+                <span class="status-dot"></span> Available for Architecture & Consultation
             </div>
-        </div>
- 
-        <!-- Tech Stack Card -->
-        <div class="card card-stack">
-            <div class="card-title">Core Stack</div>
-            <div class="tags">
+
+            <div class="profile-header">
+                <!-- Replace with your own profile image file (e.g. avatar.jpg) if desired -->
+                <img class="avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=260&q=80" alt="Sudheer Kumar">
+                <div>
+                    <h1>Sudheer Kumar</h1>
+                    <div class="subtitle">Database Specialist & Enterprise Infrastructure Engineer</div>
+                </div>
+            </div>
+
+            <p class="bio">
+                Specializing in mission-critical database engineering, high-availability clusters (Always On Availability Groups), 
+                and Nutanix Database Service (NDB) architecture. Focused on resilience, zero-downtime migrations, and enterprise performance tuning.
+            </p>
+
+            <div class="section-label">Core Technical Competencies</div>
+            <div class="expertise-tags">
                 <span class="tag">SQL Server AlwaysOn</span>
                 <span class="tag">Nutanix NDB</span>
+                <span class="tag">High Availability & DR</span>
+                <span class="tag">Performance Tuning</span>
                 <span class="tag">PostgreSQL</span>
-                <span class="tag">Cloudflare Tunnel</span>
-                <span class="tag">Apple Silicon</span>
+                <span class="tag">Enterprise Infrastructure</span>
             </div>
+
+            <div class="section-label">Connect & Socials</div>
+            <div class="social-grid">
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/sudheer-kumar-swaminathan/" target="_blank" rel="noopener noreferrer" class="social-button btn-linkedin">
+                    <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.738-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    LinkedIn
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/sudheer16695" target="_blank" rel="noopener noreferrer" class="social-button btn-github">
+                    <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+
+                <!-- X (Twitter) -->
+                <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-button btn-x">
+                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    X
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-button btn-instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.79-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    Instagram
+                </a>
+
+                <!-- Snapchat -->
+                <a href="https://snapchat.com" target="_blank" rel="noopener noreferrer" class="social-button btn-snapchat">
+                    <svg viewBox="0 0 24 24"><path d="M12.016 2.002c-4.148 0-6.993 2.92-6.993 6.223 0 .783.187 1.637.393 2.285.086.27.067.436-.089.658-.33.468-.86.969-1.44 1.258-.456.228-.687.525-.687.892 0 .615.655 1.056 1.474 1.24.328.074.526.27.575.586.098.636.377 1.056.883 1.32.222.115.34.288.354.516.038.608-.12 1.34-1.254 1.834-.693.303-.984.735-.984 1.293 0 .848.905 1.452 2.639 1.764.55.099.98.375 1.292.83.693 1.01 1.954 1.297 3.836 1.297s3.143-.287 3.836-1.297c.312-.455.742-.731 1.292-.83 1.734-.312 2.639-.916 2.639-1.764 0-.558-.291-.99-.984-1.293-1.134-.494-1.292-1.226-1.254-1.834.014-.228.132-.401.354-.516.506-.264.785-.684.883-1.32.049-.316.247-.512.575-.586.819-.184 1.474-.625 1.474-1.24 0-.367-.231-.664-.687-.892-.58-.289-1.11-.79-1.44-1.258-.156-.222-.175-.388-.089-.658.206-.648.393-1.502.393-2.285 0-3.303-2.845-6.223-6.993-6.223z"/></svg>
+                    Snapchat
+                </a>
+
+                <!-- Email -->
+                <a href="mailto:contact@sudheerqk.com" class="social-button btn-email">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    Email Me
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-credit">
+            Developed by using Gemini
+            <svg class="sparkle-icon" viewBox="0 0 24 24"><path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/></svg>
         </div>
- 
-        <!-- Banner Visual Card -->
-        <div class="card card-visual">
-            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80" alt="Server Infrastructure">
-            <div class="visual-overlay">
-                <p style="font-size: 0.85rem; color: #cbd5e1;">Mission-Critical Reliability • 99.999% Database Availability</p>
-            </div>
-        </div>
- 
-        <!-- Links Card -->
-        <div class="card card-links">
-            <div class="social-links">
-                <a href="https://github.com/sudheer16695" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/sudheer-kumar-swaminathan/" target="_blank">LinkedIn</a>
-                <a href="mailto:contact@sudheerqk.com">Get in Touch</a>
-            </div>
-            <div class="server-tag">
-                <span>⚡ Hosted locally on M1 MacBook Air • sudheerqk.com</span>
-            </div>
-        </div>
-    </div>
+        <div>&copy; 2026 sudheerqk.com • All Rights Reserved</div>
+    </footer>
+
 </body>
 </html>
