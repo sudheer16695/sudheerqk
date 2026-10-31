@@ -117,7 +117,7 @@
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.65rem;
         }
 
         .nav-status {
@@ -131,7 +131,7 @@
             border-radius: 9999px;
             font-size: 0.75rem;
             font-weight: 600;
-            margin-right: 0.5rem;
+            margin-right: 0.4rem;
         }
 
         .status-dot {
@@ -167,6 +167,34 @@
         .btn-cta:hover {
             background: #1e293b;
             transform: translateY(-1px);
+        }
+
+        /* Demo Button in Navbar */
+        .nav-demo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.5rem 1rem;
+            background: var(--bg-subtle);
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-demo-btn:hover {
+            background: #ffffff;
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12);
+        }
+
+        .nav-demo-btn svg {
+            fill: currentColor;
         }
 
         /* Nav Vault Button */
@@ -550,7 +578,7 @@
         .card-snapchat:hover .social-icon-box { background: #fffc00; color: #000; border-color: #eab308; }
         .card-email:hover .social-icon-box { background: #0284c7; color: #fff; border-color: #0284c7; }
 
-        /* Apple-Grade Frosted Glass Modal Backdrop (Social & Photo) */
+        /* Apple-Grade Frosted Glass Modal Backdrop (Social, Photo & Video) */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -612,6 +640,7 @@
             place-items: center;
             line-height: 1;
             transition: all 0.2s ease;
+            z-index: 2;
         }
 
         .modal-close-btn:hover {
@@ -731,6 +760,37 @@
             height: 100%;
             object-fit: cover;
             object-position: center 15%;
+        }
+
+        /* Video Walkthrough Modal Card Sizing */
+        .video-modal-card {
+            max-width: 640px;
+            padding: 2.25rem 2rem 1.75rem;
+            text-align: left;
+        }
+
+        .video-container {
+            width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #000000;
+            box-shadow: 0 12px 30px -8px rgba(15, 23, 42, 0.25);
+            margin-bottom: 1.25rem;
+            position: relative;
+            aspect-ratio: 16 / 9;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .video-footer-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
         }
 
         /* ---------------------------------------------------- */
@@ -1101,6 +1161,9 @@
             .nav-status {
                 display: none;
             }
+            .nav-actions {
+                gap: 0.4rem;
+            }
         }
     </style>
 </head>
@@ -1119,6 +1182,13 @@
                         <span class="status-dot"></span> Available for Architecture & Consultation
                     </div>
                     <button class="btn-cta" onclick="openModal('email-modal')">Contact</button>
+                    <!-- Demo Navbar Button -->
+                    <button class="nav-demo-btn" onclick="openDemoModal()" title="Watch Vault Walkthrough">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Demo
+                    </button>
                     <!-- Vault Navbar Button -->
                     <button onclick="openVaultModal()" class="nav-vault-btn" id="vaultNavBtn">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
@@ -1456,7 +1526,33 @@
         </div>
     </div>
 
-    <!-- 8. Frosted Glass Vault Modal (Storage Proxy & Auth) -->
+    <!-- 8. Video Walkthrough Lightbox Modal -->
+    <div class="modal-overlay" id="vault-demo-modal" onclick="handleDemoBackdropClick(event)">
+        <div class="glass-modal video-modal-card">
+            <button class="modal-close-btn" onclick="closeDemoModal()">&times;</button>
+            
+            <div class="video-header" style="margin-bottom: 1.25rem;">
+                <span class="vault-badge">Feature Tour</span>
+                <div class="modal-title" style="margin-top: 8px;">How the Private Vault Works</div>
+                <div class="modal-desc" style="margin-bottom: 0;">End-to-end file upload, encryption, and direct SSD retrieval.</div>
+            </div>
+
+            <div class="video-container">
+                <video id="vaultDemoVideo" playsinline preload="metadata" controls>
+                    <source src="/vault-demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="video-footer-actions">
+                <button class="modal-btn-primary" onclick="closeDemoModal(); openVaultModal();" style="background: #0f172a; width: auto; padding: 0.75rem 1.4rem;">
+                    Open Vault & Sign In
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. Frosted Glass Vault Modal (Storage Proxy & Auth) -->
     <div id="vaultModal" class="vault-backdrop" onclick="handleVaultBackdropClick(event)">
         <div class="vault-card">
             <button class="vault-close" onclick="closeVaultModal()">&times;</button>
@@ -1566,6 +1662,9 @@
                     modal.classList.remove('active');
                 });
                 document.body.style.overflow = '';
+                if (demoVideo) {
+                    demoVideo.pause();
+                }
             }
         });
 
@@ -1578,6 +1677,38 @@
                     copyBtnText.textContent = 'Copy Email Address';
                 }, 2000);
             });
+        }
+
+        /* ---------------------------------------------------- */
+        /* DEMO VIDEO MODAL CONTROLS                            */
+        /* ---------------------------------------------------- */
+        const demoVideo = document.getElementById('vaultDemoVideo');
+
+        function openDemoModal() {
+            const modal = document.getElementById('vault-demo-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            if (demoVideo) {
+                demoVideo.currentTime = 0;
+                demoVideo.play().catch(() => {});
+            }
+        }
+
+        function closeDemoModal() {
+            const modal = document.getElementById('vault-demo-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            if (demoVideo) {
+                demoVideo.pause();
+            }
+        }
+
+        function handleDemoBackdropClick(event) {
+            if (event.target.id === 'vault-demo-modal') {
+                closeDemoModal();
+            }
         }
 
         /* ---------------------------------------------------- */
