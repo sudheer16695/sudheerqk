@@ -117,7 +117,7 @@
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 1.25rem;
+            gap: 0.75rem;
         }
 
         .nav-status {
@@ -131,6 +131,7 @@
             border-radius: 9999px;
             font-size: 0.75rem;
             font-weight: 600;
+            margin-right: 0.5rem;
         }
 
         .status-dot {
@@ -166,6 +167,27 @@
         .btn-cta:hover {
             background: #1e293b;
             transform: translateY(-1px);
+        }
+
+        /* Nav Vault Button */
+        .nav-vault-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.05rem;
+            background: #0f172a;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-vault-btn:hover {
+            background: #1e293b;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
         }
 
         /* Hero */
@@ -528,7 +550,7 @@
         .card-snapchat:hover .social-icon-box { background: #fffc00; color: #000; border-color: #eab308; }
         .card-email:hover .social-icon-box { background: #0284c7; color: #fff; border-color: #0284c7; }
 
-        /* Apple-Grade Frosted Glass Modal Backdrop */
+        /* Apple-Grade Frosted Glass Modal Backdrop (Social & Photo) */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -711,6 +733,298 @@
             object-position: center 15%;
         }
 
+        /* ---------------------------------------------------- */
+        /* VAULT MODAL & CLOUD STORAGE STYLES                   */
+        /* ---------------------------------------------------- */
+        .vault-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .vault-backdrop.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .vault-card {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(226, 232, 240, 0.6);
+            border-radius: 28px;
+            padding: 2.25rem 2rem;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.95);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .vault-backdrop.active .vault-card {
+            transform: scale(1);
+        }
+
+        .vault-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .vault-close:hover {
+            background: #e2e8f0;
+            color: var(--text-primary);
+        }
+
+        .vault-header h2 {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin: 8px 0 4px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .vault-header p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .vault-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 10px;
+            background: var(--accent-blue-light);
+            color: var(--accent-blue);
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .input-group {
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 11px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            background: #ffffff;
+            font-size: 0.92rem;
+            font-family: inherit;
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        .vault-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 14px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .primary-btn {
+            background: var(--text-primary);
+            color: #ffffff;
+            margin-top: 6px;
+        }
+
+        .primary-btn:hover {
+            background: #1e293b;
+            transform: translateY(-1px);
+        }
+
+        .vault-toggle {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .vault-toggle button {
+            background: none;
+            border: none;
+            color: var(--accent-blue);
+            font-weight: 700;
+            cursor: pointer;
+            margin-left: 4px;
+            font-family: inherit;
+        }
+
+        .vault-msg {
+            font-size: 0.84rem;
+            margin-top: 12px;
+            min-height: 20px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .upload-dropzone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 24px;
+            border: 2px dashed rgba(2, 132, 199, 0.35);
+            background: var(--bg-subtle);
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .upload-dropzone:hover {
+            border-color: var(--accent-blue);
+            background: var(--accent-blue-light);
+            color: var(--accent-blue);
+        }
+
+        .files-container h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 22px 0 10px;
+            color: var(--text-primary);
+        }
+
+        .file-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        .vault-file-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .vault-file-meta {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .vault-file-name {
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 220px;
+        }
+
+        .vault-file-sub {
+            font-size: 0.72rem;
+            color: var(--text-tertiary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .vault-file-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .file-action-btn {
+            padding: 5px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dl-btn {
+            background: var(--text-primary);
+            color: #fff;
+        }
+
+        .dl-btn:hover {
+            background: #1e293b;
+        }
+
+        .del-btn {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+        }
+
+        .del-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .logout-link {
+            background: none;
+            border: none;
+            color: #ef4444;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: inherit;
+        }
+
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+
         /* Footer */
         footer {
             border-top: 1px solid var(--border-light);
@@ -805,6 +1119,14 @@
                         <span class="status-dot"></span> Available for Architecture & Consultation
                     </div>
                     <button class="btn-cta" onclick="openModal('email-modal')">Contact</button>
+                    <!-- Vault Navbar Button -->
+                    <button onclick="openVaultModal()" class="nav-vault-btn" id="vaultNavBtn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        Vault
+                    </button>
                 </div>
             </nav>
         </header>
@@ -827,7 +1149,6 @@
 
             <!-- Profile Overview Card -->
             <div class="hero-profile-card">
-                <!-- Click to open Portrait Lightbox -->
                 <button class="avatar-button" onclick="openModal('photo-modal')" title="Click to view portrait">
                     <img class="avatar-img" src="/avatar.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=260&q=80';" alt="Sudheer Kumar">
                     <div class="avatar-zoom-hint">
@@ -922,7 +1243,7 @@
             </div>
         </section>
 
-        <!-- Social Channels Hub with Frosted Blur Modals -->
+        <!-- Social Channels Hub -->
         <section id="connect">
             <div class="section-header">
                 <h2 class="section-title">Connect & Networks</h2>
@@ -1035,7 +1356,7 @@
         </div>
     </div>
 
-    <!-- 2. Snapchat Modal (Handles Both Links) -->
+    <!-- 2. Snapchat Modal -->
     <div class="modal-overlay" id="sc-modal" onclick="handleBackdropClick(event, 'sc-modal')">
         <div class="glass-modal">
             <button class="modal-close-btn" onclick="closeModal('sc-modal')">&times;</button>
@@ -1135,6 +1456,73 @@
         </div>
     </div>
 
+    <!-- 8. Frosted Glass Vault Modal (Storage Proxy & Auth) -->
+    <div id="vaultModal" class="vault-backdrop" onclick="handleVaultBackdropClick(event)">
+        <div class="vault-card">
+            <button class="vault-close" onclick="closeVaultModal()">&times;</button>
+
+            <!-- State 1: Authentication (Sign In / Register) -->
+            <div id="vaultAuthSection">
+                <div class="vault-header">
+                    <div class="vault-badge">PostgreSQL Vault</div>
+                    <h2 id="authHeading">Sign In</h2>
+                    <p id="authSub">Enter your credentials to access your secure files.</p>
+                </div>
+
+                <form id="vaultForm" onsubmit="submitAuth(event)">
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" id="vaultEmail" placeholder="name@domain.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="vaultPassword" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" id="authSubmitBtn" class="vault-btn primary-btn">Sign In</button>
+                </form>
+
+                <div id="vaultMsg" class="vault-msg"></div>
+
+                <div class="vault-toggle">
+                    <span id="toggleQuestion">Don't have an account?</span>
+                    <button type="button" onclick="toggleAuthMode()" id="toggleBtn">Create Account</button>
+                </div>
+            </div>
+
+            <!-- State 2: Authenticated File Management -->
+            <div id="vaultDashboard" style="display: none;">
+                <div class="vault-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="vault-badge">Authenticated Session</div>
+                        <button onclick="vaultLogout()" class="logout-link">Log Out</button>
+                    </div>
+                    <h2>Your File Repository</h2>
+                    <p>Direct upload and retrieval streaming to your local Mac SSD.</p>
+                </div>
+
+                <div class="upload-box">
+                    <input type="file" id="vaultFileInput" style="display: none;" onchange="handleFileSelected(event)">
+                    <label for="vaultFileInput" class="upload-dropzone">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span id="uploadLabelText">Choose file or drag here</span>
+                    </label>
+                    <button onclick="uploadVaultFile()" id="uploadBtn" class="vault-btn primary-btn" style="margin-top: 10px;">Upload File</button>
+                    <div id="uploadStatusMsg" class="vault-msg"></div>
+                </div>
+
+                <div class="files-container">
+                    <h3>Stored Documents</h3>
+                    <div id="vaultFilesList" class="file-list">Loading files...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Polished Footer with Gemini Attribution -->
     <footer>
         <div class="footer-content">
@@ -1170,10 +1558,10 @@
             }
         }
 
-        // Close on ESC key
+        // Close on ESC key for all modals
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                const activeModals = document.querySelectorAll('.modal-overlay.active');
+                const activeModals = document.querySelectorAll('.modal-overlay.active, .vault-backdrop.active');
                 activeModals.forEach(modal => {
                     modal.classList.remove('active');
                 });
@@ -1190,6 +1578,168 @@
                     copyBtnText.textContent = 'Copy Email Address';
                 }, 2000);
             });
+        }
+
+        /* ---------------------------------------------------- */
+        /* VAULT LOGIC & BACKEND API CONNECTIVITY              */
+        /* ---------------------------------------------------- */
+        let isRegisterMode = false;
+        let vaultToken = localStorage.getItem("vault_token");
+
+        function openVaultModal() {
+            const modal = document.getElementById("vaultModal");
+            modal.classList.add("active");
+            document.body.style.overflow = 'hidden';
+            updateModalView();
+        }
+
+        function closeVaultModal() {
+            document.getElementById("vaultModal").classList.remove("active");
+            document.body.style.overflow = '';
+        }
+
+        function handleVaultBackdropClick(e) {
+            if (e.target.id === "vaultModal") {
+                closeVaultModal();
+            }
+        }
+
+        function toggleAuthMode() {
+            isRegisterMode = !isRegisterMode;
+            document.getElementById("authHeading").textContent = isRegisterMode ? "Create Account" : "Sign In";
+            document.getElementById("authSub").textContent = isRegisterMode ? "Register to save files to your local Mac vault." : "Enter your credentials to access your secure files.";
+            document.getElementById("authSubmitBtn").textContent = isRegisterMode ? "Create Account" : "Sign In";
+            document.getElementById("toggleQuestion").textContent = isRegisterMode ? "Already have an account?" : "Don't have an account?";
+            document.getElementById("toggleBtn").textContent = isRegisterMode ? "Sign In" : "Create Account";
+            document.getElementById("vaultMsg").textContent = "";
+        }
+
+        function updateModalView() {
+            if (vaultToken) {
+                document.getElementById("vaultAuthSection").style.display = "none";
+                document.getElementById("vaultDashboard").style.display = "block";
+                fetchVaultFiles();
+            } else {
+                document.getElementById("vaultAuthSection").style.display = "block";
+                document.getElementById("vaultDashboard").style.display = "none";
+            }
+        }
+
+        async function submitAuth(e) {
+            e.preventDefault();
+            const email = document.getElementById("vaultEmail").value;
+            const password = document.getElementById("vaultPassword").value;
+            const msg = document.getElementById("vaultMsg");
+            const endpoint = isRegisterMode ? "/api/register" : "/api/login";
+
+            const formData = new FormData();
+            formData.append("email", email);
+            formData.append("password", password);
+
+            msg.style.color = "#0284c7";
+            msg.textContent = "Connecting to PostgreSQL...";
+
+            try {
+                const res = await fetch(endpoint, { method: "POST", body: formData });
+                const data = await res.json();
+                if (res.ok) {
+                    vaultToken = data.token;
+                    localStorage.setItem("vault_token", vaultToken);
+                    msg.textContent = "";
+                    updateModalView();
+                } else {
+                    msg.style.color = "#dc2626";
+                    msg.textContent = data.detail || "Authentication failed.";
+                }
+            } catch (err) {
+                msg.style.color = "#dc2626";
+                msg.textContent = "Cannot reach backend API (port 8000).";
+            }
+        }
+
+        function vaultLogout() {
+            localStorage.removeItem("vault_token");
+            vaultToken = null;
+            updateModalView();
+        }
+
+        function handleFileSelected(e) {
+            if (e.target.files.length) {
+                document.getElementById("uploadLabelText").textContent = e.target.files[0].name;
+            }
+        }
+
+        async function uploadVaultFile() {
+            const fileInput = document.getElementById("vaultFileInput");
+            const status = document.getElementById("uploadStatusMsg");
+            if (!fileInput.files.length) {
+                status.style.color = "#dc2626";
+                status.textContent = "Select a file first.";
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+            formData.append("token", vaultToken);
+
+            status.style.color = "#0284c7";
+            status.textContent = "Streaming file to Mac ~/uploads...";
+
+            try {
+                const res = await fetch("/api/upload", { method: "POST", body: formData });
+                if (res.ok) {
+                    status.style.color = "#16a34a";
+                    status.textContent = "File stored successfully.";
+                    fileInput.value = "";
+                    document.getElementById("uploadLabelText").textContent = "Choose file or drag here";
+                    fetchVaultFiles();
+                } else {
+                    status.style.color = "#dc2626";
+                    status.textContent = "Upload failed.";
+                }
+            } catch {
+                status.style.color = "#dc2626";
+                status.textContent = "Upload network error.";
+            }
+        }
+
+        async function fetchVaultFiles() {
+            const list = document.getElementById("vaultFilesList");
+            try {
+                const res = await fetch(`/api/files?token=${encodeURIComponent(vaultToken)}`);
+                const data = await res.json();
+                if (!res.ok) throw new Error();
+
+                if (!data.files.length) {
+                    list.innerHTML = `<div style="font-size:0.8rem;color:#94a3b8;padding:12px 0;">No files stored yet.</div>`;
+                    return;
+                }
+
+                list.innerHTML = data.files.map(f => `
+                    <div class="vault-file-row">
+                        <div class="vault-file-meta">
+                            <span class="vault-file-name" title="${f.filename}">${f.filename}</span>
+                            <span class="vault-file-sub">${(f.size / (1024 * 1024)).toFixed(2)} MB • ${new Date(f.uploaded_at).toLocaleDateString()}</span>
+                        </div>
+                        <div class="vault-file-actions">
+                            <a class="file-action-btn dl-btn" href="/api/download/${f.id}?token=${encodeURIComponent(vaultToken)}" download>Get</a>
+                            <button class="file-action-btn del-btn" onclick="deleteVaultFile(${f.id})">Delete</button>
+                        </div>
+                    </div>
+                `).join("");
+            } catch {
+                list.innerHTML = `<div style="font-size:0.8rem;color:#dc2626;">Session expired. Please log in again.</div>`;
+            }
+        }
+
+        async function deleteVaultFile(id) {
+            if (!confirm("Permanently delete this file from server?")) return;
+            try {
+                const res = await fetch(`/api/delete/${id}?token=${encodeURIComponent(vaultToken)}`, { method: "DELETE" });
+                if (res.ok) fetchVaultFiles();
+            } catch {
+                alert("Delete failed.");
+            }
         }
     </script>
 </body>
