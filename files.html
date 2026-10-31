@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Storage Vault</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --accent: #38bdf8;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --danger: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding: 40px 20px; display: flex; justify-content: center; }
+    .container { width: 100%; max-width: 680px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+    h1 { font-size: 1.4rem; margin-bottom: 8px; }
+    p { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    input, button { width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 8px; font-size: 0.95rem; border: 1px solid var(--border); }
+    input { background: #0f172a; color: var(--text); outline: none; }
+    input:focus { border-color: var(--accent); }
+    button { background: var(--accent); color: #0f172a; font-weight: 600; cursor: pointer; border: none; }
+    .danger-btn { background: var(--danger); color: #fff; width: auto; padding: 6px 12px; font-size: 0.8rem; border-radius: 6px; }
+    .file-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .file-item:last-child { border-bottom: none; }
+    .file-info { display: flex; flex-direction: column; gap: 4px; }
+    .file-name { font-weight: 500; word-break: break-all; }
+    .file-meta { font-size: 0.8rem; color: var(--muted); }
+    .file-actions { display: flex; gap: 8px; align-items: center; }
+    .download-btn { background: #334155; color: #fff; width: auto; padding: 6px 14px; font-size: 0.8rem; border-radius: 6px; text-decoration: none; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div id="authCard" class="card">
+    <h1 id="authTitle">Sign In</h1>
+    <p>Private file repository</p>
+    <input type="email" id="email" placeholder="Email address" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="handleAuth(false)">Log In</button>
+    <button onclick="handleAuth(true)" style="background: transparent; color: var(--accent); border: 1px solid var(--accent);">Create Account</button>
+    <div id="authMsg" style="color: var(--danger); font-size: 0.85rem; margin-top: 8px;"></div>
+  </div>
+
+  <div id="dashboard" class="hidden">
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h1>Upload File</h1>
+        <button onclick="logout()" style="width: auto; padding: 6px 12px; background: #334155; color: #fff; font-size: 0.8rem;">Log Out</button>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <input type="file" id="fileInput" style="margin-bottom: 0;">
+        <button onclick="uploadFile()" style="width: 130px;">Upload</button>
+      </div>
+      <div id="uploadStatus" style="font-size: 0.85rem; margin-top: 8px; color: var(--accent);"></div>
+    </div>
+
+    <div class="card">
+      <h1>Your Stored Files</h1>
+      <p>Files stored on your home server.</p>
+      <div id="fileList">Loading...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let token = localStorage.getItem("auth_token");
+  if (token) showDashboard();
+
+  async function handleAuth(isRegister) {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const endpoint = isRegister ? "/api/register" : "/api/login";
+    const msg = document.getElementById("authMsg");
+    msg.textContent = "";
+
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+
+    try {
+      const res = await fetch(endpoint, { method: "POST", body: formData });
+      const data = await res.json();
+      if (res.ok) {
+        localStorage.setItem("auth_token", data.token);
+        token = data.token;
+        showDashboard();
+      } else {
+        msg.textContent = data.detail || "Authentication failed.";
+      }
+    } catch (e) {
+      msg.textContent = "Server connection error.";
+    }
+  }
+
+  function showDashboard() {
+    document.getElementById("authCard").classList.add("hidden");
+    document.getElementById("dashboard").classList.remove("hidden");
+    loadFiles();
+  }
+
+  function logout() {
+    localStorage.removeItem("auth_token");
+    location.reload();
+  }
+
+  async function uploadFile() {
+    const fileInput = document.getElementById("fileInput");
+    const status = document.getElementById("uploadStatus");
+    if (!fileInput.files.length) {
+      status.textContent = "Select a file first.";
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+    formData.append("token", token);
+
+    status.textContent = "Uploading...";
+    try {
+      const res = await fetch("/api/upload", { method: "POST", body: formData });
+      if (res.ok) {
+        status.textContent = "Upload complete!";
+        fileInput.value = "";
+        loadFiles();
+      } else {
+        status.textContent = "Upload failed.";
+      }
+    } catch (e) {
+      status.textContent = "Network error during upload.";
+    }
+  }
+
+  async function loadFiles() {
+    const list = document.getElementById("fileList");
+    try {
+      const res = await fetch(`/api/files?token=${encodeURIComponent(token)}`);
+      const data = await res.json();
+      if (!res.ok) throw new Error();
+
+      if (!data.files.length) {
+        list.innerHTML = `<div style="color: var(--muted); padding: 12px 0;">No files uploaded yet.</div>`;
+        return;
+      }
+
+      list.innerHTML = data.files.map(f => `
+        <div class="file-item">
+          <div class="file-info">
+            <span class="file-name">${f.filename}</span>
+            <span class="file-meta">${(f.size / (1024 * 1024)).toFixed(2)} MB • ${new Date(f.uploaded_at).toLocaleDateString()}</span>
+          </div>
+          <div class="file-actions">
+            <a class="download-btn" href="/api/download/${f.id}?token=${encodeURIComponent(token)}" download>Download</a>
+            <button class="danger-btn" onclick="deleteFile(${f.id})">Delete</button>
+          </div>
+        </div>
+      `).join("");
+    } catch (e) {
+      list.innerHTML = `<div style="color: var(--danger);">Failed to load files. Please log in again.</div>`;
+    }
+  }
+
+  async function deleteFile(id) {
+    if (!confirm("Delete this file?")) return;
+    try {
+      const res = await fetch(`/api/delete/${id}?token=${encodeURIComponent(token)}`, { method: "DELETE" });
+      if (res.ok) loadFiles();
+    } catch (e) {
+      alert("Delete failed.");
+    }
+  }
+</script>
+</body>
+</html>
