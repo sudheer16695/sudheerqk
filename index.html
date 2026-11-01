@@ -2,10 +2,15 @@
 <html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     <title>Sudheer Kumar | Database Specialist & Enterprise Infrastructure Engineer</title>
     
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b1329'/%3E%3Ctext x='50%25' y='55%25' font-family='-apple-system,BlinkMacSystemFont,sans-serif' font-weight='800' font-size='14' fill='%23e28b7b' dominant-baseline='middle' text-anchor='middle'%3ESK%3C/text%3E%3C/svg%3E">
+    <!-- Physical SVG Favicons for Safari, Chrome & iOS -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="mask-icon" href="/favicon.svg" color="#0b1329">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,7 +20,7 @@
             --bg-canvas: #ffffff;
             --surface-glass: rgba(255, 255, 255, 0.85);
             --surface-card: #ffffff;
-            --surface-modal: rgba(255, 255, 255, 0.96);
+            --surface-modal: rgba(255, 255, 255, 0.98);
             --border-glass: rgba(226, 232, 240, 0.95);
             --border-subtle: #e2e8f0;
             --text-primary: #0b1329;
@@ -38,9 +43,9 @@
 
         [data-theme="dark"] {
             --bg-canvas: #000000;
-            --surface-glass: rgba(12, 16, 28, 0.75);
-            --surface-card: rgba(15, 21, 38, 0.78);
-            --surface-modal: rgba(8, 11, 20, 0.96);
+            --surface-glass: rgba(12, 16, 28, 0.78);
+            --surface-card: rgba(15, 21, 38, 0.82);
+            --surface-modal: rgba(8, 11, 20, 0.98);
             --border-glass: rgba(255, 255, 255, 0.12);
             --border-subtle: rgba(255, 255, 255, 0.08);
             --text-primary: #f8fafc;
@@ -61,7 +66,7 @@
             --grid-line: rgba(255, 255, 255, 0.035);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -69,7 +74,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
-            transition: background-color 0.35s ease, color 0.35s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
             position: relative;
             overflow-x: hidden;
         }
@@ -99,23 +104,23 @@
         .nav-island {
             display: flex; align-items: center; justify-content: space-between; background: var(--surface-glass);
             backdrop-filter: blur(28px) saturate(190%); -webkit-backdrop-filter: blur(28px) saturate(190%);
-            border: 1px solid var(--border-glass); border-radius: 9999px; padding: 0.7rem 1.5rem;
+            border: 1px solid var(--border-glass); border-radius: 9999px; padding: 0.65rem 1.4rem;
             box-shadow: var(--glass-specular), var(--glass-shadow); transition: all 0.28s ease;
         }
 
-        .brand-logo { font-size: 0.98rem; font-weight: 700; color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 0.65rem; }
-        .brand-monogram { width: 30px; height: 30px; background: var(--text-primary); color: var(--accent-theme); border-radius: 8px; display: grid; place-items: center; font-size: 0.8rem; font-weight: 800; transition: all 0.25s ease; }
+        .brand-logo { font-size: 0.96rem; font-weight: 700; color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 0.65rem; flex-shrink: 0; }
+        .brand-monogram { width: 30px; height: 30px; background: var(--text-primary); color: var(--accent-theme); border-radius: 8px; display: grid; place-items: center; font-size: 0.8rem; font-weight: 800; transition: all 0.25s ease; flex-shrink: 0; }
         .brand-logo:hover .brand-monogram { background: var(--accent-theme); color: #fff; transform: rotate(-6deg) scale(1.06); }
 
-        .nav-actions { display: flex; align-items: center; gap: 0.6rem; }
-        .nav-status { display: inline-flex; align-items: center; gap: 6px; padding: 0.38rem 0.9rem; background: var(--badge-green-bg); border: 1px solid var(--badge-green-border); color: var(--badge-green-text); border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+        .nav-actions { display: flex; align-items: center; gap: 0.55rem; flex-shrink: 0; }
+        .nav-status { display: inline-flex; align-items: center; gap: 6px; padding: 0.38rem 0.9rem; background: var(--badge-green-bg); border: 1px solid var(--badge-green-border); color: var(--badge-green-text); border-radius: 9999px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
         .status-dot { width: 6px; height: 6px; background: #10b981; border-radius: 50%; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25); animation: pulse 2.5s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.15); } }
 
         .glass-btn {
-            display: inline-flex; align-items: center; gap: 6px; padding: 0.5rem 1rem; background: var(--surface-glass);
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0.48rem 0.95rem; background: var(--surface-glass);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--border-glass);
-            box-shadow: var(--glass-specular); border-radius: 9999px; font-size: 0.82rem; font-weight: 600; color: var(--text-primary); text-decoration: none; cursor: pointer; transition: all 0.22s ease;
+            box-shadow: var(--glass-specular); border-radius: 9999px; font-size: 0.8rem; font-weight: 600; color: var(--text-primary); text-decoration: none; cursor: pointer; transition: all 0.22s ease; white-space: nowrap;
         }
         .glass-btn:hover { border-color: var(--accent-theme); color: var(--accent-theme); transform: translateY(-2px); box-shadow: 0 6px 18px var(--accent-glow); }
         .btn-cta { background: var(--text-primary); color: var(--bg-canvas); border: none; }
@@ -168,7 +173,7 @@
         .tech-tag { font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--text-secondary); background: var(--bg-canvas); padding: 0.2rem 0.55rem; border-radius: 6px; border: 1px solid var(--border-subtle); }
         .tech-tap-hint { display: inline-flex; align-items: center; gap: 5px; font-size: 0.76rem; font-weight: 700; color: var(--accent-theme); font-family: 'JetBrains Mono', monospace; }
 
-        /* Clean Social Feeds (No Stock Images) */
+        /* Clean Social Feeds */
         .social-feed-section { margin-bottom: 5rem; }
         .clean-feed-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-bottom: 2.5rem; }
         .clean-feed-card {
@@ -201,7 +206,7 @@
         .quick-net-title { font-size: 0.92rem; font-weight: 700; display: flex; align-items: center; gap: 4px; }
         .quick-net-sub { font-size: 0.74rem; color: var(--text-tertiary); }
 
-        /* Captured & Visuals (Local Media Driven) */
+        /* Captured & Visuals */
         .media-showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 4rem; }
         .media-card {
             border-radius: 20px; overflow: hidden; height: 230px; position: relative; cursor: pointer;
@@ -210,15 +215,6 @@
         }
         .media-card:hover { transform: translateY(-4px); border-color: var(--accent-theme); box-shadow: var(--glass-shadow-float); }
         .media-card video, .media-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        
-        .media-empty-slot {
-            width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center;
-            justify-content: center; gap: 8px; background: var(--surface-glass); color: var(--text-secondary);
-            padding: 1.5rem; text-align: center; font-size: 0.82rem; border: 2px dashed var(--border-subtle);
-            border-radius: 20px;
-        }
-        .media-empty-slot svg { width: 28px; height: 28px; fill: var(--accent-theme); opacity: 0.8; }
-        .media-empty-slot strong { color: var(--text-primary); font-size: 0.88rem; }
         
         .media-play-indicator {
             position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.65);
@@ -237,7 +233,7 @@
 
         /* Floating AI Assistant */
         .floating-ai-fab {
-            position: fixed; bottom: 2rem; right: 2rem; z-index: 990;
+            position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
             display: flex; align-items: center; gap: 8px; padding: 0.75rem 1.25rem;
             background: var(--surface-glass); backdrop-filter: blur(30px) saturate(200%);
             -webkit-backdrop-filter: blur(30px) saturate(200%); border: 1px solid var(--border-glass);
@@ -249,7 +245,7 @@
         .floating-ai-fab svg { width: 18px; height: 18px; fill: var(--accent-theme); }
 
         .ai-chat-window {
-            position: fixed; bottom: 5.5rem; right: 2rem; z-index: 995;
+            position: fixed; bottom: 5.5rem; right: 2rem; z-index: 9999;
             width: 380px; height: 480px; max-height: 80vh; max-width: calc(100vw - 2rem);
             background: var(--surface-modal); backdrop-filter: blur(36px) saturate(200%);
             -webkit-backdrop-filter: blur(36px) saturate(200%); border: 1px solid var(--border-glass);
@@ -277,20 +273,12 @@
         .ai-chat-input:focus { border-color: var(--accent-theme); }
         .ai-chat-send { padding: 8px 14px; font-size: 0.8rem; font-weight: 700; border-radius: 12px; background: var(--accent-theme); color: #fff; border: none; cursor: pointer; }
 
-        /* Modals */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(3, 5, 10, 0.55); backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.28s ease; }
+        /* Modals & Clean Fixed Vault List Rows */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(3, 5, 10, 0.55); backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.28s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
-        .glass-modal { background: var(--surface-modal); backdrop-filter: blur(40px) saturate(200%); -webkit-backdrop-filter: blur(40px) saturate(200%); border: 1px solid var(--border-glass); border-radius: 30px; box-shadow: var(--glass-specular), 0 35px 80px -15px rgba(0, 0, 0, 0.45); width: 100%; max-width: 560px; padding: 2.3rem 2.1rem; position: relative; text-align: left; max-height: 90vh; overflow-y: auto; }
+        .glass-modal { background: var(--surface-modal); backdrop-filter: blur(40px) saturate(200%); -webkit-backdrop-filter: blur(40px) saturate(200%); border: 1px solid var(--border-glass); border-radius: 30px; box-shadow: var(--glass-specular), 0 35px 80px -15px rgba(0, 0, 0, 0.45); width: 100%; max-width: 540px; padding: 2.3rem 2rem; position: relative; text-align: left; max-height: 90vh; overflow-y: auto; }
         .modal-close-btn { position: absolute; top: 1.35rem; right: 1.35rem; width: 34px; height: 34px; border-radius: 50%; background: var(--surface-glass); border: 1px solid var(--border-glass); color: var(--text-secondary); font-size: 1.4rem; cursor: pointer; display: grid; place-items: center; }
         .modal-close-btn:hover { color: var(--accent-theme); border-color: var(--accent-theme); }
-        .tech-modal-body h4 { font-size: 0.88rem; text-transform: uppercase; color: var(--accent-theme); margin: 1.25rem 0 0.5rem; font-family: 'JetBrains Mono', monospace; }
-        .tech-modal-body ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-        .tech-modal-body li { font-size: 0.9rem; color: var(--text-secondary); position: relative; padding-left: 1.3rem; }
-        .tech-modal-body li::before { content: "•"; position: absolute; left: 0; color: var(--accent-theme); font-weight: bold; }
-        .tech-modal-tag-cloud { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.5rem; }
-        .tech-pill-tag { font-size: 0.74rem; font-family: 'JetBrains Mono', monospace; background: var(--surface-glass); color: var(--text-secondary); padding: 0.28rem 0.65rem; border-radius: 8px; border: 1px solid var(--border-glass); font-weight: 600; }
-        .video-container { width: 100%; border-radius: 18px; overflow: hidden; background: #000; box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.5); margin: 1.15rem 0; aspect-ratio: 16 / 9; }
-        .video-container video { width: 100%; height: 100%; display: block; object-fit: cover; }
 
         .input-group { margin-bottom: 14px; }
         .input-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
@@ -303,10 +291,54 @@
         .vault-toggle button { background: none; border: none; color: var(--accent-theme); font-weight: 700; cursor: pointer; margin-left: 4px; }
         .upload-dropzone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 24px; border: 2px dashed rgba(217, 119, 104, 0.4); background: var(--surface-glass); border-radius: 16px; cursor: pointer; color: var(--text-secondary); }
         .upload-dropzone:hover { border-color: var(--accent-theme); background: var(--accent-bg); color: var(--accent-theme); }
-        .file-list { display: flex; flex-direction: column; gap: 8px; max-height: 220px; overflow-y: auto; margin-top: 10px; }
-        .vault-file-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--surface-glass); border: 1px solid var(--border-glass); border-radius: 12px; }
 
-        /* Redesigned Footer Pill */
+        /* FIXED UN-COLLAPSED VAULT FILE ROW STYLES */
+        .file-list { display: flex; flex-direction: column; gap: 10px; max-height: 240px; overflow-y: auto; margin-top: 14px; }
+        .vault-file-row {
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+            padding: 12px 14px; background: var(--surface-glass); border: 1px solid var(--border-glass);
+            border-radius: 14px; box-shadow: var(--glass-specular);
+        }
+        .vault-file-meta {
+            display: flex; flex-direction: column; gap: 2px; overflow: hidden; text-align: left; flex: 1; min-width: 0;
+        }
+        .vault-file-name {
+            font-size: 0.86rem; font-weight: 700; color: var(--text-primary);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;
+        }
+        .vault-file-sub {
+            font-size: 0.74rem; color: var(--text-tertiary); font-family: 'JetBrains Mono', monospace; display: block;
+        }
+        .vault-file-actions {
+            display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+        }
+        .file-action-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 6px 14px; font-size: 0.76rem; font-weight: 700; border-radius: 9999px;
+            text-decoration: none; cursor: pointer; border: none; transition: all 0.2s ease;
+        }
+        .dl-btn {
+            background: var(--accent-theme); color: #ffffff !important;
+        }
+        .dl-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .del-btn {
+            background: rgba(239, 68, 68, 0.15); color: #ef4444 !important; border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .del-btn:hover { background: rgba(239, 68, 68, 0.25); transform: translateY(-1px); }
+
+        /* Video Modal Card */
+        .video-container { width: 100%; border-radius: 18px; overflow: hidden; background: #000; box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.5); margin: 1.15rem 0; aspect-ratio: 16 / 9; }
+        .video-container video { width: 100%; height: 100%; display: block; object-fit: cover; }
+
+        /* Tech Modal */
+        .tech-modal-body h4 { font-size: 0.88rem; text-transform: uppercase; color: var(--accent-theme); margin: 1.25rem 0 0.5rem; font-family: 'JetBrains Mono', monospace; }
+        .tech-modal-body ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .tech-modal-body li { font-size: 0.9rem; color: var(--text-secondary); position: relative; padding-left: 1.3rem; }
+        .tech-modal-body li::before { content: "•"; position: absolute; left: 0; color: var(--accent-theme); font-weight: bold; }
+        .tech-modal-tag-cloud { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.5rem; }
+        .tech-pill-tag { font-size: 0.74rem; font-family: 'JetBrains Mono', monospace; background: var(--surface-glass); color: var(--text-secondary); padding: 0.28rem 0.65rem; border-radius: 8px; border: 1px solid var(--border-glass); font-weight: 600; }
+
+        /* Footer Pill */
         footer { padding: 3rem 0 4rem; background: transparent; text-align: center; }
         .footer-content { display: flex; flex-direction: column; align-items: center; gap: 0.85rem; }
         
@@ -325,21 +357,32 @@
         .sparkle-icon { width: 14px; height: 14px; fill: var(--accent-theme); margin-left: 2px; }
         .copyright-text { font-size: 0.78rem; color: var(--text-tertiary); }
 
-        /* Responsive Engine (Mobile & iPad) */
+        /* Mobile & iPad Responsive Constraints */
         @media (max-width: 1080px) {
             .hero { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
             .hero-description, .hero-badge { margin: 0 auto 1.5rem; }
             .core-grid, .clean-feed-grid, .quick-networks-grid, .media-showcase-grid { grid-template-columns: repeat(2, 1fr); }
         }
-        @media (max-width: 650px) {
-            .container { padding: 0 1rem; }
-            .nav-island { padding: 0.45rem 0.65rem; }
+        
+        @media (max-width: 600px) {
+            .container { padding: 0 0.85rem; }
+            header { top: 0.75rem; margin-bottom: 2rem; }
+            
+            /* Responsive Navbar - No Clipping on iPhone */
+            .nav-island { padding: 0.45rem 0.65rem; gap: 4px; }
+            .brand-logo { font-size: 0.8rem; gap: 0.4rem; }
+            .brand-monogram { width: 26px; height: 26px; font-size: 0.72rem; }
             .nav-status { display: none; }
-            .hero-title { font-size: 2.35rem; }
+            .nav-actions { gap: 0.3rem; }
+            .glass-btn { padding: 0.36rem 0.55rem; font-size: 0.72rem; border-radius: 9999px; }
+            .icon-toggle-btn { width: 28px; height: 28px; }
+            
+            .hero-title { font-size: 2.25rem; }
             .core-grid, .clean-feed-grid, .quick-networks-grid, .media-showcase-grid { grid-template-columns: 1fr; }
             .floating-ai-fab { bottom: 1.25rem; right: 1.25rem; padding: 0.65rem 1rem; font-size: 0.8rem; }
             .ai-chat-window { bottom: 4.5rem; right: 1rem; left: 1rem; width: auto; }
-            .custom-footer-pill { flex-wrap: wrap; justify-content: center; font-size: 0.76rem; }
+            .custom-footer-pill { flex-wrap: wrap; justify-content: center; font-size: 0.75rem; }
+            .glass-modal { padding: 1.75rem 1.25rem; }
         }
     </style>
 </head>
@@ -348,7 +391,7 @@
     <div class="ambient-dark-glow glow-mid-obsidian"></div>
 
     <div class="container">
-        <!-- Floating Navigation Header Island -->
+        <!-- Floating Navigation Header -->
         <header>
             <nav class="nav-island">
                 <a href="/" class="brand-logo"><span class="brand-monogram">SK</span> sudheerqk.com</a>
@@ -439,7 +482,7 @@
             </div>
         </section>
 
-        <!-- Clean Social Feeds (No Stock Photos - Clean Glass Cards) -->
+        <!-- Clean Social Feeds (No Stock Photos) -->
         <section id="social-feeds" class="social-feed-section">
             <div class="section-header">
                 <h2 class="section-title">Live Feeds &amp; Updates</h2>
@@ -551,7 +594,7 @@
             </div>
         </section>
 
-        <!-- Captured & Visuals Section (Only real media from assets/) -->
+        <!-- Captured & Visuals Section -->
         <section id="visuals" style="margin-bottom: 5.5rem;">
             <div class="section-header">
                 <h2 class="section-title">Captured &amp; Visuals</h2>
@@ -559,7 +602,6 @@
             </div>
             
             <div class="media-showcase-grid" id="mediaGalleryGrid">
-                <!-- Slot 1: Local Video Reel -->
                 <div class="media-card" onclick="openVideoPlayer('assets/videos/vault-demo.mp4', 'Vault Architecture Reel')">
                     <video playsinline muted loop poster="/avatar.jpg">
                         <source src="assets/videos/vault-demo.mp4" type="video/mp4">
@@ -573,7 +615,6 @@
                     </div>
                 </div>
 
-                <!-- Slot 2: Dedicated Video Reel Slot -->
                 <div class="media-card" onclick="openVideoPlayer('assets/videos/lab-overview.mp4', 'Engineering Environment')">
                     <video playsinline muted loop poster="/avatar.jpg">
                         <source src="assets/videos/lab-overview.mp4" type="video/mp4">
@@ -587,17 +628,11 @@
                     </div>
                 </div>
 
-                <!-- Slot 3: Personal Travel Picture -->
                 <div class="media-card" onclick="openModal('photo-modal')">
-                    <img src="/avatar.jpg" onerror="this.src='assets/images/travel.jpg'; this.onerror=function(){this.style.display='none'; document.getElementById('slot3Empty').style.display='flex';};" alt="Personal Moment">
-                    <div id="slot3Empty" class="media-empty-slot" style="display:none;">
-                        <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-                        <strong>Add Travel Photo</strong>
-                        <span>Place <code>travel.jpg</code> inside <code>assets/images/</code></span>
-                    </div>
+                    <img src="/avatar.jpg" onerror="this.src='assets/images/travel.jpg'; this.onerror=function(){this.src='/avatar.jpg';};" alt="Personal Moment">
                     <div class="media-card-label">
                         <span>Personal Perspective</span>
-                        <span class="media-card-sub">assets/images/travel.jpg</span>
+                        <span class="media-card-sub">Photography &amp; Moments</span>
                     </div>
                 </div>
             </div>
@@ -642,7 +677,7 @@
         </div>
     </div>
 
-    <!-- Modals -->
+    <!-- Tech Detail Modal -->
     <div class="modal-overlay" id="tech-detail-modal" onclick="handleBackdropClick(event, 'tech-detail-modal')">
         <div class="glass-modal">
             <button class="modal-close-btn" onclick="closeModal('tech-detail-modal')">&times;</button>
@@ -650,6 +685,7 @@
         </div>
     </div>
 
+    <!-- Video Demo Modal -->
     <div class="modal-overlay" id="vault-demo-modal" onclick="handleDemoBackdropClick(event)">
         <div class="glass-modal" style="max-width:700px;">
             <button class="modal-close-btn" onclick="closeDemoModal()">&times;</button>
@@ -660,6 +696,7 @@
         </div>
     </div>
 
+    <!-- Vault Modal with Separated Row Layout -->
     <div id="vaultModal" class="modal-overlay" onclick="handleVaultBackdropClick(event)">
         <div class="glass-modal" style="max-width:480px;">
             <button class="modal-close-btn" onclick="closeVaultModal()">&times;</button>
@@ -687,6 +724,7 @@
         </div>
     </div>
 
+    <!-- Lightbox Modals -->
     <div class="modal-overlay" id="photo-modal" onclick="handleBackdropClick(event, 'photo-modal')">
         <div class="glass-modal" style="max-width:500px;text-align:center;">
             <button class="modal-close-btn" onclick="closeModal('photo-modal')">&times;</button>
@@ -705,7 +743,7 @@
     <div class="modal-overlay" id="x-modal" onclick="handleBackdropClick(event, 'x-modal')"><div class="glass-modal" style="max-width:460px;text-align:center;"><button class="modal-close-btn" onclick="closeModal('x-modal')">&times;</button><h3 class="profile-card-name">Follow on X (Twitter)</h3><a href="https://x.com/sudheerqk?s=11" target="_blank" rel="noopener noreferrer" class="glass-btn btn-cta" style="width:100%;justify-content:center;padding:0.9rem;margin-top:16px;">Open @sudheerqk</a></div></div>
     <div class="modal-overlay" id="li-modal" onclick="handleBackdropClick(event, 'li-modal')"><div class="glass-modal" style="max-width:460px;text-align:center;"><button class="modal-close-btn" onclick="closeModal('li-modal')">&times;</button><h3 class="profile-card-name">Connect on LinkedIn</h3><a href="https://www.linkedin.com/in/sudheer-kumar-swaminathan/" target="_blank" rel="noopener noreferrer" class="glass-btn btn-cta" style="width:100%;justify-content:center;background:#0a66c2;color:#fff;padding:0.9rem;margin-top:16px;">Open LinkedIn Profile</a></div></div>
 
-    <!-- Redesigned Minimal Footer Pill -->
+    <!-- Redesigned Footer Pill -->
     <footer>
         <div class="footer-content">
             <div class="custom-footer-pill">
@@ -726,7 +764,7 @@
         function toggleTheme() { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
         function applyTheme(t) {
             document.documentElement.setAttribute('data-theme', t); localStorage.setItem('site_theme', t);
-            themeIcon.innerHTML = t === 'dark' ? `<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z"/>` : `<path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>`;
+            themeIcon.innerHTML = t === 'dark' ? `<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0z"/>` : `<path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>`;
         }
 
         function openVideoPlayer(videoUrl, videoTitle) {
@@ -887,8 +925,26 @@
                 const res = await fetch(`/api/files?token=${encodeURIComponent(vaultToken)}`);
                 const data = await res.json();
                 if (!res.ok) throw new Error();
-                list.innerHTML = data.files.map(f => `<div class="vault-file-row"><div class="vault-file-meta"><span class="vault-file-name">${f.filename}</span><span class="vault-file-sub">${(f.size / (1024*1024)).toFixed(2)} MB</span></div><div class="vault-file-actions"><a class="file-action-btn dl-btn" href="/api/download/${f.id}?token=${encodeURIComponent(vaultToken)}" download>Get</a><button class="file-action-btn del-btn" onclick="deleteVaultFile(${f.id})">Delete</button></div></div>`).join("");
-            } catch { list.innerHTML = `<div style="color:#dc2626;font-size:0.85rem;">Session expired.</div>`; }
+
+                if (!data.files || !data.files.length) {
+                    list.innerHTML = `<div style="text-align:center;color:var(--text-tertiary);font-size:0.85rem;padding:12px;">No stored documents yet.</div>`;
+                    return;
+                }
+
+                // FIXED UN-COLLAPSED ROW RENDERING
+                list.innerHTML = data.files.map(f => `
+                    <div class="vault-file-row">
+                        <div class="vault-file-meta">
+                            <span class="vault-file-name" title="${f.filename}">${f.filename}</span>
+                            <span class="vault-file-sub">${(f.size / (1024*1024)).toFixed(2)} MB</span>
+                        </div>
+                        <div class="vault-file-actions">
+                            <a class="file-action-btn dl-btn" href="/api/download/${f.id}?token=${encodeURIComponent(vaultToken)}" download>Get</a>
+                            <button class="file-action-btn del-btn" onclick="deleteVaultFile(${f.id})">Delete</button>
+                        </div>
+                    </div>
+                `).join("");
+            } catch { list.innerHTML = `<div style="color:#dc2626;font-size:0.85rem;text-align:center;padding:10px;">Session expired. Please log in again.</div>`; }
         }
         async function deleteVaultFile(id) {
             if (!confirm("Permanently delete file?")) return;
