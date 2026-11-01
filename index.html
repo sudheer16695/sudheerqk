@@ -268,10 +268,10 @@
             flex: 1; padding: 8px 12px; font-size: 0.82rem; border-radius: 12px; border: 1px solid var(--border-subtle);
             background: var(--bg-canvas); color: var(--text-primary); outline: none;
         }
-        .ai-chat-input:focus { border-color: var(--accent-theme); }
+        .ai-chat-input:focus { border-color: var(--accent-theme); box-shadow: 0 0 0 3px var(--accent-glow); }
         .ai-chat-send { padding: 8px 14px; font-size: 0.8rem; font-weight: 700; border-radius: 12px; background: var(--accent-theme); color: #fff; border: none; cursor: pointer; }
 
-        /* Modals */
+        /* Modals & Fixed Vault List Rows */
         .modal-overlay { position: fixed; inset: 0; background: rgba(3, 5, 10, 0.55); backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.28s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .glass-modal { background: var(--surface-modal); backdrop-filter: blur(40px) saturate(200%); -webkit-backdrop-filter: blur(40px) saturate(200%); border: 1px solid var(--border-glass); border-radius: 30px; box-shadow: var(--glass-specular), 0 35px 80px -15px rgba(0, 0, 0, 0.45); width: 100%; max-width: 540px; padding: 2.3rem 2rem; position: relative; text-align: left; max-height: 90vh; overflow-y: auto; }
@@ -290,7 +290,6 @@
         .upload-dropzone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 24px; border: 2px dashed rgba(217, 119, 104, 0.4); background: var(--surface-glass); border-radius: 16px; cursor: pointer; color: var(--text-secondary); }
         .upload-dropzone:hover { border-color: var(--accent-theme); background: var(--accent-bg); color: var(--accent-theme); }
 
-        /* Vault Row Styles */
         .file-list { display: flex; flex-direction: column; gap: 10px; max-height: 240px; overflow-y: auto; margin-top: 14px; }
         .vault-file-row {
             display: flex; align-items: center; justify-content: space-between; gap: 12px;
