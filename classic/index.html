@@ -1,0 +1,1936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudheer Kumar | Database Specialist & Enterprise Infrastructure Engineer</title>
+    <meta name="description" content="Portfolio of Sudheer Kumar — Enterprise Database Specialist, High-Availability Architect, and Infrastructure Engineer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-canvas: #ffffff;
+            --bg-subtle: #f8fafc;
+            --surface: #ffffff;
+            --border-light: #e2e8f0;
+            --border-focus: #cbd5e1;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #94a3b8;
+            --accent-blue: #0284c7;
+            --accent-blue-light: #e0f2fe;
+            --badge-green-bg: #ecfdf5;
+            --badge-green-text: #059669;
+            --badge-green-border: #a7f3d0;
+            --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            --shadow-card: 0 10px 30px -10px rgba(15, 23, 42, 0.06), 0 4px 6px -2px rgba(15, 23, 42, 0.02);
+            --shadow-float: 0 20px 40px -15px rgba(15, 23, 42, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-canvas);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(2, 132, 199, 0.04) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.03) 0px, transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(to right, #f1f5f9 1px, transparent 1px),
+                              linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
+            background-size: 4rem 4rem;
+            mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Floating Nav */
+        header {
+            position: sticky;
+            top: 1.5rem;
+            z-index: 40;
+            margin-bottom: 4rem;
+        }
+
+        .nav-island {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 9999px;
+            padding: 0.75rem 1.5rem;
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+        }
+
+        .brand-logo {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .brand-monogram {
+            width: 28px;
+            height: 28px;
+            background: var(--text-primary);
+            color: #ffffff;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .nav-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.35rem 0.85rem;
+            background: var(--badge-green-bg);
+            border: 1px solid var(--badge-green-border);
+            color: var(--badge-green-text);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.4rem;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+            animation: pulse 2.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.15); }
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.5rem 1rem;
+            background: var(--text-primary);
+            color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-cta:hover {
+            background: #1e293b;
+            transform: translateY(-1px);
+        }
+
+        /* Demo Button in Navbar */
+        .nav-demo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.5rem 1rem;
+            background: var(--bg-subtle);
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-demo-btn:hover {
+            background: #ffffff;
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12);
+        }
+
+        .nav-demo-btn svg {
+            fill: currentColor;
+        }
+
+        /* Nav Vault Button */
+        .nav-vault-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.05rem;
+            background: #0f172a;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-vault-btn:hover {
+            background: #1e293b;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3.5rem;
+            align-items: center;
+            padding: 2rem 0 4rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            background: var(--accent-blue-light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .hero-title {
+            font-size: 3.25rem;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-description {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 580px;
+            margin-bottom: 2rem;
+        }
+
+        /* Profile Card with Click-to-Zoom Avatar */
+        .hero-profile-card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            padding: 2.25rem;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .hero-profile-card:hover {
+            box-shadow: var(--shadow-float);
+            border-color: var(--border-focus);
+            transform: translateY(-3px);
+        }
+
+        .avatar-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            margin-bottom: 1.5rem;
+            outline: none;
+            border-radius: 50%;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .avatar-button:hover {
+            transform: scale(1.05);
+        }
+
+        .avatar-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 18%;
+            border: 4px solid #ffffff;
+            box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.15);
+            background-color: #f1f5f9;
+            display: block;
+        }
+
+        .avatar-zoom-hint {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            background: #ffffff;
+            border-radius: 50%;
+            padding: 6px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+            display: flex;
+            color: var(--accent-blue);
+        }
+
+        .avatar-zoom-hint svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .profile-card-name {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .profile-card-role {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-top: 0.2rem;
+        }
+
+        .profile-card-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            margin-top: 0.75rem;
+        }
+
+        .profile-card-location svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* Metric Highlights Strip */
+        .metrics-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            padding: 2.25rem 2rem;
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            box-shadow: var(--shadow-card);
+            margin-bottom: 4rem;
+        }
+
+        .metric-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .metric-number {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .metric-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .metric-sub {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Technical Capabilities Grid */
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .section-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .cap-card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 1.75rem;
+            box-shadow: var(--shadow-card);
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cap-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-float);
+        }
+
+        .cap-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .cap-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--text-primary);
+        }
+
+        .cap-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+        }
+
+        .cap-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .cap-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .cap-tag {
+            font-size: 0.72rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-subtle);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.55rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+        }
+
+        /* Social Channels Grid */
+        .social-bento {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 5rem;
+        }
+
+        .social-link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 1.4rem;
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            color: var(--text-primary);
+            box-shadow: var(--shadow-subtle);
+            font-family: inherit;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .social-link-btn .card-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .social-link-btn .social-icon-box {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            transition: all 0.2s ease;
+        }
+
+        .social-link-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .social-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .social-handle {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        .arrow-icon {
+            width: 16px;
+            height: 16px;
+            fill: var(--text-tertiary);
+            transition: all 0.2s ease;
+        }
+
+        .social-link-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--text-primary);
+            box-shadow: var(--shadow-card);
+        }
+
+        .social-link-btn:hover .arrow-icon {
+            fill: var(--text-primary);
+            transform: translate(2px, -2px);
+        }
+
+        /* Hover platform accents */
+        .card-linkedin:hover .social-icon-box { background: #0a66c2; color: #fff; border-color: #0a66c2; }
+        .card-github:hover .social-icon-box { background: #0f172a; color: #fff; border-color: #0f172a; }
+        .card-x:hover .social-icon-box { background: #000000; color: #fff; border-color: #000000; }
+        .card-instagram:hover .social-icon-box { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; border-color: transparent; }
+        .card-snapchat:hover .social-icon-box { background: #fffc00; color: #000; border-color: #eab308; }
+        .card-email:hover .social-icon-box { background: #0284c7; color: #fff; border-color: #0284c7; }
+
+        /* Apple-Grade Frosted Glass Modal Backdrop (Social, Photo & Video) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Glass Modal Box */
+        .glass-modal {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 28px;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(226, 232, 240, 0.6);
+            width: 100%;
+            max-width: 440px;
+            padding: 2.25rem 2rem;
+            position: relative;
+            transform: scale(0.92) translateY(12px);
+            transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-align: center;
+        }
+
+        .modal-overlay.active .glass-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            line-height: 1;
+            transition: all 0.2s ease;
+            z-index: 2;
+        }
+
+        .modal-close-btn:hover {
+            background: #e2e8f0;
+            color: var(--text-primary);
+        }
+
+        .modal-avatar-preview {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 18%;
+            border: 3px solid #ffffff;
+            box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.15);
+            margin: 0 auto 1.25rem;
+        }
+
+        .modal-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 0.35rem;
+        }
+
+        .modal-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .modal-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 0.85rem 1.25rem;
+            border-radius: 14px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            background: var(--text-primary);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+        }
+
+        .modal-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+        }
+
+        .modal-btn-primary.btn-ig {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .modal-btn-primary.btn-sc {
+            background: #fffc00;
+            color: #000000;
+        }
+
+        .modal-btn-primary.btn-x {
+            background: #000000;
+        }
+
+        .modal-btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0.8rem 1.25rem;
+            border-radius: 14px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-decoration: none;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .modal-btn-secondary:hover {
+            background: #e2e8f0;
+            color: var(--text-primary);
+        }
+
+        /* Large Portrait / Half-Image Modal */
+        .photo-modal-card {
+            max-width: 480px;
+            padding: 1.5rem;
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+            margin-bottom: 1.25rem;
+            background: #f1f5f9;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 15%;
+        }
+
+        /* Video Walkthrough Modal Card Sizing */
+        .video-modal-card {
+            max-width: 640px;
+            padding: 2.25rem 2rem 1.75rem;
+            text-align: left;
+        }
+
+        .video-container {
+            width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #000000;
+            box-shadow: 0 12px 30px -8px rgba(15, 23, 42, 0.25);
+            margin-bottom: 1.25rem;
+            position: relative;
+            aspect-ratio: 16 / 9;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .video-footer-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        /* ---------------------------------------------------- */
+        /* VAULT MODAL & CLOUD STORAGE STYLES                   */
+        /* ---------------------------------------------------- */
+        .vault-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .vault-backdrop.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .vault-card {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(226, 232, 240, 0.6);
+            border-radius: 28px;
+            padding: 2.25rem 2rem;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.95);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .vault-backdrop.active .vault-card {
+            transform: scale(1);
+        }
+
+        .vault-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .vault-close:hover {
+            background: #e2e8f0;
+            color: var(--text-primary);
+        }
+
+        .vault-header h2 {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin: 8px 0 4px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .vault-header p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .vault-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 10px;
+            background: var(--accent-blue-light);
+            color: var(--accent-blue);
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .input-group {
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 11px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            background: #ffffff;
+            font-size: 0.92rem;
+            font-family: inherit;
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        .vault-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 14px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .primary-btn {
+            background: var(--text-primary);
+            color: #ffffff;
+            margin-top: 6px;
+        }
+
+        .primary-btn:hover {
+            background: #1e293b;
+            transform: translateY(-1px);
+        }
+
+        .vault-toggle {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .vault-toggle button {
+            background: none;
+            border: none;
+            color: var(--accent-blue);
+            font-weight: 700;
+            cursor: pointer;
+            margin-left: 4px;
+            font-family: inherit;
+        }
+
+        .vault-msg {
+            font-size: 0.84rem;
+            margin-top: 12px;
+            min-height: 20px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .upload-dropzone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 24px;
+            border: 2px dashed rgba(2, 132, 199, 0.35);
+            background: var(--bg-subtle);
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .upload-dropzone:hover {
+            border-color: var(--accent-blue);
+            background: var(--accent-blue-light);
+            color: var(--accent-blue);
+        }
+
+        .files-container h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 22px 0 10px;
+            color: var(--text-primary);
+        }
+
+        .file-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        .vault-file-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .vault-file-meta {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .vault-file-name {
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 220px;
+        }
+
+        .vault-file-sub {
+            font-size: 0.72rem;
+            color: var(--text-tertiary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .vault-file-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .file-action-btn {
+            padding: 5px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dl-btn {
+            background: var(--text-primary);
+            color: #fff;
+        }
+
+        .dl-btn:hover {
+            background: #1e293b;
+        }
+
+        .del-btn {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+        }
+
+        .del-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .logout-link {
+            background: none;
+            border: none;
+            color: #ef4444;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: inherit;
+        }
+
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-light);
+            padding: 3rem 0;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .gemini-attribution {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+        }
+
+        .sparkle-icon {
+            width: 16px;
+            height: 16px;
+            fill: #2563eb;
+        }
+
+        .copyright-text {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                text-align: center;
+            }
+            .hero-description {
+                margin: 0 auto 2rem;
+            }
+            .hero-badge {
+                margin: 0 auto 1.25rem;
+            }
+            .capabilities-grid {
+                grid-template-columns: 1fr;
+            }
+            .social-bento {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .metrics-strip {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            /* 1. Reclaim horizontal screen real estate */
+            .container {
+                padding: 0 0.85rem;
+            }
+
+            header {
+                top: 0.75rem;
+                margin-bottom: 2rem;
+            }
+
+            /* 2. Compact the floating nav pill */
+            .nav-island {
+                padding: 0.4rem 0.65rem;
+                border-radius: 9999px;
+            }
+
+            /* 3. Scale down the logo */
+            .brand-logo {
+                font-size: 0.82rem;
+                gap: 0.4rem;
+            }
+
+            .brand-monogram {
+                width: 24px;
+                height: 24px;
+                font-size: 0.72rem;
+                border-radius: 6px;
+            }
+
+            /* 4. Fit Contact, Demo, and Vault side-by-side */
+            .nav-status {
+                display: none;
+            }
+
+            .nav-actions {
+                gap: 0.3rem;
+            }
+
+            .btn-cta, 
+            .nav-demo-btn, 
+            .nav-vault-btn {
+                padding: 0.38rem 0.58rem;
+                font-size: 0.73rem;
+                letter-spacing: -0.01em;
+            }
+
+            .nav-demo-btn svg,
+            .nav-vault-btn svg {
+                width: 12px;
+                height: 12px;
+                margin-right: 2px !important;
+            }
+
+            /* 5. Clean up grid layouts */
+            .hero-title {
+                font-size: 2.15rem;
+            }
+            .social-bento {
+                grid-template-columns: 1fr;
+            }
+            .metrics-strip {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Safety check for narrow viewports */
+        @media (max-width: 380px) {
+            .brand-logo {
+                font-size: 0.75rem;
+            }
+            .btn-cta, .nav-demo-btn, .nav-vault-btn {
+                padding: 0.35rem 0.45rem;
+                font-size: 0.68rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Floating Navigation Header -->
+        <header>
+            <nav class="nav-island">
+                <a href="/" class="brand-logo">
+                    <span class="brand-monogram">SK</span>
+                    sudheerqk.com
+                </a>
+                <div class="nav-actions">
+                    <div class="nav-status">
+                        <span class="status-dot"></span> Available for Architecture & Consultation
+                    </div>
+                    <button class="btn-cta" onclick="openModal('email-modal')">Contact</button>
+                    <!-- Demo Navbar Button -->
+                    <button class="nav-demo-btn" onclick="openDemoModal()" title="Watch Vault Walkthrough">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Demo
+                    </button>
+                    <!-- Vault Navbar Button -->
+                    <button onclick="openVaultModal()" class="nav-vault-btn" id="vaultNavBtn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        Vault
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">ENTERPRISE INFRASTRUCTURE & DBaaS</div>
+                <h1 class="hero-title">Sudheer Kumar</h1>
+                <div class="hero-subtitle">Senior Database Specialist & Infrastructure Engineer</div>
+                <p class="hero-description">
+                    Architecting resilient, high-availability database ecosystems, zero-downtime Always On Availability Groups, 
+                    and Nutanix Database Service (NDB) automation across multi-datacenter enterprise environments.
+                </p>
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                    <a href="#capabilities" class="btn-cta" style="padding: 0.7rem 1.4rem; font-size: 0.88rem;">Explore Architecture</a>
+                    <a href="#connect" style="display: inline-flex; align-items: center; gap: 6px; padding: 0.7rem 1.4rem; background: var(--bg-subtle); border: 1px solid var(--border-light); color: var(--text-primary); font-size: 0.88rem; font-weight: 600; text-decoration: none; border-radius: 9999px;">Social Networks</a>
+                </div>
+            </div>
+
+            <!-- Profile Overview Card -->
+            <div class="hero-profile-card">
+                <button class="avatar-button" onclick="openModal('photo-modal')" title="Click to view portrait">
+                    <img class="avatar-img" src="/avatar.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=260&q=80';" alt="Sudheer Kumar">
+                    <div class="avatar-zoom-hint">
+                        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    </div>
+                </button>
+                <div class="profile-card-name">Sudheer Kumar</div>
+                <div class="profile-card-role">Database Specialist & Systems Architect</div>
+                <div class="profile-card-location">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    Saudi Arabia &bull; Global Availability
+                </div>
+            </div>
+        </section>
+
+        <!-- Metric Highlights Strip -->
+        <section class="metrics-strip">
+            <div class="metric-item">
+                <div class="metric-number">99.999%</div>
+                <div class="metric-label">High Availability</div>
+                <div class="metric-sub">Target SLA for mission-critical apps</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-number">AlwaysOn</div>
+                <div class="metric-label">Active Clusters</div>
+                <div class="metric-sub">Multi-subnet AG configurations</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-number">NDB &bull; DBaaS</div>
+                <div class="metric-label">Nutanix Automation</div>
+                <div class="metric-sub">One-click provisioning & clones</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-number">Zero</div>
+                <div class="metric-label">Data Loss Target</div>
+                <div class="metric-sub">Synchronous replication architectures</div>
+            </div>
+        </section>
+
+        <!-- Architecture & Technical Capabilities -->
+        <section id="capabilities" style="margin-bottom: 4rem;">
+            <div class="section-header">
+                <h2 class="section-title">Core Engineering Capabilities</h2>
+                <p class="section-desc">Production-grade infrastructure design, database automation, and resilience engineering.</p>
+            </div>
+
+            <div class="capabilities-grid">
+                <div class="cap-card">
+                    <div>
+                        <div class="cap-icon">
+                            <svg viewBox="0 0 24 24"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-7 14c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm6-8H6V7h12v3z"/></svg>
+                        </div>
+                        <h3>High Availability & Clustering</h3>
+                        <p>Architecting multi-node SQL Server Always On Availability Groups, multi-subnet listeners, and disaster recovery orchestration across hybrid regions.</p>
+                    </div>
+                    <div class="cap-tags">
+                        <span class="cap-tag">AlwaysOn</span>
+                        <span class="cap-tag">WSFC</span>
+                        <span class="cap-tag">DR Strategy</span>
+                    </div>
+                </div>
+
+                <div class="cap-card">
+                    <div>
+                        <div class="cap-icon">
+                            <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+                        </div>
+                        <h3>Nutanix Database Service (NDB)</h3>
+                        <p>Scaling Database-as-a-Service (DBaaS) infrastructure with Nutanix NDB, time-machine copy data management, and zero-byte clone automation.</p>
+                    </div>
+                    <div class="cap-tags">
+                        <span class="cap-tag">Nutanix NDB</span>
+                        <span class="cap-tag">DBaaS</span>
+                        <span class="cap-tag">Copy Management</span>
+                    </div>
+                </div>
+
+                <div class="cap-card">
+                    <div>
+                        <div class="cap-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        </div>
+                        <h3>Performance & Observability</h3>
+                        <p>Diagnosing query bottlenecks, execution plan anomalies, lock escalation, storage I/O latency, and multi-tier database health monitoring.</p>
+                    </div>
+                    <div class="cap-tags">
+                        <span class="cap-tag">Query Tuning</span>
+                        <span class="cap-tag">PostgreSQL</span>
+                        <span class="cap-tag">Telemetry</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Channels Hub -->
+        <section id="connect">
+            <div class="section-header">
+                <h2 class="section-title">Connect & Networks</h2>
+                <p class="section-desc">Tap any network to connect, follow, or get in touch directly.</p>
+            </div>
+
+            <div class="social-bento">
+                <!-- Instagram -->
+                <button class="social-link-btn card-instagram" onclick="openModal('ig-modal')">
+                    <div class="card-left">
+                        <div class="social-icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.79-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </div>
+                        <div>
+                            <div class="social-name">Instagram</div>
+                            <div class="social-handle">@sudheerqk</div>
+                        </div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M5 19L19 5M19 5H9M19 5V15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+
+                <!-- Snapchat -->
+                <button class="social-link-btn card-snapchat" onclick="openModal('sc-modal')">
+                    <div class="card-left">
+                        <div class="social-icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M12.016 2.002c-4.148 0-6.993 2.92-6.993 6.223 0 .783.187 1.637.393 2.285.086.27.067.436-.089.658-.33.468-.86.969-1.44 1.258-.456.228-.687.525-.687.892 0 .615.655 1.056 1.474 1.24.328.074.526.27.575.586.098.636.377 1.056.883 1.32.222.115.34.288.354.516.038.608-.12 1.34-1.254 1.834-.693.303-.984.735-.984 1.293 0 .848.905 1.452 2.639 1.764.55.099.98.375 1.292.83.693 1.01 1.954 1.297 3.836 1.297s3.143-.287 3.836-1.297c.312-.455.742-.731 1.292-.83 1.734-.312 2.639-.916 2.639-1.764 0-.558-.291-.99-.984-1.293-1.134-.494-1.292-1.226-1.254-1.834.014-.228.132-.401.354-.516.506-.264.785-.684.883-1.32.049-.316.247-.512.575-.586.819-.184 1.474-.625 1.474-1.24 0-.367-.231-.664-.687-.892-.58-.289-1.11-.79-1.44-1.258-.156-.222-.175-.388-.089-.658.206-.648.393-1.502.393-2.285 0-3.303-2.845-6.223-6.993-6.223z"/></svg>
+                        </div>
+                        <div>
+                            <div class="social-name">Snapchat</div>
+                            <div class="social-handle">Add on Snapchat</div>
+                        </div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M5 19L19 5M19 5H9M19 5V15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+
+                <!-- X (Twitter) -->
+                <button class="social-link-btn card-x" onclick="openModal('x-modal')">
+                    <div class="card-left">
+                        <div class="social-icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </div>
+                        <div>
+                            <div class="social-name">X (Twitter)</div>
+                            <div class="social-handle">@sudheerqk</div>
+                        </div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M5 19L19 5M19 5H9M19 5V15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+
+                <!-- LinkedIn -->
+                <button class="social-link-btn card-linkedin" onclick="openModal('li-modal')">
+                    <div class="card-left">
+                        <div class="social-icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.738-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </div>
+                        <div>
+                            <div class="social-name">LinkedIn</div>
+                            <div class="social-handle">Professional Network</div>
+                        </div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M5 19L19 5M19 5H9M19 5V15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+
+                <!-- GitHub -->
+                <button class="social-link-btn card-github" onclick="openModal('gh-modal')">
+                    <div class="card-left">
+                        <div class="social-icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </div>
+                        <div>
+                            <div class="social-name">GitHub</div>
+                            <div class="social-handle">@sudheer16695</div>
+                        </div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M5 19L19 5M19 5H9M19 5V15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+
+                <!-- Email -->
+                <button class="social-link-btn card-email" onclick="openModal('email-modal')">
+                    <div class="card-left">
+                        <div class="social-icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        </div>
+                        <div>
+                            <div class="social-name">Direct Email</div>
+                            <div class="social-handle">contact@sudheerqk.com</div>
+                        </div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M5 19L19 5M19 5H9M19 5V15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Apple-Style Frosted Glass Blur Modals -->
+
+    <!-- 1. Instagram Modal -->
+    <div class="modal-overlay" id="ig-modal" onclick="handleBackdropClick(event, 'ig-modal')">
+        <div class="glass-modal">
+            <button class="modal-close-btn" onclick="closeModal('ig-modal')">&times;</button>
+            <img class="modal-avatar-preview" src="/avatar.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=260&q=80';" alt="Sudheer Kumar">
+            <div class="modal-title">Follow on Instagram</div>
+            <div class="modal-desc">Connect with @sudheerqk on Instagram for personal updates, highlights, and visual moments.</div>
+            <div class="modal-actions">
+                <a href="https://www.instagram.com/sudheerqk?rpxt=eGRuYmNjczltY2Y1&utm_source=qr" target="_blank" rel="noopener noreferrer" class="modal-btn-primary btn-ig">
+                    Open Instagram Profile
+                </a>
+                <button class="modal-btn-secondary" onclick="closeModal('ig-modal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Snapchat Modal -->
+    <div class="modal-overlay" id="sc-modal" onclick="handleBackdropClick(event, 'sc-modal')">
+        <div class="glass-modal">
+            <button class="modal-close-btn" onclick="closeModal('sc-modal')">&times;</button>
+            <img class="modal-avatar-preview" src="/avatar.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=260&q=80';" alt="Sudheer Kumar">
+            <div class="modal-title">Add on Snapchat</div>
+            <div class="modal-desc">Add Sudheer Kumar directly on Snapchat to view daily stories and quick updates.</div>
+            <div class="modal-actions">
+                <a href="https://snapchat.com/t/k9Z8XENu" target="_blank" rel="noopener noreferrer" class="modal-btn-primary btn-sc">
+                    Add on Snapchat (Profile 1)
+                </a>
+                <a href="https://snapchat.com/t/IkrHi4fQ" target="_blank" rel="noopener noreferrer" class="modal-btn-secondary" style="font-weight:700;">
+                    Add on Snapchat (Profile 2)
+                </a>
+                <button class="modal-btn-secondary" onclick="closeModal('sc-modal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. X (Twitter) Modal -->
+    <div class="modal-overlay" id="x-modal" onclick="handleBackdropClick(event, 'x-modal')">
+        <div class="glass-modal">
+            <button class="modal-close-btn" onclick="closeModal('x-modal')">&times;</button>
+            <img class="modal-avatar-preview" src="/avatar.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=260&q=80';" alt="Sudheer Kumar">
+            <div class="modal-title">Follow on X (Twitter)</div>
+            <div class="modal-desc">Follow @sudheerqk for real-time posts, database architecture engineering tips, and industry tech updates.</div>
+            <div class="modal-actions">
+                <a href="https://x.com/sudheerqk?s=11" target="_blank" rel="noopener noreferrer" class="modal-btn-primary btn-x">
+                    Follow @sudheerqk
+                </a>
+                <button class="modal-btn-secondary" onclick="closeModal('x-modal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. LinkedIn Modal -->
+    <div class="modal-overlay" id="li-modal" onclick="handleBackdropClick(event, 'li-modal')">
+        <div class="glass-modal">
+            <button class="modal-close-btn" onclick="closeModal('li-modal')">&times;</button>
+            <img class="modal-avatar-preview" src="/avatar.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=260&q=80';" alt="Sudheer Kumar">
+            <div class="modal-title">Connect on LinkedIn</div>
+            <div class="modal-desc">Explore enterprise career history, architecture projects, and connect directly for consultation.</div>
+            <div class="modal-actions">
+                <a href="https://www.linkedin.com/in/sudheer-kumar-swaminathan/" target="_blank" rel="noopener noreferrer" class="modal-btn-primary" style="background:#0a66c2;">
+                    View LinkedIn Profile
+                </a>
+                <button class="modal-btn-secondary" onclick="closeModal('li-modal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. GitHub Modal -->
+    <div class="modal-overlay" id="gh-modal" onclick="handleBackdropClick(event, 'gh-modal')">
+        <div class="glass-modal">
+            <button class="modal-close-btn" onclick="closeModal('gh-modal')">&times;</button>
+            <img class="modal-avatar-preview" src="/avatar.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=260&q=80';" alt="Sudheer Kumar">
+            <div class="modal-title">GitHub Repositories</div>
+            <div class="modal-desc">Review automated infrastructure templates, SQL runbooks, and open-source contributions.</div>
+            <div class="modal-actions">
+                <a href="https://github.com/sudheer16695" target="_blank" rel="noopener noreferrer" class="modal-btn-primary">
+                    Open @sudheer16695
+                </a>
+                <button class="modal-btn-secondary" onclick="closeModal('gh-modal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Direct Email Modal -->
+    <div class="modal-overlay" id="email-modal" onclick="handleBackdropClick(event, 'email-modal')">
+        <div class="glass-modal">
+            <button class="modal-close-btn" onclick="closeModal('email-modal')">&times;</button>
+            <img class="modal-avatar-preview" src="/avatar.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=260&q=80';" alt="Sudheer Kumar">
+            <div class="modal-title">Get in Touch</div>
+            <div class="modal-desc">Send an email directly for enterprise database architecture inquiries, consultation, or advisory.</div>
+            <div class="modal-actions">
+                <a href="mailto:contact@sudheerqk.com" class="modal-btn-primary" style="background:#0284c7;">
+                    Compose Email to contact@sudheerqk.com
+                </a>
+                <button class="modal-btn-secondary" onclick="copyEmail()">
+                    <span id="copy-btn-text">Copy Email Address</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. High-Resolution Portrait Lightbox Modal -->
+    <div class="modal-overlay" id="photo-modal" onclick="handleBackdropClick(event, 'photo-modal')">
+        <div class="glass-modal photo-modal-card">
+            <button class="modal-close-btn" onclick="closeModal('photo-modal')">&times;</button>
+            <div class="photo-frame">
+                <img src="/avatar.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80';" alt="Sudheer Kumar">
+            </div>
+            <div class="modal-title">Sudheer Kumar</div>
+            <div class="modal-desc" style="margin-bottom: 1.25rem;">Database Specialist & Enterprise Infrastructure Engineer</div>
+            <div class="modal-actions">
+                <button class="modal-btn-secondary" onclick="closeModal('photo-modal')">Close Preview</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Video Walkthrough Lightbox Modal -->
+    <div class="modal-overlay" id="vault-demo-modal" onclick="handleDemoBackdropClick(event)">
+        <div class="glass-modal video-modal-card">
+            <button class="modal-close-btn" onclick="closeDemoModal()">&times;</button>
+            
+            <div class="video-header" style="margin-bottom: 1.25rem;">
+                <span class="vault-badge">Feature Tour</span>
+                <div class="modal-title" style="margin-top: 8px;">How the Private Vault Works</div>
+                <div class="modal-desc" style="margin-bottom: 0;">End-to-end file upload, encryption, and direct SSD retrieval.</div>
+            </div>
+
+            <div class="video-container">
+                <video id="vaultDemoVideo" playsinline preload="metadata" controls>
+                    <source src="/vault-demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="video-footer-actions">
+                <button class="modal-btn-primary" onclick="closeDemoModal(); openVaultModal();" style="background: #0f172a; width: auto; padding: 0.75rem 1.4rem;">
+                    Open Vault & Sign In
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. Frosted Glass Vault Modal (Storage Proxy & Auth) -->
+    <div id="vaultModal" class="vault-backdrop" onclick="handleVaultBackdropClick(event)">
+        <div class="vault-card">
+            <button class="vault-close" onclick="closeVaultModal()">&times;</button>
+
+            <!-- State 1: Authentication (Sign In / Register) -->
+            <div id="vaultAuthSection">
+                <div class="vault-header">
+                    <div class="vault-badge">PostgreSQL Vault</div>
+                    <h2 id="authHeading">Sign In</h2>
+                    <p id="authSub">Enter your credentials to access your secure files.</p>
+                </div>
+
+                <form id="vaultForm" onsubmit="submitAuth(event)">
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" id="vaultEmail" placeholder="name@domain.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="vaultPassword" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" id="authSubmitBtn" class="vault-btn primary-btn">Sign In</button>
+                </form>
+
+                <div id="vaultMsg" class="vault-msg"></div>
+
+                <div class="vault-toggle">
+                    <span id="toggleQuestion">Don't have an account?</span>
+                    <button type="button" onclick="toggleAuthMode()" id="toggleBtn">Create Account</button>
+                </div>
+            </div>
+
+            <!-- State 2: Authenticated File Management -->
+            <div id="vaultDashboard" style="display: none;">
+                <div class="vault-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="vault-badge">Authenticated Session</div>
+                        <button onclick="vaultLogout()" class="logout-link">Log Out</button>
+                    </div>
+                    <h2>Your File Repository</h2>
+                    <p>Direct upload and retrieval streaming to your local Mac SSD.</p>
+                </div>
+
+                <div class="upload-box">
+                    <input type="file" id="vaultFileInput" style="display: none;" onchange="handleFileSelected(event)">
+                    <label for="vaultFileInput" class="upload-dropzone">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span id="uploadLabelText">Choose file or drag here</span>
+                    </label>
+                    <button onclick="uploadVaultFile()" id="uploadBtn" class="vault-btn primary-btn" style="margin-top: 10px;">Upload File</button>
+                    <div id="uploadStatusMsg" class="vault-msg"></div>
+                </div>
+
+                <div class="files-container">
+                    <h3>Stored Documents</h3>
+                    <div id="vaultFilesList" class="file-list">Loading files...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Polished Footer with Gemini Attribution -->
+    <footer>
+        <div class="footer-content">
+            <div class="gemini-attribution">
+                Developed by using Gemini
+                <svg class="sparkle-icon" viewBox="0 0 24 24"><path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/></svg>
+            </div>
+            <div class="copyright-text">&copy; 2026 sudheerqk.com &bull; All Rights Reserved</div>
+        </div>
+    </footer>
+
+    <!-- Interactive Blur Modal Script -->
+    <script>
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function handleBackdropClick(event, id) {
+            if (event.target.id === id) {
+                closeModal(id);
+            }
+        }
+
+        // Close on ESC key for all modals
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const activeModals = document.querySelectorAll('.modal-overlay.active, .vault-backdrop.active');
+                activeModals.forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = '';
+                if (demoVideo) {
+                    demoVideo.pause();
+                }
+            }
+        });
+
+        // Copy email helper
+        function copyEmail() {
+            navigator.clipboard.writeText('contact@sudheerqk.com').then(() => {
+                const copyBtnText = document.getElementById('copy-btn-text');
+                copyBtnText.textContent = 'Copied to Clipboard!';
+                setTimeout(() => {
+                    copyBtnText.textContent = 'Copy Email Address';
+                }, 2000);
+            });
+        }
+
+        /* ---------------------------------------------------- */
+        /* DEMO VIDEO MODAL CONTROLS                            */
+        /* ---------------------------------------------------- */
+        const demoVideo = document.getElementById('vaultDemoVideo');
+
+        function openDemoModal() {
+            const modal = document.getElementById('vault-demo-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            if (demoVideo) {
+                demoVideo.currentTime = 0;
+                demoVideo.play().catch(() => {});
+            }
+        }
+
+        function closeDemoModal() {
+            const modal = document.getElementById('vault-demo-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            if (demoVideo) {
+                demoVideo.pause();
+            }
+        }
+
+        function handleDemoBackdropClick(event) {
+            if (event.target.id === 'vault-demo-modal') {
+                closeDemoModal();
+            }
+        }
+
+        /* ---------------------------------------------------- */
+        /* VAULT LOGIC & BACKEND API CONNECTIVITY              */
+        /* ---------------------------------------------------- */
+        let isRegisterMode = false;
+        let vaultToken = localStorage.getItem("vault_token");
+
+        function openVaultModal() {
+            const modal = document.getElementById("vaultModal");
+            modal.classList.add("active");
+            document.body.style.overflow = 'hidden';
+            updateModalView();
+        }
+
+        function closeVaultModal() {
+            document.getElementById("vaultModal").classList.remove("active");
+            document.body.style.overflow = '';
+        }
+
+        function handleVaultBackdropClick(e) {
+            if (e.target.id === "vaultModal") {
+                closeVaultModal();
+            }
+        }
+
+        function toggleAuthMode() {
+            isRegisterMode = !isRegisterMode;
+            document.getElementById("authHeading").textContent = isRegisterMode ? "Create Account" : "Sign In";
+            document.getElementById("authSub").textContent = isRegisterMode ? "Register to save files to your local Mac vault." : "Enter your credentials to access your secure files.";
+            document.getElementById("authSubmitBtn").textContent = isRegisterMode ? "Create Account" : "Sign In";
+            document.getElementById("toggleQuestion").textContent = isRegisterMode ? "Already have an account?" : "Don't have an account?";
+            document.getElementById("toggleBtn").textContent = isRegisterMode ? "Sign In" : "Create Account";
+            document.getElementById("vaultMsg").textContent = "";
+        }
+
+        function updateModalView() {
+            if (vaultToken) {
+                document.getElementById("vaultAuthSection").style.display = "none";
+                document.getElementById("vaultDashboard").style.display = "block";
+                fetchVaultFiles();
+            } else {
+                document.getElementById("vaultAuthSection").style.display = "block";
+                document.getElementById("vaultDashboard").style.display = "none";
+            }
+        }
+
+        async function submitAuth(e) {
+            e.preventDefault();
+            const email = document.getElementById("vaultEmail").value;
+            const password = document.getElementById("vaultPassword").value;
+            const msg = document.getElementById("vaultMsg");
+            const endpoint = isRegisterMode ? "/api/register" : "/api/login";
+
+            const formData = new FormData();
+            formData.append("email", email);
+            formData.append("password", password);
+
+            msg.style.color = "#0284c7";
+            msg.textContent = "Connecting to PostgreSQL...";
+
+            try {
+                const res = await fetch(endpoint, { method: "POST", body: formData });
+                const data = await res.json();
+                if (res.ok) {
+                    vaultToken = data.token;
+                    localStorage.setItem("vault_token", vaultToken);
+                    msg.textContent = "";
+                    updateModalView();
+                } else {
+                    msg.style.color = "#dc2626";
+                    msg.textContent = data.detail || "Authentication failed.";
+                }
+            } catch (err) {
+                msg.style.color = "#dc2626";
+                msg.textContent = "Cannot reach backend API (port 8000).";
+            }
+        }
+
+        function vaultLogout() {
+            localStorage.removeItem("vault_token");
+            vaultToken = null;
+            updateModalView();
+        }
+
+        function handleFileSelected(e) {
+            if (e.target.files.length) {
+                document.getElementById("uploadLabelText").textContent = e.target.files[0].name;
+            }
+        }
+
+        async function uploadVaultFile() {
+            const fileInput = document.getElementById("vaultFileInput");
+            const status = document.getElementById("uploadStatusMsg");
+            if (!fileInput.files.length) {
+                status.style.color = "#dc2626";
+                status.textContent = "Select a file first.";
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+            formData.append("token", vaultToken);
+
+            status.style.color = "#0284c7";
+            status.textContent = "Streaming file to Mac ~/uploads...";
+
+            try {
+                const res = await fetch("/api/upload", { method: "POST", body: formData });
+                if (res.ok) {
+                    status.style.color = "#16a34a";
+                    status.textContent = "File stored successfully.";
+                    fileInput.value = "";
+                    document.getElementById("uploadLabelText").textContent = "Choose file or drag here";
+                    fetchVaultFiles();
+                } else {
+                    status.style.color = "#dc2626";
+                    status.textContent = "Upload failed.";
+                }
+            } catch {
+                status.style.color = "#dc2626";
+                status.textContent = "Upload network error.";
+            }
+        }
+
+        async function fetchVaultFiles() {
+            const list = document.getElementById("vaultFilesList");
+            try {
+                const res = await fetch(`/api/files?token=${encodeURIComponent(vaultToken)}`);
+                const data = await res.json();
+                if (!res.ok) throw new Error();
+
+                if (!data.files.length) {
+                    list.innerHTML = `<div style="font-size:0.8rem;color:#94a3b8;padding:12px 0;">No files stored yet.</div>`;
+                    return;
+                }
+
+                list.innerHTML = data.files.map(f => `
+                    <div class="vault-file-row">
+                        <div class="vault-file-meta">
+                            <span class="vault-file-name" title="${f.filename}">${f.filename}</span>
+                            <span class="vault-file-sub">${(f.size / (1024 * 1024)).toFixed(2)} MB • ${new Date(f.uploaded_at).toLocaleDateString()}</span>
+                        </div>
+                        <div class="vault-file-actions">
+                            <a class="file-action-btn dl-btn" href="/api/download/${f.id}?token=${encodeURIComponent(vaultToken)}" download>Get</a>
+                            <button class="file-action-btn del-btn" onclick="deleteVaultFile(${f.id})">Delete</button>
+                        </div>
+                    </div>
+                `).join("");
+            } catch {
+                list.innerHTML = `<div style="font-size:0.8rem;color:#dc2626;">Session expired. Please log in again.</div>`;
+            }
+        }
+
+        async function deleteVaultFile(id) {
+            if (!confirm("Permanently delete this file from server?")) return;
+            try {
+                const res = await fetch(`/api/delete/${id}?token=${encodeURIComponent(vaultToken)}`, { method: "DELETE" });
+                if (res.ok) fetchVaultFiles();
+            } catch {
+                alert("Delete failed.");
+            }
+        }
+    </script>
+</body>
+</html>
