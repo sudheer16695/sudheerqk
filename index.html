@@ -615,7 +615,7 @@
 
 
 <div id="dynamicMediaContainer">
-<p style="color: #666; font-size: 0.9rem;">No media items uploaded in subfolders yet.</p>
+<div style="padding: 20px 0; color: #666; font-size: 0.9rem;"></div>
 </div>
 
 <style>
@@ -709,24 +709,9 @@ async function loadCategorizedMedia() {
             html += `
                 <div class="media-category-section">
                     <h3>${formattedTitle}</h3>
-                    <div class="media-showcase-grid">
-            `;
-
-            files.forEach(file => {
-                const ext = file.split('.').pop().toLowerCase();
-                const isVideo = ['mp4', 'mov', 'webm'].includes(ext);
-                const title = file.replace(/\.[^/.]+$/, "").replace(/[-_]/g, ' ');
-                const filePath = `assets/${catName}/${file}`;
-
-                if (isVideo) {
-                    html += `
-                        <div class="media-card" onclick="openVideoPlayer('${filePath}', '${title}')">
-                            <video playsinline muted loop poster="/avatar.jpg">
-                                <source src="${filePath}" type="video/mp4">
-                            </video>
-                            <div class="media-play-indicator">
-                                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                            </div>
+                    <div id="dynamicMediaContainer">
+<div style="padding: 20px 0; color: #666; font-size: 0.9rem;"></div>
+</div>
                             <div class="media-card-label">
                                 <span>${title}</span>
                                 <span class="media-card-sub">${filePath}</span>
