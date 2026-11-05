@@ -1075,18 +1075,23 @@ const techDetails = {
             openModal("image-viewer-modal");
         }
 
+        
         async function loadDynamicGallery() {
             const section = document.getElementById("visuals");
             const container = document.getElementById("dynamicMediaContainer");
             if (!section || !container) return;
 
             try {
-                const res = await fetch("/api/media");
+                const res = await fetch("/api/media", { cache: "no-store" });
                 if (!res.ok) throw new Error("Media API unavailable");
-                const categories = await res.json();
+                const data = await res.json();
 
                 let html = "";
-                for (const [catName, files] of Object.entries(categories)) {
+                
+                // Handle both dictionary of categories and flat arrays
+                const entries = Array.isArray(data) ? { "media": data } : data;
+
+                for (const [catName, files] of Object.entries(entries)) {
                     if (!files || !files.length) continue;
 
                     const label = catName.charAt(0).toUpperCase() + catName.slice(1).replace(/[-_]/g, " ");
@@ -1100,7 +1105,8 @@ const techDetails = {
                         const ext = file.split(".").pop().toLowerCase();
                         const isVideo = ["mp4", "mov", "webm"].includes(ext);
                         const title = file.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
-                        const filePath = `assets/${catName}/${file}`;
+                        // Match the correct asset subfolder path
+                        const filePath = catName === "media" ? `assets/videos/${file}` : `assets/${catName}/${file}`;
 
                         if (isVideo) {
                             html += `
@@ -1136,14 +1142,15 @@ const techDetails = {
                     container.innerHTML = html;
                     section.style.display = "block";
                 } else {
-                    container.innerHTML = "";
-                    section.style.display = "block"; container.innerHTML = '<div style="color: var(--text-tertiary); font-size: 0.88rem; padding: 12px 0;">No media items uploaded in subfolders yet.</div>';
+                    container.innerHTML = '<div style="color: var(--text-tertiary); font-size: 0.88rem; padding: 12px 0;">No media items uploaded in subfolders yet.</div>';
+                    section.style.display = "block";
                 }
             } catch (e) {
-                section.style.display = "block"; container.innerHTML = '<div style="color: var(--text-tertiary); font-size: 0.88rem; padding: 12px 0;">No media items uploaded in subfolders yet.</div>';
+                section.style.display = "block";
             }
         }
         document.addEventListener("DOMContentLoaded", loadDynamicGallery);
+
     </script>
 
 </body>
