@@ -1137,10 +1137,10 @@ const techDetails = {
                     section.style.display = "block";
                 } else {
                     container.innerHTML = "";
-                    section.style.display = "none";
+                    section.style.display = "block"; container.innerHTML = '<div style="color: var(--text-tertiary); font-size: 0.88rem; padding: 12px 0;">No media items uploaded in subfolders yet.</div>';
                 }
             } catch (e) {
-                section.style.display = "none";
+                section.style.display = "block"; container.innerHTML = '<div style="color: var(--text-tertiary); font-size: 0.88rem; padding: 12px 0;">No media items uploaded in subfolders yet.</div>';
             }
         }
         document.addEventListener("DOMContentLoaded", loadDynamicGallery);
