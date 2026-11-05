@@ -423,7 +423,7 @@
             <!-- Profile Card -->
             <div class="hero-profile-card">
                 <button class="avatar-button" onclick="openModal('photo-modal')" title="Click to view portrait">
-                    <img class="avatar-img" src="/avatar.jpg" onerror="this.src='assets/images/avatar.jpg'; this.onerror=function(){this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=350&q=80';};" alt="Sudheer Kumar">
+                    <img class="avatar-img" src="/avatar.jpg" onerror="this.src='assets/images/avatar.jpg'; this.onerror=null;" alt="Sudheer Kumar">
                     <div class="avatar-zoom-hint"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
                 </button>
                 <div class="profile-card-name">Sudheer Kumar</div>
@@ -504,7 +504,7 @@
                 <div class="clean-feed-card">
                     <div class="clean-feed-top">
                         <div class="clean-feed-avatar-group">
-                            <img src="/avatar.jpg" class="clean-feed-avatar" onerror="this.src='assets/images/avatar.jpg'; this.onerror=function(){this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80';};" alt="Instagram">
+                            <img src="/avatar.jpg" class="clean-feed-avatar" onerror="this.src='assets/images/avatar.jpg'; this.onerror=null;" alt="Instagram">
                             <div class="clean-feed-meta">
                                 <h4>Sudheer Kumar</h4>
                                 <span>@sudheerqk &bull; <strong style="color:#e1306c;">Instagram</strong></span>
@@ -518,7 +518,7 @@
                 <div class="clean-feed-card">
                     <div class="clean-feed-top">
                         <div class="clean-feed-avatar-group">
-                            <img src="/avatar.jpg" class="clean-feed-avatar" onerror="this.src='assets/images/avatar.jpg'; this.onerror=function(){this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80';};" alt="Facebook">
+                            <img src="/avatar.jpg" class="clean-feed-avatar" onerror="this.src='assets/images/avatar.jpg'; this.onerror=null;" alt="Facebook">
                             <div class="clean-feed-meta">
                                 <h4>Sudheer Kumar</h4>
                                 <span>sudheerqk &bull; <strong style="color:#1877f2;">Facebook</strong></span>
@@ -533,7 +533,7 @@
                     <div class="clean-feed-top">
                         <div class="clean-feed-avatar-group">
                             <div style="position:relative;">
-                                <img src="/avatar.jpg" class="clean-feed-avatar" onerror="this.src='assets/images/avatar.jpg'; this.onerror=function(){this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80';};" alt="Snapchat">
+                                <img src="/avatar.jpg" class="clean-feed-avatar" onerror="this.src='assets/images/avatar.jpg'; this.onerror=null;" alt="Snapchat">
                                 <span class="snapchat-plus-badge">+</span>
                             </div>
                             <div class="clean-feed-meta">
@@ -604,47 +604,12 @@
         </section>
 
         <!-- Captured & Visuals -->
-        <section id="visuals" style="margin-bottom: 5.5rem;">
+        <section id="visuals" style="margin-bottom: 5.5rem; display: none;">
             <div class="section-header">
                 <h2 class="section-title">Captured &amp; Visuals</h2>
                 <p class="section-desc">Personal travels, moments, and technical architecture reels.</p>
             </div>
-            
-            <div class="media-showcase-grid" id="mediaGalleryGrid">
-                <div class="media-card" onclick="openVideoPlayer('assets/videos/vault-demo.mp4', 'Vault Architecture Reel')">
-                    <video playsinline muted loop poster="/avatar.jpg">
-                        <source src="assets/videos/vault-demo.mp4" type="video/mp4">
-                    </video>
-                    <div class="media-play-indicator">
-                        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                    </div>
-                    <div class="media-card-label">
-                        <span>Vault Architecture Reel</span>
-                        <span class="media-card-sub">assets/videos/vault-demo.mp4</span>
-                    </div>
-                </div>
-
-                <div class="media-card" onclick="openVideoPlayer('assets/videos/lab-overview.mp4', 'Engineering Environment')">
-                    <video playsinline muted loop poster="/avatar.jpg">
-                        <source src="assets/videos/lab-overview.mp4" type="video/mp4">
-                    </video>
-                    <div class="media-play-indicator">
-                        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                    </div>
-                    <div class="media-card-label">
-                        <span>Lab &amp; Switching Reel</span>
-                        <span class="media-card-sub">assets/videos/lab-overview.mp4</span>
-                    </div>
-                </div>
-
-                <div class="media-card" onclick="openModal('photo-modal')">
-                    <img src="/avatar.jpg" onerror="this.src='assets/images/travel.jpg'; this.onerror=function(){this.src='/avatar.jpg';};" alt="Personal Moment">
-                    <div class="media-card-label">
-                        <span>Personal Perspective</span>
-                        <span class="media-card-sub">Photography &amp; Moments</span>
-                    </div>
-                </div>
-            </div>
+            <div id="dynamicMediaContainer"></div>
         </section>
     </div>
 
@@ -737,7 +702,7 @@
         <div class="glass-modal" style="max-width:500px;text-align:center;">
             <button class="modal-close-btn" onclick="closeModal('photo-modal')">&times;</button>
             <div style="width:100%;height:380px;border-radius:24px;overflow:hidden;margin-bottom:1rem;">
-                <img src="/avatar.jpg" onerror="this.src='assets/images/avatar.jpg'; this.onerror=function(){this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80';};" style="width:100%;height:100%;object-fit:cover;object-position:center 18%;" alt="Sudheer Kumar">
+                <img src="/avatar.jpg" onerror="this.src='assets/images/avatar.jpg'; this.onerror=null;" style="width:100%;height:100%;object-fit:cover;object-position:center 18%;" alt="Sudheer Kumar">
             </div>
             <div class="profile-card-name">Sudheer Kumar</div>
             <div class="profile-card-role">Database Specialist & Infrastructure Engineer</div>
@@ -1011,5 +976,175 @@ const techDetails = {
             if (res.ok) fetchVaultFiles();
         }
     </script>
+
+    <!-- Dedicated Gallery Image Viewer Modal -->
+    <div class="modal-overlay" id="gallery-image-modal" onclick="handleBackdropClick(event, 'gallery-image-modal')">
+        <div class="glass-modal" style="max-width:560px;text-align:center;">
+            <button class="modal-close-btn" onclick="closeModal('gallery-image-modal')">&times;</button>
+            <div style="width:100%;max-height:65vh;border-radius:20px;overflow:hidden;margin-bottom:1rem;background:#000;">
+                <img id="galleryModalImg" src="" style="width:100%;height:100%;max-height:65vh;object-fit:contain;display:block;" alt="Captured Visual">
+            </div>
+            <div id="galleryModalTitle" class="profile-card-name">Captured Visual</div>
+        </div>
+    </div>
+
+    <script id="dynamic-gallery-script">
+        function openGalleryImage(src, title) {
+            document.getElementById("galleryModalImg").src = src;
+            document.getElementById("galleryModalTitle").textContent = title || "Captured Visual";
+            openModal("gallery-image-modal");
+        }
+
+        async function loadDynamicMediaGallery() {
+            const section = document.getElementById("visuals");
+            const grid = document.getElementById("mediaGalleryGrid");
+            if (!section || !grid) return;
+
+            section.style.display = "block";
+            grid.innerHTML = "";
+
+            try {
+                const res = await fetch("/api/media", { cache: "no-store" });
+                if (!res.ok) return;
+                const data = await res.json();
+                const items = data.media || data.files || [];
+
+                if (!Array.isArray(items) || items.length === 0) return;
+
+                grid.innerHTML = items.map(item => {
+                    const safeTitle = (item.name || "Media").replace(/'/g, "\'");
+                    const safeUrl = (item.url || "").replace(/'/g, "\'");
+                    if (item.type === "video") {
+                        const fileExt = safeUrl.split('.').pop().toLowerCase();
+                        let mimeType = "video/mp4";
+                        if (fileExt === "mov") mimeType = "video/quicktime";
+                        if (fileExt === "hevc") mimeType = "video/mp4";
+                        return `
+                            <div class="media-card" onclick="openVideoPlayer('${safeUrl}', '${safeTitle}')">
+                                <video playsinline muted loop preload="metadata" controls>
+                                    <source src="${item.url}#t=0.5" type="${mimeType}">
+                                    Your browser does not support video playback.
+                                </video>
+                                <div class="media-play-indicator">
+                                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                </div>
+                                <div class="media-card-label">
+                                    <span>${item.name}</span>
+                                    <span class="media-card-sub">${item.sub || 'Video Reel'}</span>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        return `
+                            <div class="media-card" onclick="openGalleryImage('${safeUrl}', '${safeTitle}')">
+                                <img src="${item.url}" loading="lazy" alt="${item.name}">
+                                <div class="media-card-label">
+                                    <span>${item.name}</span>
+                                    <span class="media-card-sub">${item.sub || 'Captured Moment'}</span>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }).join("");
+
+                section.style.display = "block";
+            } catch (e) {
+                section.style.display = "block";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", loadDynamicMediaGallery);
+    </script>
+
+    <!-- Image Viewer Modal -->
+    <div class="modal-overlay" id="image-viewer-modal" onclick="if(event.target.id==='image-viewer-modal') closeModal('image-viewer-modal')">
+        <div class="glass-modal" style="max-width:720px; text-align:center;">
+            <button class="modal-close-btn" onclick="closeModal('image-viewer-modal')">&times;</button>
+            <span class="hero-badge" style="margin-bottom:0.4rem;">Visual Preview</span>
+            <h2 id="imageViewerTitle" class="profile-card-name" style="font-size:1.35rem; margin-bottom:1rem;">Photo</h2>
+            <div style="width:100%; max-height:70vh; border-radius:20px; overflow:hidden; background:#000;">
+                <img id="dedicatedImageElement" src="" alt="Preview" style="width:100%; height:100%; max-height:70vh; object-fit:contain; display:block;">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openImageViewer(imgUrl, imgTitle) {
+            document.getElementById("imageViewerTitle").textContent = imgTitle || "Photo";
+            document.getElementById("dedicatedImageElement").src = imgUrl;
+            openModal("image-viewer-modal");
+        }
+
+        async function loadDynamicGallery() {
+            const section = document.getElementById("visuals");
+            const container = document.getElementById("dynamicMediaContainer");
+            if (!section || !container) return;
+
+            try {
+                const res = await fetch("/api/media");
+                if (!res.ok) throw new Error("Media API unavailable");
+                const categories = await res.json();
+
+                let html = "";
+                for (const [catName, files] of Object.entries(categories)) {
+                    if (!files || !files.length) continue;
+
+                    const label = catName.charAt(0).toUpperCase() + catName.slice(1).replace(/[-_]/g, " ");
+                    html += `
+                        <div style="margin-bottom: 2.5rem;">
+                            <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem;">${label}</h3>
+                            <div class="media-showcase-grid" style="margin-bottom: 0;">
+                    `;
+
+                    for (const file of files) {
+                        const ext = file.split(".").pop().toLowerCase();
+                        const isVideo = ["mp4", "mov", "webm"].includes(ext);
+                        const title = file.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
+                        const filePath = `assets/${catName}/${file}`;
+
+                        if (isVideo) {
+                            html += `
+                                <div class="media-card" onclick="openVideoPlayer('${filePath}', '${title}')">
+                                    <video playsinline muted preload="metadata" style="width:100%; height:100%; object-fit:cover; background:#0f172a;">
+                                        <source src="${filePath}#t=0.5" type="video/mp4">
+                                    </video>
+                                    <div class="media-play-indicator">
+                                        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                    </div>
+                                    <div class="media-card-label">
+                                        <span>${title}</span>
+                                        <span class="media-card-sub">${catName}</span>
+                                    </div>
+                                </div>
+                            `;
+                        } else {
+                            html += `
+                                <div class="media-card" onclick="openImageViewer('${filePath}', '${title}')">
+                                    <img src="${filePath}" alt="${title}" loading="lazy">
+                                    <div class="media-card-label">
+                                        <span>${title}</span>
+                                        <span class="media-card-sub">${catName}</span>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    }
+                    html += `</div></div>`;
+                }
+
+                if (html) {
+                    container.innerHTML = html;
+                    section.style.display = "block";
+                } else {
+                    container.innerHTML = "";
+                    section.style.display = "none";
+                }
+            } catch (e) {
+                section.style.display = "none";
+            }
+        }
+        document.addEventListener("DOMContentLoaded", loadDynamicGallery);
+    </script>
+
 </body>
 </html>
