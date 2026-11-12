@@ -12,6 +12,14 @@ from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+def _load_secret():
+    v = _load_secret()
+    if not v and os.path.exists(os.path.expanduser("~/.sudheerqk_ai.env")):
+        for line in open(os.path.expanduser("~/.sudheerqk_ai.env")):
+            if line.startswith("AI_READER_PASSWORD="):
+                return line.split("=", 1)[1].strip()
+    return v
+
 app = FastAPI(title="SudheerQK Hardened AI Assistant", docs_url=None, redoc_url=None, openapi_url=None)
 
 app.add_middleware(
@@ -45,7 +53,7 @@ LEAK_REDACT_PATTERNS = [
     re.compile(r"/opt/homebrew/[^\s\"'<>]+", re.IGNORECASE),
     re.compile(r"/etc/cloudflared/[^\s\"'<>]+", re.IGNORECASE),
     re.compile(r"postgresql://[^\s\"'<>]+", re.IGNORECASE),
-    re.compile(re.escape(os.getenv("AI_READER_PASSWORD", "")), re.IGNORECASE),
+    re.compile(re.escape(_load_secret()), re.IGNORECASE),
     re.compile(r"cloud_storage", re.IGNORECASE),
     re.compile(r"com\.sudheerqk\.ai", re.IGNORECASE),
 ]
@@ -94,7 +102,7 @@ def query_pgvector(question: str, top_k: int = 3) -> list[str]:
         conn = psycopg2.connect(
             dbname="postgres",
             user="ai_reader",
-            password=os.getenv("AI_READER_PASSWORD", ""),
+            password=_load_secret(),
             host="127.0.0.1",
             connect_timeout=2,
             options="-c default_transaction_read_only=on"
