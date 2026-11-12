@@ -53,7 +53,7 @@ def query_pgvector(question: str, top_k: int = 3) -> list[str]:
         rows = cur.fetchall()
         cur.close()
         conn.close()
-        return [f"{r[0]}: {r[1]}" for r in rows if r[2] < 0.74]
+        return [f"{r[0]}: {r[1]}" for r in rows if r[2] < 0.68]
     except Exception:
         return []
 
