@@ -915,44 +915,46 @@ html.dark #aiModeBadge {
     
     
     
+    
     <style>
-    /* Clean, unified full-width floating header matching full page container */
-    header, nav.top-nav, .header-wrapper {
+    /* Exact .container edge alignment, vertical spacing, glow, and clean .brand-logo */
+    header {
+        position: sticky !important;
+        top: 1.25rem !important;
+        z-index: 50 !important;
         width: 100% !important;
-        max-width: 1440px !important;
-        margin: 0 auto !important;
-        padding: 18px 32px !important;
-        box-sizing: border-box !important;
-        display: flex !important;
-        justify-content: center !important;
+        max-width: 100% !important;
+        margin: 0 0 3.25rem 0 !important;
+        padding: 0 !important; /* Zero horizontal padding so .nav-island aligns flush with hero & card edges */
+        display: block !important;
     }
 
-    /* Make the floating pill stretch across the full container width */
-    header > div, header > nav, .nav-pill {
+    .nav-island {
         width: 100% !important;
         max-width: 100% !important;
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: space-between !important;
-        flex-wrap: nowrap !important;
-        padding: 14px 28px !important;
+        padding: 0.7rem 1.4rem !important;
         border-radius: 9999px !important;
+        background: var(--surface-glass) !important;
+        backdrop-filter: blur(28px) saturate(190%) !important;
+        -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+        border: 1px solid var(--border-glass) !important;
+        box-shadow: var(--glass-specular), var(--glass-shadow), 0 8px 28px var(--accent-glow) !important;
+        transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
         box-sizing: border-box !important;
-        border: 1px solid rgba(210, 50, 70, 0.18) !important;
-        box-shadow: 0 10px 30px -5px rgba(210, 50, 70, 0.10), 0 4px 12px rgba(0, 0, 0, 0.04) !important;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     }
 
-    /* Strong, visible interactive glow on hover */
-    header > div:hover, header > nav:hover, .nav-pill:hover {
-        border-color: rgba(210, 50, 70, 0.45) !important;
-        box-shadow: 0 16px 45px -5px rgba(210, 50, 70, 0.25), 0 0 28px rgba(210, 50, 70, 0.20) !important;
+    .nav-island:hover {
+        border-color: var(--accent-theme) !important;
+        box-shadow: var(--glass-specular), 0 12px 36px var(--accent-glow), 0 0 24px var(--accent-glow) !important;
         transform: translateY(-2px) !important;
     }
 
-    /* Completely strip any white/rectangular background or border on the SK sudheerqk.com link */
-    header a:first-of-type, nav a:first-of-type, header a[href="/"], header a[href="#"], header a[href*="sudheerqk"] {
+    /* Strip any inner box/border from .brand-logo while keeping .brand-monogram (SK) intact */
+    a.brand-logo, .nav-island > a.brand-logo, .nav-island > a.brand-logo:hover {
         background: transparent !important;
         background-color: transparent !important;
         border: none !important;
@@ -960,32 +962,38 @@ html.dark #aiModeBadge {
         box-shadow: none !important;
         padding: 0 !important;
         margin: 0 !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        gap: 12px !important;
-        flex-shrink: 0 !important;
+        border-radius: 0 !important;
     }
 
-    /* Tablet (iPad) responsive */
-    @media (max-width: 1024px) {
-        header, nav.top-nav, .header-wrapper {
-            padding: 14px 16px !important;
+    /* Responsive iPad & Mobile */
+    @media (max-width: 900px) {
+        header {
+            top: 0.75rem !important;
+            margin-bottom: 2rem !important;
         }
-        header > div, header > nav, .nav-pill {
-            padding: 10px 18px !important;
-            gap: 10px !important;
+        .nav-island {
+            padding: 0.5rem 0.85rem !important;
+        }
+        .nav-status {
+            display: none !important;
         }
     }
-
-    /* Mobile (iPhone) responsive - hide long green status text if needed so buttons never squish */
-    @media (max-width: 768px) {
-        header, nav.top-nav, .header-wrapper {
-            padding: 10px 10px !important;
+    @media (max-width: 640px) {
+        .nav-island {
+            padding: 0.45rem 0.65rem !important;
+            gap: 4px !important;
         }
-        header > div, header > nav, .nav-pill {
-            padding: 8px 12px !important;
-            gap: 6px !important;
-            justify-content: space-between !important;
+        .brand-logo {
+            font-size: 0.82rem !important;
+            gap: 0.4rem !important;
+        }
+        .brand-monogram {
+            width: 26px !important;
+            height: 26px !important;
+            font-size: 0.72rem !important;
+        }
+        .nav-actions {
+            gap: 0.3rem !important;
         }
     }
     </style>
