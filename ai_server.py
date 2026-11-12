@@ -13,7 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 def _load_secret():
-    v = _load_secret()
+    v = os.getenv("AI_READER_PASSWORD", "")
     if not v and os.path.exists(os.path.expanduser("~/.sudheerqk_ai.env")):
         for line in open(os.path.expanduser("~/.sudheerqk_ai.env")):
             if line.startswith("AI_READER_PASSWORD="):
