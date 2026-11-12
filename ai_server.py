@@ -158,12 +158,13 @@ async def ask_ai(payload: AskRequest, request: Request):
 
     
     # Direct intent intercept for math and simple queries
-    q_lower = q.lower().strip()
-    if any(op in q_lower for op in ["+", "-", "*", "/", "="]) and any(c.isdigit() for c in q_lower):
+    q_clean = q.replace("?", "").strip()
+    if "=" in q_clean:
+        q_clean = q_clean.split("=")[0].strip()
+    if any(op in q_clean for op in ["+", "-", "*", "/"]) and any(c.isdigit() for c in q_clean):
         try:
-            # Safe evaluation of simple math expressions
             import re
-            expr = re.sub(r"[^0-9\+\-\*\/\(\)\.]", "", q_lower)
+            expr = re.sub(r"[^0-9\+\-\*\/\(\)\.]", "", q_clean)
             if expr:
                 ans = eval(expr)
                 return {"answer": f"The answer to {q} is {ans}.", "source": "math"}
