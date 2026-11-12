@@ -912,63 +912,78 @@ html.dark #aiModeBadge {
     
     
     
+    
     <style>
-    /* Make header nav-pill span the full width of the main container grid */
-    header {
+    /* HEADER_FIX_FINAL: Universal selectors targeting actual DOM structure */
+    header, nav, .navbar, .header, .top-nav, .nav-wrapper, body > div:first-of-type > header, body > header {
         width: 100% !important;
-        max-width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        padding: 24px 24px !important;
+        max-width: 1280px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
         box-sizing: border-box !important;
     }
-    
-    .nav-pill {
+
+    /* Target the floating pill directly using :has() so it works no matter what class name it has */
+    header > div, nav > div, div:has(> a[href*="sudheerqk"]), div:has(> .brand), header:has(a) {
         width: 100% !important;
-        max-width: 1320px !important; /* matches full width of lower cards */
+        max-width: 1240px !important;
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: space-between !important;
-        box-sizing: border-box !important;
-        padding: 16px 32px !important;
-        gap: 20px !important;
-        background-color: rgba(255, 255, 255, 0.92) !important;
+        margin: 0 auto !important;
+        padding: 12px 24px !important;
         border-radius: 9999px !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-sizing: border-box !important;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     }
 
-    .nav-pill:hover {
-        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12), 0 0 25px rgba(235, 100, 100, 0.18) !important;
-        transform: translateY(-2px);
+    /* Interactive glowing effect on the floating pill */
+    header > div:hover, nav > div:hover, div:has(> a[href*="sudheerqk"]):hover {
+        box-shadow: 0 14px 40px rgba(210, 50, 70, 0.16), 0 0 25px rgba(210, 50, 70, 0.12) !important;
+        transform: translateY(-2px) !important;
     }
 
-    .brand-badge, .logo-container, .sk-badge {
+    /* Kill the ugly rectangular border & background box around SK + sudheerqk.com */
+    header a:first-of-type, nav a:first-of-type, a:has(> span), header a[href="/"], header a[href="#"], header a[href*="sudheerqk"] {
         border: none !important;
         outline: none !important;
-        box-shadow: none !important;
         background: transparent !important;
+        box-shadow: none !important;
+        border-radius: 9999px !important;
+        padding: 2px 6px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        text-decoration: none !important;
     }
 
-    /* Fully responsive scaling for iPads and Mobile Phones */
+    /* Push the right-side items (Available badge, theme toggle, Contact, Demo, Vault) neatly to the right */
+    header > div > div:last-child, nav > div > div:last-child {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        margin-left: auto !important;
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    /* Responsive adjustments for iPad and iPhone */
     @media (max-width: 1024px) {
-        .nav-pill {
-            max-width: 100% !important;
+        header > div, nav > div, div:has(> a[href*="sudheerqk"]) {
+            max-width: 96% !important;
+            padding: 10px 16px !important;
             flex-wrap: wrap !important;
-            justify-content: center !important;
-            gap: 12px !important;
-            padding: 14px 18px !important;
+            gap: 10px !important;
         }
     }
     @media (max-width: 640px) {
-        header {
-            padding: 12px 12px !important;
-        }
-        .nav-pill {
-            gap: 10px !important;
-            padding: 12px 14px !important;
-            border-radius: 24px !important;
+        header > div, nav > div, div:has(> a[href*="sudheerqk"]) {
+            max-width: 98% !important;
+            padding: 8px 12px !important;
+            justify-content: space-between !important;
+            gap: 6px !important;
         }
     }
     </style>
