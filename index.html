@@ -906,36 +906,14 @@ html.dark #aiModeBadge {
     
     
     
+    
     <style>
-    /* Restore proper full desktop header sizing */
-    header, .header-container, .nav-pill {
-        width: 100% !important;
-        max-width: 1280px !important;
-        margin: 0 auto !important;
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        box-sizing: border-box !important;
-        gap: 16px !important;
-    }
-    .brand-badge, .logo-container, .sk-badge, .header-brand-box {
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        outline: none !important;
-    }
-    header {
-        padding: 16px 24px !important;
-    }
-    </style>
-    <style>
-    /* Clean precise header fix: compact floating pill & remove stray logo border */
+    /* Pristine original header layout with full mobile & tablet responsiveness */
     header {
         width: 100% !important;
         display: flex !important;
         justify-content: center !important;
-        padding: 16px 20px !important;
+        padding: 20px 16px !important;
         box-sizing: border-box !important;
     }
     .nav-pill {
@@ -943,13 +921,33 @@ html.dark #aiModeBadge {
         align-items: center !important;
         gap: 12px !important;
         width: auto !important;
-        max-width: none !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
-    .brand-badge, .logo-container, .sk-badge, .header-brand-box {
+    .brand-badge, .logo-container, .sk-badge {
         border: none !important;
         outline: none !important;
         box-shadow: none !important;
-        background: transparent !important;
+    }
+    
+    /* Responsive scaling for iPads and Mobile Phones */
+    @media (max-width: 1024px) {
+        .nav-pill {
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            padding: 10px 14px !important;
+            border-radius: 24px !important;
+        }
+    }
+    @media (max-width: 640px) {
+        header {
+            padding: 12px 8px !important;
+        }
+        .nav-pill {
+            gap: 8px !important;
+            padding: 8px 10px !important;
+            font-size: 13px !important;
+        }
     }
     </style>
 </head>
