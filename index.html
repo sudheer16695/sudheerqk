@@ -384,7 +384,41 @@
             .custom-footer-pill { flex-wrap: wrap; justify-content: center; font-size: 0.75rem; }
             .glass-modal { padding: 1.75rem 1.25rem; }
         }
-    </style>
+    
+/* Light Mode Luminous Apple Burgundy Theme Override */
+html:not([data-theme="dark"]):not(.dark) {
+    --accent: #9E1B3B;
+    --accent-hover: #C8234C;
+    --accent-soft: rgba(158, 27, 59, 0.07);
+}
+
+html:not([data-theme="dark"]):not(.dark) .hero-badge,
+html:not([data-theme="dark"]):not(.dark) [class*="badge"]:not([style*="#0f766e"]) {
+    color: #9E1B3B !important;
+    background: rgba(158, 27, 59, 0.07) !important;
+    border-color: rgba(158, 27, 59, 0.22) !important;
+    box-shadow: 0 0 18px rgba(200, 35, 76, 0.16) !important;
+}
+
+html:not([data-theme="dark"]):not(.dark) .hero-subtitle,
+html:not([data-theme="dark"]):not(.dark) .hero h2,
+html:not([data-theme="dark"]):not(.dark) .tech-tap-hint {
+    color: #9E1B3B !important;
+    text-shadow: 0 0 22px rgba(200, 35, 76, 0.14);
+}
+
+html:not([data-theme="dark"]):not(.dark) .tech-block-card:hover {
+    border-color: #C8234C !important;
+    box-shadow: 0 10px 28px rgba(158, 27, 59, 0.10), 0 0 0 1px rgba(200, 35, 76, 0.15) !important;
+}
+
+html:not([data-theme="dark"]):not(.dark) .tech-block-card:hover .tech-icon-pill {
+    background: rgba(158, 27, 59, 0.07) !important;
+    color: #9E1B3B !important;
+    box-shadow: 0 0 18px rgba(200, 35, 76, 0.16);
+}
+</style>
+
 </head>
 <body>
     <div class="ambient-dark-glow glow-top-rose"></div>
