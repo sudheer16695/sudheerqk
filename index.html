@@ -918,25 +918,49 @@ html.dark #aiModeBadge {
     
     
     
+    
     <style>
-    /* Adaptive glowing shadow and clean brand logo for both light and dark modes */
-    .nav-island {
-        box-shadow: 0 10px 30px rgba(210, 50, 70, 0.18), 0 4px 15px rgba(0, 0, 0, 0.08), var(--glass-specular) !important;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    /* Sleek compact floating navigation island with hover-only glow */
+    header {
+        position: sticky !important;
+        top: 1.25rem !important;
+        z-index: 50 !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin-bottom: 3.25rem !important;
+        padding: 0 16px !important;
+        box-sizing: border-box !important;
     }
 
+    .nav-island {
+        width: 100% !important;
+        max-width: 1280px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0.45rem 1.25rem !important; /* Reduced vertical padding to remove excess top/bottom space */
+        border-radius: 9999px !important;
+        background: var(--surface-glass) !important;
+        backdrop-filter: blur(28px) saturate(190%) !important;
+        -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+        border: 1px solid var(--border-glass) !important;
+        /* Subtle idle shadow without permanent heavy glow */
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), var(--glass-specular) !important;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Vibrant glow ONLY when hovering over the floating bar */
     .nav-island:hover {
-        box-shadow: 0 18px 50px rgba(210, 50, 70, 0.30), 0 0 30px rgba(210, 50, 70, 0.20) !important;
+        border-color: rgba(235, 100, 100, 0.45) !important;
+        box-shadow: 0 16px 45px rgba(235, 100, 100, 0.25), 0 0 28px rgba(235, 100, 100, 0.18), var(--glass-specular) !important;
         transform: translateY(-2px) !important;
     }
 
-    /* Force dark mode specific glow intensity if data-theme is dark */
-    [data-theme="dark"] .nav-island {
-        box-shadow: 0 12px 35px rgba(235, 100, 100, 0.25), 0 0 25px rgba(235, 100, 100, 0.15), var(--glass-specular) !important;
-    }
-
-    /* Completely eliminate any rectangular background box around the SK brand logo link */
-    .nav-island a.brand-logo, header a.brand-logo, .brand-logo {
+    /* Clean brand logo link wrapper */
+    a.brand-logo, .nav-island > a.brand-logo, .brand-logo {
         background: transparent !important;
         background-color: transparent !important;
         border: none !important;
@@ -944,6 +968,28 @@ html.dark #aiModeBadge {
         box-shadow: none !important;
         padding: 0 !important;
         margin: 0 !important;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+        .nav-island {
+            max-width: 100% !important;
+            padding: 0.4rem 1rem !important;
+        }
+    }
+    @media (max-width: 768px) {
+        header {
+            top: 0.75rem !important;
+            margin-bottom: 2rem !important;
+            padding: 0 10px !important;
+        }
+        .nav-island {
+            padding: 0.35rem 0.75rem !important;
+            gap: 6px !important;
+        }
+        .nav-status {
+            display: none !important;
+        }
     }
     </style>
 </head>
