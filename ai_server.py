@@ -156,6 +156,20 @@ async def ask_ai(payload: AskRequest, request: Request):
     client_ip = request.headers.get("CF-Connecting-IP") or (request.client.host if request.client else "unknown")
     check_rate_limit(client_ip)
 
+    
+    # Direct intent intercept for math and simple queries
+    q_lower = q.lower().strip()
+    if any(op in q_lower for op in ["+", "-", "*", "/", "="]) and any(c.isdigit() for c in q_lower):
+        try:
+            # Safe evaluation of simple math expressions
+            import re
+            expr = re.sub(r"[^0-9\+\-\*\/\(\)\.]", "", q_lower)
+            if expr:
+                ans = eval(expr)
+                return {"answer": f"The answer to {q} is {ans}.", "source": "math"}
+        except Exception:
+            pass
+
     q = (payload.question or payload.message or payload.prompt or "").strip()
     if INJECTION_PATTERNS.search(q):
         return {
