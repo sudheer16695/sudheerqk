@@ -158,6 +158,7 @@ async def ask_ai(payload: AskRequest, request: Request):
 
     
     # Direct intent intercept for math and simple queries
+    q = getattr(payload, "question", None) or getattr(payload, "message", None) or getattr(payload, "prompt", None) or ""
     q_clean = q.replace("?", "").strip()
     if "=" in q_clean:
         q_clean = q_clean.split("=")[0].strip()
