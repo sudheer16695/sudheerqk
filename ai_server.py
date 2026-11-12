@@ -171,6 +171,21 @@ async def ask_ai(payload: AskRequest, request: Request):
         except Exception:
             pass
 
+    
+    # Robust math evaluation handler
+    raw_q = (payload.question or payload.message or payload.prompt or "").strip()
+    clean_expr = raw_q.replace("?", "").replace("=", "").strip()
+    if any(op in clean_expr for op in ["+", "-", "*", "/"]) and any(c.isdigit() for c in clean_expr):
+        try:
+            import re
+            # Extract only valid math characters
+            expr_digits_ops = re.sub(r"[^0-9\+\-\*\/\(\)\.]", "", clean_expr)
+            if expr_digits_ops:
+                result = eval(expr_digits_ops)
+                return {"answer": f"The answer to {raw_q} is {result}.", "source": "math"}
+        except Exception:
+            pass
+
     q = (payload.question or payload.message or payload.prompt or "").strip()
     if INJECTION_PATTERNS.search(q):
         return {
