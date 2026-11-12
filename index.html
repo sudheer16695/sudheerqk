@@ -997,6 +997,23 @@ html.dark #aiModeBadge {
         }
     }
     </style>
+    <style>
+    /* Vibrant hover glow effect for nav-island */
+    .nav-island:hover {
+        box-shadow: 0 16px 45px rgba(235, 100, 100, 0.22), 0 0 30px rgba(235, 100, 100, 0.15), var(--glass-specular) !important;
+        border-color: var(--accent-theme) !important;
+        transform: translateY(-2px) !important;
+    }
+    
+    /* Remove white background box around brand logo link */
+    .nav-island .brand-logo {
+        background: transparent !important;
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+    }
+    </style>
 </head>
 <body>
     <div class="ambient-dark-glow glow-top-rose"></div>
@@ -1527,7 +1544,7 @@ const techDetails = {
                     bestMatch = item.answer;
                 }
             }
-            return bestMatch || "Sudheer Kumar is an EDB Postgres® AI v18 Certified Database Specialist & Infrastructure Engineer specializing in <strong>SQL Server Always On AG</strong>, <strong>Nutanix NDB DBaaS</strong>, and <strong>PostgreSQL vector architectures</strong>. Try clicking one of the quick topic chips above or email <strong>contact@sudheerqk.com</strong>.";
+            return bestMatch; // Returns null if no local keyword matches, forcing backend API / LLM response
         }
 
         const chatHistory = [];
