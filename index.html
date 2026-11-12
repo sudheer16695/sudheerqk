@@ -921,8 +921,9 @@ html.dark #aiModeBadge {
     
     
     
+    
     <style>
-    /* Sleek compact floating navigation island with smooth hover glow */
+    /* Compact navigation island with distinct hover glow for both light and dark modes */
     header {
         position: sticky !important;
         top: 1rem !important;
@@ -953,11 +954,17 @@ html.dark #aiModeBadge {
         box-sizing: border-box !important;
     }
 
-    /* Smooth glowing effect matching your video behavior */
+    /* LIGHT MODE HOVER: Distinct dark-rose / deep shadow so it pops against white/pink background */
     .nav-island:hover {
-        border-color: var(--accent-theme) !important;
-        box-shadow: 0 16px 45px rgba(235, 100, 100, 0.26), 0 0 30px rgba(235, 100, 100, 0.16), var(--glass-specular) !important;
+        border-color: rgba(220, 38, 38, 0.45) !important;
+        box-shadow: 0 12px 36px rgba(180, 40, 60, 0.22), 0 0 20px rgba(180, 40, 60, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08) !important;
         transform: translateY(-2px) !important;
+    }
+
+    /* DARK MODE HOVER: Vibrant glowing red/rose aura against deep obsidian background */
+    [data-theme="dark"] .nav-island:hover {
+        border-color: rgba(248, 113, 113, 0.6) !important;
+        box-shadow: 0 16px 45px rgba(248, 113, 113, 0.32), 0 0 30px rgba(248, 113, 113, 0.22), var(--glass-specular) !important;
     }
 
     /* Clean brand logo link wrapper */
