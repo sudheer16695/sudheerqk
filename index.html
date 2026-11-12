@@ -795,7 +795,7 @@ html:not([data-theme="dark"]):not(.dark) .video-card:hover {
             <button class="ai-chat-close" onclick="toggleAIChat()">&times;</button>
         </div>
         <div class="ai-chat-body" id="aiChatBody">
-            <div class="ai-msg ai-msg-bot">Hi! I am Sudheer's AI Assistant. Ask me anything about his SQL Server AlwaysOn clustering, Nutanix NDB automation, or cloud database architecture!</div>
+            <div class="ai-msg ai-msg-bot">Hi! I am Sudheer's AI Assistant. Ask me anything about Sudheer's SQL Server AlwaysOn clustering, Nutanix NDB DBaaS automation, or EDB Postgres® AI v18 architecture!</div>
         </div>
         <div class="ai-chat-footer">
             <input type="text" id="aiChatInput" class="ai-chat-input" placeholder="Ask about AlwaysOn, NDB, Postgres..." onkeydown="if(event.key==='Enter') sendChatMessage()">
@@ -1417,6 +1417,35 @@ const techDetails = {
         if (e.target === this) closeSkillModal();
     });
     </script>
+
+
+<script>
+(function() {
+    const cleanMap = {
+        '026d5382': 'Green Paddy Fields',
+        '6e27d412': 'Monsoon Greens & Breeze',
+        'e1d27b5f': 'Above the Clouds',
+        '0517': 'Golden Sunset Horizon',
+        '7800': 'Misty Mountain Trail'
+    };
+    function polishVideoLabels() {
+        document.querySelectorAll('div, span, h3, h4, p').forEach(el => {
+            if (el.children.length === 0 && el.textContent) {
+                const txt = el.textContent.trim();
+                const lower = txt.toLowerCase();
+                for (const [key, label] of Object.entries(cleanMap)) {
+                    if (lower.includes(key)) {
+                        el.textContent = label;
+                        break;
+                    }
+                }
+            }
+        });
+    }
+    window.addEventListener('DOMContentLoaded', polishVideoLabels);
+    setTimeout(polishVideoLabels, 800);
+})();
+</script>
 
 </body>
 </html>
