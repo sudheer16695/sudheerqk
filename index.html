@@ -794,17 +794,14 @@ const techDetails = {
     },
 
     'postgres': {
-        badge: 'Relational AI',
-        title: 'Postgres DBA & Vector Engineering',
-        desc: 'Enterprise cluster architectures, connection pooling, and pg_vector similarity search pipelines.',
-        tools: ['PostgreSQL 14-16', 'pg_vector', 'PgBouncer', 'asyncpg', 'FastAPI'],
-        highlights: [
-            'Private cloud storage schemas',
-            'IVFFlat/HNSW vector indices',
-            'WAL performance tuning',
-            'Encrypted offsite replication'
-        ]
-    },
+            badge: 'Relational AI • EDB Certified',
+            title: 'Postgres DBA & Vector Engineering',
+            subtitle: 'Enterprise cluster architectures, connection pooling, and pg_vector similarity search pipelines.',
+            tools: ['EDB Postgres AI v18', 'PostgreSQL 14-18', 'pg_vector', 'PgBouncer', 'asyncpg', 'FastAPI'],
+            scope: ['Private cloud storage schemas', 'IVFFlat/HNSW vector indices', 'WAL performance & SQL tuning', 'Encrypted offsite replication'],
+            certImg: 'assets/icons/edb-certification.png',
+            certUrl: 'https://www.credly.com/earner/earned/badge/c86bcb93-6676-4ee2-a393-b7c4c309d84b'
+        },
 
     'nutanix': {
         badge: 'DBaaS Cloud',
@@ -1185,11 +1182,13 @@ const techDetails = {
             scope: ['Multi-subnet cluster deployments', 'Quorum configuration & disaster recovery', 'Index fragmentation & query optimization', 'Zero-downtime rolling upgrades']
         },
         'postgres': {
-            badge: 'Relational AI',
+            badge: 'Relational AI • EDB Certified',
             title: 'Postgres DBA & Vector Engineering',
             subtitle: 'Enterprise cluster architectures, connection pooling, and pg_vector similarity search pipelines.',
-            tools: ['PostgreSQL 14-16', 'pg_vector', 'PgBouncer', 'asyncpg', 'FastAPI'],
-            scope: ['Private cloud storage schemas', 'IVFFlat/HNSW vector indices', 'WAL performance tuning', 'Encrypted offsite replication']
+            tools: ['EDB Postgres AI v18', 'PostgreSQL 14-18', 'pg_vector', 'PgBouncer', 'asyncpg', 'FastAPI'],
+            scope: ['Private cloud storage schemas', 'IVFFlat/HNSW vector indices', 'WAL performance & SQL tuning', 'Encrypted offsite replication'],
+            certImg: 'assets/icons/edb-certification.png',
+            certUrl: 'https://www.credly.com/earner/earned/badge/c86bcb93-6676-4ee2-a393-b7c4c309d84b'
         },
         'nutanix': {
             badge: 'Cloud Infrastructure',
@@ -1215,11 +1214,22 @@ const techDetails = {
         
         const scopeHtml = data.scope.map(s => `<li style="margin-bottom:12px; font-size:0.9rem; color:#475569; display:flex; align-items:center; gap:8px;"><span style="color:#ef4444; font-size:1.2rem; line-height:0;">•</span> ${s}</li>`).join('');
 
+        const certSection = data.certImg ? `
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:16px; margin-bottom:24px; display:flex; align-items:center; gap:16px;">
+                <img src="${data.certImg}" alt="Certification Badge" style="width:85px; height:85px; object-fit:contain; background:#fff; border-radius:10px; padding:6px; border:1px solid #e2e8f0; flex-shrink:0;">
+                <div>
+                    <div style="font-size:0.7rem; font-weight:700; color:#0f766e; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Official Certification</div>
+                    <div style="font-size:0.95rem; font-weight:800; color:#0f172a; margin-bottom:4px;">EDB Postgres® AI Database Advanced v18</div>
+                    <a href="${data.certUrl}" target="_blank" style="font-size:0.8rem; color:#ef4444; font-weight:600; text-decoration:none;">Verify Credential on Credly →</a>
+                </div>
+            </div>
+        ` : '';
+
         document.getElementById('skillModalBody').innerHTML = `
             <span style="background:rgba(239,68,68,0.1); color:#ef4444; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:700; font-family:monospace; margin-bottom:16px; display:inline-block;">${data.badge}</span>
             <h3 style="font-size:1.5rem; font-weight:800; color:#0f172a; margin-bottom:8px; line-height:1.2;">${data.title}</h3>
-            <p style="font-size:0.95rem; color:#475569; line-height:1.5; margin-bottom:24px;">${data.subtitle}</p>
-            
+            <p style="font-size:0.95rem; color:#475569; line-height:1.5; margin-bottom:20px;">${data.subtitle}</p>
+            ${certSection}
             <h4 style="font-size:0.75rem; font-weight:700; color:#ef4444; letter-spacing:1px; margin-bottom:12px; text-transform:uppercase;">Production Tools</h4>
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;">${toolsHtml}</div>
             
