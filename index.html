@@ -466,36 +466,46 @@ html:not([data-theme="dark"]):not(.dark) footer svg {
     fill: #9E1B3B !important;
 }
 
-/* Seamless One-Page Footer & Luminous Burgundy Pill Glow (Daylight Mode Only) */
-html:not([data-theme="dark"]):not(.dark) footer {
+
+/* Seamless One-Page Footer & Targeted Pill Glow (Daylight Mode Only) */
+html:not([data-theme="dark"]):not(.dark) footer,
+html:not([data-theme="dark"]):not(.dark) footer > div {
     background: transparent !important;
-    border-top: none !important;
+    border: none !important;
     box-shadow: none !important;
-    padding-top: 2.5rem !important;
-    padding-bottom: 3rem !important;
-    margin-top: 1rem !important;
 }
 
-html:not([data-theme="dark"]):not(.dark) footer > div:first-child,
+html:not([data-theme="dark"]):not(.dark) footer {
+    padding-top: 2rem !important;
+    padding-bottom: 3rem !important;
+    margin-top: 0.5rem !important;
+}
+
+/* Target only the actual compact pill element inside the footer */
+html:not([data-theme="dark"]):not(.dark) footer > div > div:first-child,
 html:not([data-theme="dark"]):not(.dark) footer [class*="pill"],
-html:not([data-theme="dark"]):not(.dark) .footer-badge {
-    background: rgba(255, 255, 255, 0.88) !important;
+html:not([data-theme="dark"]):not(.dark) footer .footer-badge {
+    display: inline-flex !important;
+    width: auto !important;
+    background: rgba(255, 255, 255, 0.92) !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(158, 27, 59, 0.22) !important;
+    border-radius: 9999px !important;
     box-shadow: 0 4px 18px rgba(158, 27, 59, 0.08) !important;
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
     cursor: pointer;
 }
 
-html:not([data-theme="dark"]):not(.dark) footer > div:first-child:hover,
+html:not([data-theme="dark"]):not(.dark) footer > div > div:first-child:hover,
 html:not([data-theme="dark"]):not(.dark) footer [class*="pill"]:hover,
-html:not([data-theme="dark"]):not(.dark) .footer-badge:hover {
+html:not([data-theme="dark"]):not(.dark) footer .footer-badge:hover {
     transform: translateY(-2px) !important;
     border-color: #C8234C !important;
-    box-shadow: 0 8px 28px rgba(158, 27, 59, 0.18), 0 0 22px rgba(200, 35, 76, 0.24) !important;
+    box-shadow: 0 8px 28px rgba(158, 27, 59, 0.18), 0 0 22px rgba(200, 35, 76, 0.26) !important;
 }
 </style>
+
 
 
 
