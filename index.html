@@ -390,7 +390,19 @@
 
 
 
+
+/* Fix Verified Credentials Card Surface in Dark Mode Only (Daylight Untouched) */
+html[data-theme="dark"] a[href*="credly.com"],
+html.dark a[href*="credly.com"] {
+    background: rgba(30, 41, 59, 0.85) !important;
+    border-color: rgba(148, 163, 184, 0.2) !important;
+}
+html[data-theme="dark"] a[href*="credly.com"] span:nth-child(2),
+html.dark a[href*="credly.com"] span:nth-child(2) {
+    color: #f8fafc !important;
+}
 </style>
+
 
 
 
