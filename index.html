@@ -907,46 +907,42 @@ html.dark #aiModeBadge {
     
     
     
+    
     <style>
-    /* Pristine original header layout with full mobile & tablet responsiveness */
+    /* Full-width header banner layout matching markup */
     header {
         width: 100% !important;
+        max-width: 100% !important;
+        padding: 16px 24px !important;
+        box-sizing: border-box !important;
         display: flex !important;
         justify-content: center !important;
-        padding: 20px 16px !important;
-        box-sizing: border-box !important;
     }
     .nav-pill {
-        display: inline-flex !important;
+        width: 100% !important;
+        max-width: 1300px !important;
+        display: flex !important;
+        flex-direction: row !important;
         align-items: center !important;
-        gap: 12px !important;
-        width: auto !important;
-        max-width: 100% !important;
+        justify-content: space-between !important;
         box-sizing: border-box !important;
+        padding: 10px 20px !important;
+        gap: 16px !important;
     }
     .brand-badge, .logo-container, .sk-badge {
         border: none !important;
         outline: none !important;
         box-shadow: none !important;
+        background: transparent !important;
     }
     
-    /* Responsive scaling for iPads and Mobile Phones */
-    @media (max-width: 1024px) {
+    /* Responsive handling for iPads and mobile phones */
+    @media (max-width: 900px) {
         .nav-pill {
             flex-wrap: wrap !important;
             justify-content: center !important;
-            padding: 10px 14px !important;
-            border-radius: 24px !important;
-        }
-    }
-    @media (max-width: 640px) {
-        header {
-            padding: 12px 8px !important;
-        }
-        .nav-pill {
-            gap: 8px !important;
-            padding: 8px 10px !important;
-            font-size: 13px !important;
+            gap: 10px !important;
+            padding: 12px !important;
         }
     }
     </style>
