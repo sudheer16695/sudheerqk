@@ -1434,7 +1434,7 @@ const techDetails = {
             body.scrollTop = body.scrollHeight;
 
             // 1. Try Self-Hosted FastAPI + pg_vector + Live Web Search Backend first
-            const endpoints = ["https://api.sudheerqk.com/ask", "http://127.0.0.1:8008/ask"];
+            const endpoints = ["/api/ask", "https://sudheerqk.com/api/ask", "http://127.0.0.1:8008/ask"];
             for (const url of endpoints) {
                 try {
                     const res = await fetch(url, {
