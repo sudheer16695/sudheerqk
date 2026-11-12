@@ -541,7 +541,27 @@ html:not([data-theme="dark"]):not(.dark) footer {
     padding-bottom: 3.5rem !important;
     margin-top: 0 !important;
 }
+
+/* Eliminate any remaining footer pseudo-element or wrapper white band in Daylight Mode */
+html:not([data-theme="dark"]):not(.dark) footer::before,
+html:not([data-theme="dark"]):not(.dark) footer::after,
+html:not([data-theme="dark"]):not(.dark) footer > div::before,
+html:not([data-theme="dark"]):not(.dark) footer > div::after {
+    display: none !important;
+    content: none !important;
+    background: transparent !important;
+}
+
+html:not([data-theme="dark"]):not(.dark) footer,
+html:not([data-theme="dark"]):not(.dark) footer > div,
+html:not([data-theme="dark"]):not(.dark) footer p,
+html:not([data-theme="dark"]):not(.dark) footer span {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
 </style>
+
 
 
 
