@@ -463,7 +463,10 @@
                 </div>
                 <div class="tech-block-card" onclick="openTechModal('postgres')">
                     <div>
-                        <div class="tech-icon-pill"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-4h2v4zm0-6h-2v-2h2v2z"/></svg></div>
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                            <div class="tech-icon-pill"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-4h2v4zm0-6h-2v-2h2v2z"/></svg></div>
+                            <img src="assets/icons/edb-certification.png" alt="EDB Certified" title="EDB Postgres AI Advanced v18 Certified" style="width:46px; height:46px; object-fit:contain; border-radius:10px; border:1px solid #e2e8f0; padding:3px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                        </div>
                         <h3>Postgres DBA</h3>
                         <p>PostgreSQL cluster design, custom backend schemas, pg_vector embeddings for AI pipelines, and WAL replication.</p>
                         <div class="tech-tags-strip"><span class="tech-tag">pg_vector</span><span class="tech-tag">PgBouncer</span><span class="tech-tag">WAL Streaming</span></div>
@@ -794,14 +797,19 @@ const techDetails = {
     },
 
     'postgres': {
-            badge: 'Relational AI • EDB Certified',
-            title: 'Postgres DBA & Vector Engineering',
-            subtitle: 'Enterprise cluster architectures, connection pooling, and pg_vector similarity search pipelines.',
-            tools: ['EDB Postgres AI v18', 'PostgreSQL 14-18', 'pg_vector', 'PgBouncer', 'asyncpg', 'FastAPI'],
-            scope: ['Private cloud storage schemas', 'IVFFlat/HNSW vector indices', 'WAL performance & SQL tuning', 'Encrypted offsite replication'],
-            certImg: 'assets/icons/edb-certification.png',
-            certUrl: 'https://www.credly.com/earner/earned/badge/c86bcb93-6676-4ee2-a393-b7c4c309d84b'
-        },
+        badge: 'Relational AI • EDB Certified',
+        title: 'Postgres DBA & Vector Engineering',
+        desc: 'Enterprise cluster architectures, connection pooling, and pg_vector similarity search pipelines.',
+        tools: ['EDB Postgres AI v18', 'PostgreSQL 14-18', 'pg_vector', 'PgBouncer', 'asyncpg', 'FastAPI'],
+        highlights: [
+            'Private cloud storage schemas',
+            'IVFFlat/HNSW vector indices',
+            'WAL performance & SQL tuning',
+            'Encrypted offsite replication'
+        ],
+        certImg: 'assets/icons/edb-certification.png',
+        certUrl: 'https://www.credly.com/earner/earned/badge/c86bcb93-6676-4ee2-a393-b7c4c309d84b'
+    },
 
     'nutanix': {
         badge: 'DBaaS Cloud',
