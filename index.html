@@ -917,63 +917,26 @@ html.dark #aiModeBadge {
     
     
     
-    <style>
-    /* Vibrant hover glow effect for nav-island */
-    .nav-island:hover {
-        box-shadow: 0 16px 45px rgba(235, 100, 100, 0.22), 0 0 30px rgba(235, 100, 100, 0.15), var(--glass-specular) !important;
-        border-color: var(--accent-theme) !important;
-        transform: translateY(-2px) !important;
-    }
     
-    /* Remove white background box around brand logo link */
-    .nav-island .brand-logo {
-        background: transparent !important;
-        background-color: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-    }
-    </style>
     <style>
-    /* Compact glowing floating navigation island */
-    header {
-        position: sticky !important;
-        top: 1.25rem !important;
-        z-index: 50 !important;
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        margin-bottom: 3.5rem !important;
-        padding: 0 16px !important;
-        box-sizing: border-box !important;
-    }
-
+    /* Adaptive glowing shadow and clean brand logo for both light and dark modes */
     .nav-island {
-        width: 100% !important;
-        max-width: 1280px !important; /* matches your content grid width perfectly */
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        padding: 0.75rem 1.6rem !important;
-        border-radius: 9999px !important;
-        background: var(--surface-glass, rgba(255, 255, 255, 0.85)) !important;
-        backdrop-filter: blur(28px) saturate(190%) !important;
-        -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
-        border: 1px solid var(--border-glass, rgba(235, 100, 100, 0.15)) !important;
-        box-shadow: 0 10px 30px rgba(235, 100, 100, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04), var(--glass-specular) !important;
+        box-shadow: 0 10px 30px rgba(210, 50, 70, 0.18), 0 4px 15px rgba(0, 0, 0, 0.08), var(--glass-specular) !important;
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-        box-sizing: border-box !important;
     }
 
     .nav-island:hover {
-        border-color: rgba(235, 100, 100, 0.4) !important;
-        box-shadow: 0 16px 45px rgba(235, 100, 100, 0.22), 0 0 25px rgba(235, 100, 100, 0.15) !important;
+        box-shadow: 0 18px 50px rgba(210, 50, 70, 0.30), 0 0 30px rgba(210, 50, 70, 0.20) !important;
         transform: translateY(-2px) !important;
     }
 
-    /* Clean brand logo link without any inner box background */
-    a.brand-logo, .nav-island > a.brand-logo {
+    /* Force dark mode specific glow intensity if data-theme is dark */
+    [data-theme="dark"] .nav-island {
+        box-shadow: 0 12px 35px rgba(235, 100, 100, 0.25), 0 0 25px rgba(235, 100, 100, 0.15), var(--glass-specular) !important;
+    }
+
+    /* Completely eliminate any rectangular background box around the SK brand logo link */
+    .nav-island a.brand-logo, header a.brand-logo, .brand-logo {
         background: transparent !important;
         background-color: transparent !important;
         border: none !important;
@@ -981,28 +944,6 @@ html.dark #aiModeBadge {
         box-shadow: none !important;
         padding: 0 !important;
         margin: 0 !important;
-    }
-
-    /* Responsive adjustments for iPad & Mobile */
-    @media (max-width: 1024px) {
-        .nav-island {
-            max-width: 100% !important;
-            padding: 0.6rem 1.2rem !important;
-        }
-    }
-    @media (max-width: 768px) {
-        header {
-            top: 0.75rem !important;
-            margin-bottom: 2rem !important;
-            padding: 0 10px !important;
-        }
-        .nav-island {
-            padding: 0.5rem 0.85rem !important;
-            gap: 6px !important;
-        }
-        .nav-status {
-            display: none !important;
-        }
     }
     </style>
 </head>
