@@ -73,6 +73,9 @@ class ChatTurn(BaseModel):
 
 class AskRequest(BaseModel):
     model_config = {"extra": "ignore"}
+    message: str = Field("", max_length=1000)
+    prompt: str = Field("", max_length=1000)
+    model_config = {"extra": "ignore"}
 
     question: str = Field(..., min_length=1, max_length=500)
     history: List[ChatTurn] = Field(default_factory=list, max_length=6)
@@ -153,7 +156,7 @@ async def ask_ai(payload: AskRequest, request: Request):
     client_ip = request.headers.get("CF-Connecting-IP") or (request.client.host if request.client else "unknown")
     check_rate_limit(client_ip)
 
-    q = payload.question.strip()
+    q = (payload.question or payload.message or payload.prompt or "").strip()
     if INJECTION_PATTERNS.search(q):
         return {
             "answer": "I can't process requests that ask for internal system instructions, private storage, or restricted configuration details. Feel free to ask about Sudheer's public database architecture or general tech topics!",
