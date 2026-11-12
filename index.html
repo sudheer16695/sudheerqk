@@ -1575,18 +1575,21 @@ const techDetails = {
                             return;
                         }
                     }
-                } catch (_) {}
+                } catch (err) {
+                    console.warn("Endpoint failed:", url, err);
+                }
             }
 
-            setTimeout(() => {
-                const low = prompt.toLowerCase().replace(/[^a-z\s]/g, "").trim();
-                if (/^(hi+|he+l+o+|hey+|good\s*(morning|afternoon|evening)|namaste)$/.test(low)) {
-                    botMsg.innerHTML = "Hey there! How can I help you today? Ask me anything about Sudheer's architecture or general topics.";
-                } else {
-                    botMsg.innerHTML = resolveLocalArchitecture(prompt);
-                }
-                requestAnimationFrame(() => { body.scrollTop = body.scrollHeight; });
-            }, 220);
+            // Fallback to local KB if backend is unreachable
+            const localAns = resolveLocalArchitecture(prompt);
+            if (localAns) {
+                botMsg.innerHTML = localAns;
+            } else {
+                botMsg.innerHTML = "I am currently running in offline mode. Feel free to ask about Sudheer\'s EDB Postgres AI v18 certification, Nutanix NDB DBaaS, SQL Server AlwaysOn AG, or self-hosted stack!";
+            }
+            chatHistory.push({ role: "user", content: prompt });
+            chatHistory.push({ role: "assistant", content: botMsg.textContent });
+            requestAnimationFrame(() => { body.scrollTop = body.scrollHeight; });
         }
 
         function openModal(id) { const m = document.getElementById(id); if (m) { m.classList.add('active'); document.body.style.overflow = 'hidden'; } }
