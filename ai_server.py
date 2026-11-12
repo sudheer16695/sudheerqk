@@ -77,80 +77,10 @@ class AskRequest(BaseModel):
     prompt: Optional[str] = None
     history: Optional[list] = []
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
-def check_rate_limit(client_ip: str):
-    now = time.time()
-    recent = [t for t in ip_requests[client_ip] if now - t < RATE_LIMIT_WINDOW]
-    if len(recent) >= RATE_LIMIT_MAX:
-        raise HTTPException(status_code=429, detail="Rate limit exceeded. Please wait a minute.")
-    recent.append(now)
-    ip_requests[client_ip] = recent
-
-def sanitize_output(text: str) -> str:
-    cleaned = text
-    for pat in LEAK_REDACT_PATTERNS:
-        cleaned = pat.sub("[REDACTED]", cleaned)
-    cleaned = re.sub(r"<(?!/?(?:strong|b|em|i|br|a|ul|ol|li|code)\b)[^>]+>", "", cleaned)
-    return cleaned
-
-def get_embedding(text: str):
-    payload = json.dumps({"model": "nomic-embed-text", "prompt": text}).encode("utf-8")
-    req = urllib.request.Request("http://127.0.0.1:11434/api/embeddings", data=payload, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=8) as resp:
-        return json.loads(resp.read().decode("utf-8"))["embedding"]
-
-def query_pgvector(question: str, top_k: int = 3) -> list[str]:
-    try:
-        vec = get_embedding(question)
-        vec_str = "[" + ",".join(f"{x:.6f}" for x in vec) + "]"
-        conn = psycopg2.connect(
-            dbname="postgres",
-            user="ai_reader",
-            password=_load_secret(),
-            host="127.0.0.1",
-            connect_timeout=2,
-            options="-c default_transaction_read_only=on"
-        )
-        cur = conn.cursor()
-        cur.execute(
-            "SELECT topic, content, (embedding <=> %s::vector) AS dist "
-            "FROM portfolio_knowledge "
-            "WHERE visibility = 'public' "
-            "ORDER BY dist ASC LIMIT %s",
-            (vec_str, top_k)
-        )
-        rows = cur.fetchall()
-        cur.close()
-        conn.close()
-        return [f"{r[0]}: {r[1]}" for r in rows if r[2] < 0.68]
-    except Exception:
-        return []
-
-def search_live_web(query: str) -> str:
-    cleaned = re.sub(r"[^\w\s\-\.]", "", query.lower()).strip()
-    stop = {"i", "want", "to", "know", "something", "about", "what", "is", "are", "the", "a", "an", "tell", "me", "explain", "can", "you", "please"}
-    topic = " ".join([w for w in cleaned.split() if w not in stop]) or cleaned
-    if len(topic) < 3 or any(p in cleaned for p in ["your name", "who are you", "about you", "hi", "hello", "helllo", "whatsup", "morning", "evening"]):
-        return ""
-    try:
-        wiki_slug = urllib.parse.quote(topic.title().replace(" ", "_"))
-        wiki_url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{wiki_slug}"
-        req = urllib.request.Request(wiki_url, headers={"User-Agent": "SudheerQK-AI/6.0"})
-        with urllib.request.urlopen(req, timeout=2.5) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            if data.get("extract") and data.get("type") != "disambiguation":
-                return data["extract"][:650]
-    except Exception:
-        pass
-    return ""
-
-@app.get("/health")
-def health():
-    return {"status": "online", "security": "hardened-readonly-pgvector"}
-
-@app.post("/ask")
+@app.post("/api/ask")
+async def ask_ai(payload: AskRequest):@app.post("/ask")
 @app.post("/api/ask")
 async def ask_ai(payload: AskRequest, request: Request):
     client_ip = request.headers.get("CF-Connecting-IP") or (request.client.host if request.client else "unknown")
