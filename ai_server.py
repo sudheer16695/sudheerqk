@@ -72,13 +72,13 @@ class ChatTurn(BaseModel):
     content: str = Field(..., max_length=600)
 
 class AskRequest(BaseModel):
-    model_config = {"extra": "ignore"}
-    message: str = Field("", max_length=1000)
-    prompt: str = Field("", max_length=1000)
-    model_config = {"extra": "ignore"}
+    question: Optional[str] = None
+    message: Optional[str] = None
+    prompt: Optional[str] = None
+    history: Optional[list] = []
 
-    question: str = Field(..., min_length=1, max_length=500)
-    history: List[ChatTurn] = Field(default_factory=list, max_length=6)
+    class Config:
+        extra = "allow"
 
 def check_rate_limit(client_ip: str):
     now = time.time()
