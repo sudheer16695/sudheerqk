@@ -904,18 +904,28 @@ html.dark #aiModeBadge {
 
 
     <style>
-    /* mobile header fix */
+    /* proper full-width responsive header fix */
+    header, .header-container, .nav-pill {
+        width: 100% !important;
+        max-width: 1200px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        box-sizing: border-box !important;
+        gap: 12px !important;
+    }
     .brand-badge, .logo-container, .sk-badge {
         border: none !important;
         outline: none !important;
         box-shadow: none !important;
     }
-    header, .nav-pill, .header-container {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
+    @media (max-width: 768px) {
+        header, .header-container, .nav-pill {
+            padding: 8px 12px !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+        }
     }
     </style>
     
