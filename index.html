@@ -929,6 +929,29 @@ html.dark #aiModeBadge {
         padding: 16px 24px !important;
     }
     </style>
+    <style>
+    /* Clean precise header fix: compact floating pill & remove stray logo border */
+    header {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        padding: 16px 20px !important;
+        box-sizing: border-box !important;
+    }
+    .nav-pill {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        width: auto !important;
+        max-width: none !important;
+    }
+    .brand-badge, .logo-container, .sk-badge, .header-brand-box {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+    </style>
 </head>
 <body>
     <div class="ambient-dark-glow glow-top-rose"></div>
