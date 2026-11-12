@@ -1980,5 +1980,143 @@ const techDetails = {
 })();
 </script>
 
+
+<!-- NAV_AI_THEME_GLOW_START -->
+
+<style id="nav-ai-theme-glow">
+
+/* LIGHT MODE: Burgundy / wine red */
+:root {
+    --nav-ai-glow-rgb: 128, 0, 32;
+    --nav-ai-border-alpha: 0.82;
+    --nav-ai-shadow-alpha: 0.34;
+    --nav-ai-halo-alpha: 0.23;
+}
+
+/* DARK MODE: Preserve coral / rose glow */
+[data-theme="dark"] {
+    --nav-ai-glow-rgb: 248, 113, 113;
+    --nav-ai-border-alpha: 0.62;
+    --nav-ai-shadow-alpha: 0.35;
+    --nav-ai-halo-alpha: 0.25;
+}
+
+/* NAVIGATION: subtle idle appearance */
+html body .container .nav-island.nav-island {
+    max-width: 1180px !important;
+    padding: 0.34rem 1rem !important;
+    border-radius: 9999px !important;
+    background: var(--surface-glass) !important;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.09) !important;
+    transform: none !important;
+
+    transition:
+        box-shadow 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease !important;
+}
+
+/* NAVIGATION: theme-specific glow on hover only */
+html body .container .nav-island.nav-island:hover {
+    border-color: rgba(
+        var(--nav-ai-glow-rgb),
+        var(--nav-ai-border-alpha)
+    ) !important;
+
+    box-shadow:
+        0 0 0 1px rgba(var(--nav-ai-glow-rgb), 0.22),
+        0 16px 45px rgba(
+            var(--nav-ai-glow-rgb),
+            var(--nav-ai-shadow-alpha)
+        ),
+        0 0 35px rgba(
+            var(--nav-ai-glow-rgb),
+            var(--nav-ai-halo-alpha)
+        ) !important;
+
+    transform: translateY(-2px) !important;
+}
+
+/* Keep SK logo wrapper clean */
+html body .container .nav-island a.brand-logo {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Compact navigation spacing */
+html body .container .nav-island .nav-actions {
+    gap: 0.4rem !important;
+}
+
+html body .container .nav-island .glass-btn {
+    padding: 0.38rem 0.72rem !important;
+}
+
+/* AI BUTTON: subtle idle appearance */
+html body .floating-ai-fab.floating-ai-fab {
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.12) !important;
+    transform: none !important;
+    transition: all 0.3s ease !important;
+}
+
+/* AI BUTTON: matching theme-specific hover glow */
+html body .floating-ai-fab.floating-ai-fab:hover {
+    border-color: rgba(
+        var(--nav-ai-glow-rgb),
+        var(--nav-ai-border-alpha)
+    ) !important;
+
+    box-shadow:
+        0 0 0 1px rgba(var(--nav-ai-glow-rgb), 0.22),
+        0 12px 35px rgba(
+            var(--nav-ai-glow-rgb),
+            var(--nav-ai-shadow-alpha)
+        ),
+        0 0 35px rgba(
+            var(--nav-ai-glow-rgb),
+            var(--nav-ai-halo-alpha)
+        ) !important;
+
+    transform: translateY(-2px) !important;
+}
+
+/* AI CHAT PANEL */
+html body .ai-chat-window.ai-chat-window {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+html body .ai-chat-window.ai-chat-window:hover {
+    border-color: rgba(
+        var(--nav-ai-glow-rgb),
+        var(--nav-ai-border-alpha)
+    ) !important;
+
+    box-shadow:
+        0 0 0 1px rgba(var(--nav-ai-glow-rgb), 0.18),
+        0 12px 35px rgba(
+            var(--nav-ai-glow-rgb),
+            var(--nav-ai-shadow-alpha)
+        ) !important;
+}
+
+/* Responsive navigation */
+@media (max-width: 1024px) {
+    html body .container .nav-island.nav-island {
+        max-width: 100% !important;
+        padding: 0.32rem 0.8rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    html body .container .nav-island.nav-island {
+        padding: 0.28rem 0.55rem !important;
+        gap: 0.3rem !important;
+    }
+}
+
+</style>
+
+<!-- NAV_AI_THEME_GLOW_END -->
 </body>
 </html>
