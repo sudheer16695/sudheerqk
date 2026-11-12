@@ -80,6 +80,7 @@ class AskRequest(BaseModel):
     model_config = {"extra": "allow"}
 
 @app.post("/api/ask")
+async def ask_ai(payload: AskRequest):@app.post("/api/ask")
 async def ask_ai(payload: AskRequest):@app.post("/ask")
 @app.post("/api/ask")
 async def ask_ai(payload: AskRequest, request: Request):
