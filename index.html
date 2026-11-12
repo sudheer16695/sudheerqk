@@ -391,7 +391,33 @@
 
 
 
+
+/* Strictly block inner card/media children from ever showing hover borders or glows */
+html:not([data-theme="dark"]):not(.dark) [class*="card"] *,
+html:not([data-theme="dark"]):not(.dark) [class*="card"] *:hover,
+html:not([data-theme="dark"]):not(.dark) [class*="gallery"] > div *,
+html:not([data-theme="dark"]):not(.dark) [class*="gallery"] > div *:hover,
+html:not([data-theme="dark"]):not(.dark) [class*="media"] > div *,
+html:not([data-theme="dark"]):not(.dark) [class*="media"] > div *:hover,
+html[data-theme="dark"] [class*="card"] *,
+html[data-theme="dark"] [class*="card"] *:hover,
+html[data-theme="dark"] [class*="gallery"] > div *,
+html[data-theme="dark"] [class*="gallery"] > div *:hover,
+html[data-theme="dark"] [class*="media"] > div *,
+html[data-theme="dark"] [class*="media"] > div *:hover,
+html.dark [class*="card"] *,
+html.dark [class*="card"] *:hover,
+html.dark [class*="gallery"] > div *,
+html.dark [class*="gallery"] > div *:hover,
+html.dark [class*="media"] > div *,
+html.dark [class*="media"] > div *:hover {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
 </style>
+
 
 
 
@@ -521,7 +547,16 @@ html:not([data-theme="dark"]):not(.dark) [class*="ask-ai"] {
 }
 
 /* 4. Universal Thick-to-Light Luminous Halo on Hover Across EVERY Card, Button & Link Pill */
-html:not([data-theme="dark"]):not(.dark) [class*="card"]:hover,
+html:not([data-theme="dark"]):not(.dark) .profile-card:hover,
+html:not([data-theme="dark"]):not(.dark) .hero-card:hover,
+html:not([data-theme="dark"]):not(.dark) .tech-block-card:hover,
+html:not([data-theme="dark"]):not(.dark) .feed-card:hover,
+html:not([data-theme="dark"]):not(.dark) .social-feed-card:hover,
+html:not([data-theme="dark"]):not(.dark) .network-card:hover,
+html:not([data-theme="dark"]):not(.dark) .social-card:hover,
+html:not([data-theme="dark"]):not(.dark) .connect-card:hover,
+html:not([data-theme="dark"]):not(.dark) .media-card:hover,
+html:not([data-theme="dark"]):not(.dark) .video-card:hover,
 html:not([data-theme="dark"]):not(.dark) a[href*="credly.com"]:hover,
 html:not([data-theme="dark"]):not(.dark) [class*="network"] a:hover,
 html:not([data-theme="dark"]):not(.dark) [class*="connect"] a:hover,
@@ -726,7 +761,16 @@ html.dark [class*="ask-ai"] {
 }
 
 /* 5. Universal Thick-to-Light Shiny Rose Gold Halo on Hover Across EVERY Card & Button */
-html[data-theme="dark"] [class*="card"]:hover,
+html[data-theme="dark"] .profile-card:hover,
+html[data-theme="dark"] .hero-card:hover,
+html[data-theme="dark"] .tech-block-card:hover,
+html[data-theme="dark"] .feed-card:hover,
+html[data-theme="dark"] .social-feed-card:hover,
+html[data-theme="dark"] .network-card:hover,
+html[data-theme="dark"] .social-card:hover,
+html[data-theme="dark"] .connect-card:hover,
+html[data-theme="dark"] .media-card:hover,
+html[data-theme="dark"] .video-card:hover,
 html[data-theme="dark"] a[href*="credly.com"]:hover,
 html[data-theme="dark"] [class*="network"] a:hover,
 html[data-theme="dark"] [class*="connect"] a:hover,
@@ -745,7 +789,16 @@ html[data-theme="dark"] button[title*="AI"]:hover,
 html[data-theme="dark"] button[aria-label*="AI"]:hover,
 html[data-theme="dark"] .ask-ai-fab:hover,
 html[data-theme="dark"] [class*="ask-ai"]:hover,
-html.dark [class*="card"]:hover,
+html.dark .profile-card:hover,
+html.dark .hero-card:hover,
+html.dark .tech-block-card:hover,
+html.dark .feed-card:hover,
+html.dark .social-feed-card:hover,
+html.dark .network-card:hover,
+html.dark .social-card:hover,
+html.dark .connect-card:hover,
+html.dark .media-card:hover,
+html.dark .video-card:hover,
 html.dark a[href*="credly.com"]:hover,
 html.dark [class*="network"] a:hover,
 html.dark [class*="connect"] a:hover,
