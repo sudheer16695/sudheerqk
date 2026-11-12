@@ -846,7 +846,27 @@ html.dark .tech-block-card:hover .tech-icon-pill {
 
 
 <style id="ai-assistant-enhanced-styles">
-#aiChatBody { padding-bottom: 18px !important; scroll-behavior: smooth; }
+
+/* Dynamic Expanded AI Chat Window for Better Readability */
+#aiChatWindow {
+    width: min(440px, 92vw) !important;
+    height: min(620px, 76vh) !important;
+    max-height: 78vh !important;
+    transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+#aiChatBody {
+    padding: 16px 16px 24px 16px !important;
+    gap: 12px !important;
+    line-height: 1.55 !important;
+    font-size: 0.90rem !important;
+    scroll-behavior: smooth !important;
+}
+#aiChatBody .ai-msg {
+    max-width: 88% !important;
+    padding: 11px 14px !important;
+    line-height: 1.55 !important;
+}
+
 .ai-chip {
     font-size: 0.72rem;
     font-weight: 600;
@@ -1425,13 +1445,13 @@ const techDetails = {
             userMsg.textContent = prompt;
             body.appendChild(userMsg);
             input.value = "";
-            body.scrollTop = body.scrollHeight;
+            requestAnimationFrame(() => { body.scrollTop = body.scrollHeight; });
 
             const botMsg = document.createElement("div");
             botMsg.className = "ai-msg ai-msg-bot";
             botMsg.innerHTML = "<span style='opacity:0.75;'>Querying knowledge base & live context...</span>";
             body.appendChild(botMsg);
-            body.scrollTop = body.scrollHeight;
+            requestAnimationFrame(() => { body.scrollTop = body.scrollHeight; });
 
             // 1. Try Self-Hosted FastAPI + pg_vector + Live Web Search Backend first
             const endpoints = ["/api/ask", "https://sudheerqk.com/api/ask", "http://127.0.0.1:8008/ask"];
@@ -1447,7 +1467,7 @@ const techDetails = {
                         const data = await res.json();
                         if (data && data.answer) {
                             botMsg.innerHTML = data.answer;
-                            body.scrollTop = body.scrollHeight;
+                            requestAnimationFrame(() => { body.scrollTop = body.scrollHeight; });
                             return;
                         }
                     }
@@ -1457,7 +1477,7 @@ const techDetails = {
             // 2. Smart Local Architectural Knowledge Engine fallback (instant, zero latency)
             setTimeout(() => {
                 botMsg.innerHTML = resolveLocalArchitecture(prompt);
-                body.scrollTop = body.scrollHeight;
+                requestAnimationFrame(() => { body.scrollTop = body.scrollHeight; });
             }, 260);
         }
 
