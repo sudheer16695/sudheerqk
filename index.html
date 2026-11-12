@@ -914,18 +914,21 @@ html.dark #aiModeBadge {
     
     
     
+    
     <style>
-    /* Clean, unified full-width floating header + hover glow + mobile/iPad responsive */
-    header {
+    /* Clean, unified full-width floating header matching full page container */
+    header, nav.top-nav, .header-wrapper {
         width: 100% !important;
-        max-width: 1280px !important;
+        max-width: 1440px !important;
         margin: 0 auto !important;
-        padding: 20px 24px !important;
+        padding: 18px 32px !important;
         box-sizing: border-box !important;
+        display: flex !important;
+        justify-content: center !important;
     }
 
-    /* Target the outer floating pill container */
-    header > div, header > nav, nav.nav-pill, .nav-pill {
+    /* Make the floating pill stretch across the full container width */
+    header > div, header > nav, .nav-pill {
         width: 100% !important;
         max-width: 100% !important;
         display: flex !important;
@@ -933,63 +936,56 @@ html.dark #aiModeBadge {
         align-items: center !important;
         justify-content: space-between !important;
         flex-wrap: nowrap !important;
-        padding: 12px 24px !important;
+        padding: 14px 28px !important;
         border-radius: 9999px !important;
         box-sizing: border-box !important;
-        overflow: visible !important;
-        transition: box-shadow 0.3s ease, transform 0.3s ease !important;
+        border: 1px solid rgba(210, 50, 70, 0.18) !important;
+        box-shadow: 0 10px 30px -5px rgba(210, 50, 70, 0.10), 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     }
 
-    /* Smooth glow when hovering over the floating pill */
-    header > div:hover, header > nav:hover, nav.nav-pill:hover, .nav-pill:hover {
-        box-shadow: 0 12px 36px rgba(210, 50, 70, 0.16), 0 0 24px rgba(210, 50, 70, 0.12) !important;
-        transform: translateY(-1px) !important;
+    /* Strong, visible interactive glow on hover */
+    header > div:hover, header > nav:hover, .nav-pill:hover {
+        border-color: rgba(210, 50, 70, 0.45) !important;
+        box-shadow: 0 16px 45px -5px rgba(210, 50, 70, 0.25), 0 0 28px rgba(210, 50, 70, 0.20) !important;
+        transform: translateY(-2px) !important;
     }
 
-    /* Keep all right-side buttons (Available badge, theme toggle, Contact, Demo, Vault) grouped inside the pill */
-    header > div > div:last-child, header > nav > div:last-child {
-        display: flex !important;
-        align-items: center !important;
-        gap: 10px !important;
-        flex-shrink: 0 !important;
-    }
-
-    /* Remove stray rectangular border/box around SK + sudheerqk.com on desktop & mobile */
-    header a:first-of-type, nav a:first-of-type, .brand-badge, .logo-container, .sk-badge {
+    /* Completely strip any white/rectangular background or border on the SK sudheerqk.com link */
+    header a:first-of-type, nav a:first-of-type, header a[href="/"], header a[href="#"], header a[href*="sudheerqk"] {
+        background: transparent !important;
+        background-color: transparent !important;
         border: none !important;
         outline: none !important;
         box-shadow: none !important;
-        background: transparent !important;
-        border-radius: 9999px !important;
         padding: 0 !important;
+        margin: 0 !important;
         display: inline-flex !important;
         align-items: center !important;
-        gap: 10px !important;
+        gap: 12px !important;
         flex-shrink: 0 !important;
     }
 
-    /* iPad & Mobile optimization */
+    /* Tablet (iPad) responsive */
     @media (max-width: 1024px) {
-        header {
-            padding: 12px 14px !important;
+        header, nav.top-nav, .header-wrapper {
+            padding: 14px 16px !important;
         }
-        header > div, header > nav, nav.nav-pill, .nav-pill {
-            padding: 10px 14px !important;
-            gap: 8px !important;
+        header > div, header > nav, .nav-pill {
+            padding: 10px 18px !important;
+            gap: 10px !important;
         }
     }
+
+    /* Mobile (iPhone) responsive - hide long green status text if needed so buttons never squish */
     @media (max-width: 768px) {
-        header {
+        header, nav.top-nav, .header-wrapper {
             padding: 10px 10px !important;
         }
-        header > div, header > nav, nav.nav-pill, .nav-pill {
+        header > div, header > nav, .nav-pill {
             padding: 8px 12px !important;
             gap: 6px !important;
-            overflow-x: auto !important;
-            -webkit-overflow-scrolling: touch !important;
-        }
-        header > div > div:last-child, header > nav > div:last-child {
-            gap: 6px !important;
+            justify-content: space-between !important;
         }
     }
     </style>
