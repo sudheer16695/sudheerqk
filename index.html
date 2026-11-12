@@ -390,204 +390,6 @@
 
 
 
-/* Master Daylight Mode System: Tinted Luminous Grid + Unified Thick-to-Light Burgundy Halo */
-html:not([data-theme="dark"]):not(.dark) {
-    --accent: #9E1B3B;
-    --accent-hover: #C8234C;
-    --accent-light: rgba(158, 27, 59, 0.07);
-    --burgundy-border-rest: rgba(158, 27, 59, 0.22);
-    --burgundy-border-active: #B81D43;
-    --burgundy-glow-rest:
-        0 4px 16px rgba(158, 27, 59, 0.08),
-        0 0 16px rgba(200, 35, 76, 0.11);
-    --burgundy-glow-hover:
-        0 12px 30px -4px rgba(158, 27, 59, 0.22),
-        0 4px 14px -2px rgba(200, 35, 76, 0.18),
-        0 0 0 1.5px #B81D43,
-        0 0 26px rgba(200, 35, 76, 0.26);
-}
-
-/* 1. Stronger, Warm Luminous Burgundy-Tinted Architectural Grid Background */
-html:not([data-theme="dark"]):not(.dark),
-html:not([data-theme="dark"]):not(.dark) body {
-    background-color: #ffffff !important;
-    background-image:
-        radial-gradient(ellipse 80% 45% at 50% 0%, rgba(200, 35, 76, 0.045) 0%, transparent 70%),
-        linear-gradient(to right, rgba(158, 27, 59, 0.055) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(158, 27, 59, 0.055) 1px, transparent 1px) !important;
-    background-size: 100% 100%, 64px 64px, 64px 64px !important;
-    background-position: top center, top center, top center !important;
-    color: #0f172a !important;
-}
-
-/* Keep layout containers transparent so the tinted grid flows uninterrupted from top to bottom */
-html:not([data-theme="dark"]):not(.dark) .grid-bg,
-html:not([data-theme="dark"]):not(.dark) .bg-grid,
-html:not([data-theme="dark"]):not(.dark) [class*="grid-bg"],
-html:not([data-theme="dark"]):not(.dark) [class*="grid-overlay"],
-html:not([data-theme="dark"]):not(.dark) footer::before,
-html:not([data-theme="dark"]):not(.dark) footer::after,
-html:not([data-theme="dark"]):not(.dark) footer > div::before,
-html:not([data-theme="dark"]):not(.dark) footer > div::after {
-    display: none !important;
-    content: none !important;
-}
-
-html:not([data-theme="dark"]):not(.dark) main,
-html:not([data-theme="dark"]):not(.dark) section,
-html:not([data-theme="dark"]):not(.dark) footer,
-html:not([data-theme="dark"]):not(.dark) footer > div,
-html:not([data-theme="dark"]):not(.dark) footer p,
-html:not([data-theme="dark"]):not(.dark) footer span {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    border-top: none !important;
-    box-shadow: none !important;
-    mask-image: none !important;
-    -webkit-mask-image: none !important;
-}
-
-html:not([data-theme="dark"]):not(.dark) footer {
-    padding-top: 2.5rem !important;
-    padding-bottom: 3rem !important;
-}
-
-/* 2. Crisp Typography & Section Hierarchy */
-html:not([data-theme="dark"]):not(.dark) h1,
-html:not([data-theme="dark"]):not(.dark) h2,
-html:not([data-theme="dark"]):not(.dark) h3 {
-    letter-spacing: -0.02em;
-}
-
-html:not([data-theme="dark"]):not(.dark) .hero-subtitle,
-html:not([data-theme="dark"]):not(.dark) .hero h2 {
-    color: #9E1B3B !important;
-    font-weight: 700 !important;
-    text-shadow: 0 0 24px rgba(200, 35, 76, 0.14);
-}
-
-html:not([data-theme="dark"]):not(.dark) .hero-badge,
-html:not([data-theme="dark"]):not(.dark) [class*="badge"]:not([style*="#0f766e"]):not(footer *) {
-    color: #9E1B3B !important;
-    background: rgba(158, 27, 59, 0.065) !important;
-    border: 1px solid var(--burgundy-border-rest) !important;
-    box-shadow: var(--burgundy-glow-rest) !important;
-}
-
-/* 3. Ambient Resting Glow on Floating Pills, Navbar, Hero Buttons & Credly Badge */
-html:not([data-theme="dark"]):not(.dark) header nav,
-html:not([data-theme="dark"]):not(.dark) .navbar,
-html:not([data-theme="dark"]):not(.dark) [class*="nav-pill"],
-html:not([data-theme="dark"]):not(.dark) a[href*="credly.com"],
-html:not([data-theme="dark"]):not(.dark) footer > div > div:first-child,
-html:not([data-theme="dark"]):not(.dark) footer [class*="pill"],
-html:not([data-theme="dark"]):not(.dark) footer .footer-badge,
-html:not([data-theme="dark"]):not(.dark) .ask-ai-fab,
-html:not([data-theme="dark"]):not(.dark) [class*="ask-ai"],
-html:not([data-theme="dark"]):not(.dark) button[onclick*="toggleChat"],
-html:not([data-theme="dark"]):not(.dark) button[onclick*="openChat"] {
-    border: 1px solid var(--burgundy-border-rest) !important;
-    box-shadow: var(--burgundy-glow-rest) !important;
-    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease !important;
-}
-
-/* Crisp White Surface on Floating Pills & Ask AI Button */
-html:not([data-theme="dark"]):not(.dark) footer > div > div:first-child,
-html:not([data-theme="dark"]):not(.dark) footer [class*="pill"],
-html:not([data-theme="dark"]):not(.dark) footer .footer-badge,
-html:not([data-theme="dark"]):not(.dark) .ask-ai-fab,
-html:not([data-theme="dark"]):not(.dark) [class*="ask-ai"],
-html:not([data-theme="dark"]):not(.dark) button[onclick*="toggleChat"],
-html:not([data-theme="dark"]):not(.dark) button[onclick*="openChat"] {
-    background: #ffffff !important;
-    color: #9E1B3B !important;
-}
-
-/* Hero Primary & Secondary Buttons */
-html:not([data-theme="dark"]):not(.dark) .hero-btn,
-html:not([data-theme="dark"]):not(.dark) a[href="#projects"],
-html:not([data-theme="dark"]):not(.dark) a[href="#connect"] {
-    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease !important;
-}
-
-html:not([data-theme="dark"]):not(.dark) .hero-btn:hover,
-html:not([data-theme="dark"]):not(.dark) a[href="#projects"]:hover,
-html:not([data-theme="dark"]):not(.dark) a[href="#connect"]:hover {
-    transform: translateY(-2px) !important;
-    border-color: var(--burgundy-border-active) !important;
-    box-shadow: var(--burgundy-glow-hover) !important;
-}
-
-/* 4. Unified Thick-to-Light Luminous Burgundy Halo on ALL Cards (No Inner Overlay Borders!) */
-html:not([data-theme="dark"]):not(.dark) a[href*="credly.com"]:hover,
-html:not([data-theme="dark"]):not(.dark) .profile-card:hover,
-html:not([data-theme="dark"]):not(.dark) .hero-card:hover,
-html:not([data-theme="dark"]):not(.dark) .tech-block-card:hover,
-html:not([data-theme="dark"]):not(.dark) .feed-card:hover,
-html:not([data-theme="dark"]):not(.dark) .social-feed-card:hover,
-html:not([data-theme="dark"]):not(.dark) .network-card:hover,
-html:not([data-theme="dark"]):not(.dark) .social-card:hover,
-html:not([data-theme="dark"]):not(.dark) .connect-card:hover,
-html:not([data-theme="dark"]):not(.dark) [class*="network"] a:hover,
-html:not([data-theme="dark"]):not(.dark) [class*="connect"] a:hover,
-html:not([data-theme="dark"]):not(.dark) .media-card:hover,
-html:not([data-theme="dark"]):not(.dark) .video-card:hover,
-html:not([data-theme="dark"]):not(.dark) [class*="gallery"] > div:hover,
-html:not([data-theme="dark"]):not(.dark) [class*="media"] > div:hover,
-html:not([data-theme="dark"]):not(.dark) footer > div > div:first-child:hover,
-html:not([data-theme="dark"]):not(.dark) footer [class*="pill"]:hover,
-html:not([data-theme="dark"]):not(.dark) footer .footer-badge:hover,
-html:not([data-theme="dark"]):not(.dark) .ask-ai-fab:hover,
-html:not([data-theme="dark"]):not(.dark) [class*="ask-ai"]:hover,
-html:not([data-theme="dark"]):not(.dark) button[onclick*="toggleChat"]:hover,
-html:not([data-theme="dark"]):not(.dark) button[onclick*="openChat"]:hover {
-    transform: translateY(-2px) !important;
-    border-color: var(--burgundy-border-active) !important;
-    box-shadow: var(--burgundy-glow-hover) !important;
-}
-
-/* Explicitly prevent inner video/media caption overlays from getting hover borders or horizontal lines */
-html:not([data-theme="dark"]):not(.dark) .media-card *,
-html:not([data-theme="dark"]):not(.dark) .video-card *,
-html:not([data-theme="dark"]):not(.dark) [class*="gallery"] > div *,
-html:not([data-theme="dark"]):not(.dark) [class*="media"] > div * {
-    border-top: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-}
-
-/* Capability Card Icons, Hints, Network Arrows & Modal Headings */
-html:not([data-theme="dark"]):not(.dark) .tech-tap-hint,
-html:not([data-theme="dark"]):not(.dark) #techModalOverlay h4,
-html:not([data-theme="dark"]):not(.dark) [id*="Modal"] h4,
-html:not([data-theme="dark"]):not(.dark) .network-arrow,
-html:not([data-theme="dark"]):not(.dark) .connect-arrow {
-    color: #9E1B3B !important;
-}
-
-html:not([data-theme="dark"]):not(.dark) .tech-block-card:hover .tech-icon-pill {
-    background: rgba(158, 27, 59, 0.08) !important;
-    color: #9E1B3B !important;
-    box-shadow: 0 0 14px rgba(200, 35, 76, 0.20) !important;
-}
-
-/* AI Assistant Send Button */
-html:not([data-theme="dark"]):not(.dark) [id*="chat"] button[type="submit"],
-html:not([data-theme="dark"]):not(.dark) [id*="ai"] button[onclick*="send"],
-html:not([data-theme="dark"]):not(.dark) [class*="chat"] button[onclick*="send"],
-html:not([data-theme="dark"]):not(.dark) button[onclick*="sendMessage"],
-html:not([data-theme="dark"]):not(.dark) button[onclick*="askAI"] {
-    background: #9E1B3B !important;
-    color: #ffffff !important;
-    border: none !important;
-    box-shadow: 0 4px 14px rgba(158, 27, 59, 0.25) !important;
-}
-html:not([data-theme="dark"]):not(.dark) button[onclick*="sendMessage"]:hover,
-html:not([data-theme="dark"]):not(.dark) button[onclick*="askAI"]:hover {
-    background: #C8234C !important;
-    color: #ffffff !important;
-}
 </style>
 
 
@@ -599,56 +401,177 @@ html:not([data-theme="dark"]):not(.dark) button[onclick*="askAI"]:hover {
 
 
 
-<style id="daylight-luminous-final">
-/* Final High-Specificity Daylight Luminous Burgundy Halo (Dark Mode Untouched) */
-html:not([data-theme="dark"]):not(.dark) button[title*="Architecture AI"],
+<style id="sudheerqk-daylight-tokens">
+/* ==========================================================================
+   SINGLE-SOURCE-OF-TRUTH DAYLIGHT DESIGN SYSTEM (Dark Mode 100% Untouched)
+   Change the variables below once -> updates every card, button & glow site-wide
+   ========================================================================== */
+html:not([data-theme="dark"]):not(.dark) {
+    /* Master Brand Accent & Glow Tokens */
+    --brand-primary: #9E1B3B;        /* Luminous Apple Burgundy */
+    --brand-radiant: #C8234C;        /* Bright Outer Halo Tone */
+    --brand-tint-bg: rgba(158, 27, 59, 0.065);
+    --brand-grid-line: rgba(158, 27, 59, 0.055);
+
+    /* Unified Border & Thick-to-Light Multi-Layered Glow Tokens */
+    --border-rest: rgba(158, 27, 59, 0.24);
+    --border-active: #B81D43;
+    --glow-rest:
+        0 4px 16px -2px rgba(158, 27, 59, 0.10),
+        0 0 14px rgba(200, 35, 76, 0.12);
+    --glow-hover:
+        0 12px 30px -4px rgba(158, 27, 59, 0.25),
+        0 4px 14px -2px rgba(200, 35, 76, 0.20),
+        0 0 0 1.5px var(--border-active),
+        0 0 28px rgba(200, 35, 76, 0.30);
+    --ui-transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                     border-color 0.25s ease,
+                     box-shadow 0.25s ease,
+                     background-color 0.25s ease;
+}
+
+/* 1. Seamless Full-Page Luminous Architectural Grid */
+html:not([data-theme="dark"]):not(.dark),
+html:not([data-theme="dark"]):not(.dark) body {
+    background-color: #ffffff !important;
+    background-image:
+        radial-gradient(ellipse 85% 45% at 50% 0%, rgba(200, 35, 76, 0.05) 0%, transparent 72%),
+        linear-gradient(to right, var(--brand-grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--brand-grid-line) 1px, transparent 1px) !important;
+    background-size: 100% 100%, 64px 64px, 64px 64px !important;
+    background-position: top center, top center, top center !important;
+}
+
+html:not([data-theme="dark"]):not(.dark) .grid-bg,
+html:not([data-theme="dark"]):not(.dark) .bg-grid,
+html:not([data-theme="dark"]):not(.dark) [class*="grid-bg"],
+html:not([data-theme="dark"]):not(.dark) [class*="grid-overlay"],
+html:not([data-theme="dark"]):not(.dark) footer::before,
+html:not([data-theme="dark"]):not(.dark) footer::after {
+    display: none !important;
+}
+
+html:not([data-theme="dark"]):not(.dark) main,
+html:not([data-theme="dark"]):not(.dark) section,
+html:not([data-theme="dark"]):not(.dark) footer,
+html:not([data-theme="dark"]):not(.dark) footer > div,
+html:not([data-theme="dark"]):not(.dark) footer p,
+html:not([data-theme="dark"]):not(.dark) footer span {
+    background: transparent !important;
+    background-image: none !important;
+    border-top: none !important;
+    box-shadow: none !important;
+}
+
+html:not([data-theme="dark"]):not(.dark) footer {
+    padding-top: 2.5rem !important;
+    padding-bottom: 3rem !important;
+}
+
+/* 2. Global Typography & Brand Accents */
+html:not([data-theme="dark"]):not(.dark) .hero-subtitle,
+html:not([data-theme="dark"]):not(.dark) .hero h2,
+html:not([data-theme="dark"]):not(.dark) .tech-tap-hint,
+html:not([data-theme="dark"]):not(.dark) .network-arrow,
+html:not([data-theme="dark"]):not(.dark) .connect-arrow,
+html:not([data-theme="dark"]):not(.dark) [id*="Modal"] h4 {
+    color: var(--brand-primary) !important;
+}
+
+html:not([data-theme="dark"]):not(.dark) .hero-badge,
+html:not([data-theme="dark"]):not(.dark) [class*="badge"]:not([style*="#0f766e"]):not(footer *) {
+    color: var(--brand-primary) !important;
+    background: var(--brand-tint-bg) !important;
+    border: 1px solid var(--border-rest) !important;
+    box-shadow: var(--glow-rest) !important;
+}
+
+/* 3. Universal Resting Glow on Floating Pills, Navbar, Theme Toggle, Demo, Credly & Ask AI */
+html:not([data-theme="dark"]):not(.dark) header nav,
+html:not([data-theme="dark"]):not(.dark) .navbar,
+html:not([data-theme="dark"]):not(.dark) [class*="nav-pill"],
+html:not([data-theme="dark"]):not(.dark) header button,
+html:not([data-theme="dark"]):not(.dark) nav button,
+html:not([data-theme="dark"]):not(.dark) nav a,
+html:not([data-theme="dark"]):not(.dark) a[href*="credly.com"],
+html:not([data-theme="dark"]):not(.dark) footer > div > div:first-child,
+html:not([data-theme="dark"]):not(.dark) footer [class*="pill"],
+html:not([data-theme="dark"]):not(.dark) footer .footer-badge,
+html:not([data-theme="dark"]):not(.dark) button[title*="AI"],
 html:not([data-theme="dark"]):not(.dark) button[aria-label*="AI"],
-html:not([data-theme="dark"]):not(.dark) [id*="ai" i][style*="fixed"],
-html:not([data-theme="dark"]):not(.dark) [class*="ai" i][style*="fixed"],
-html:not([data-theme="dark"]):not(.dark) button[style*="fixed"],
-html:not([data-theme="dark"]):not(.dark) .ask-ai-btn,
-html:not([data-theme="dark"]):not(.dark) #askAiBtn,
-html:not([data-theme="dark"]):not(.dark) #aiFab {
+html:not([data-theme="dark"]):not(.dark) .ask-ai-fab,
+html:not([data-theme="dark"]):not(.dark) [class*="ask-ai"] {
+    border: 1px solid var(--border-rest) !important;
+    box-shadow: var(--glow-rest) !important;
+    transition: var(--ui-transition) !important;
+}
+
+/* Keep White Pills Crisp & Readable */
+html:not([data-theme="dark"]):not(.dark) footer > div > div:first-child,
+html:not([data-theme="dark"]):not(.dark) footer [class*="pill"],
+html:not([data-theme="dark"]):not(.dark) footer .footer-badge,
+html:not([data-theme="dark"]):not(.dark) button[title*="AI"],
+html:not([data-theme="dark"]):not(.dark) button[aria-label*="AI"],
+html:not([data-theme="dark"]):not(.dark) .ask-ai-fab,
+html:not([data-theme="dark"]):not(.dark) [class*="ask-ai"] {
     background: #ffffff !important;
-    color: #9E1B3B !important;
-    border: 1.5px solid rgba(184, 29, 67, 0.45) !important;
-    box-shadow:
-        0 8px 24px -2px rgba(158, 27, 59, 0.22),
-        0 0 0 1px rgba(200, 35, 76, 0.16),
-        0 0 24px rgba(200, 35, 76, 0.28) !important;
-    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease !important;
+    color: var(--brand-primary) !important;
 }
 
-html:not([data-theme="dark"]):not(.dark) button[title*="Architecture AI"]:hover,
+/* 4. Universal Thick-to-Light Luminous Halo on Hover Across EVERY Card, Button & Link Pill */
+html:not([data-theme="dark"]):not(.dark) [class*="card"]:hover,
+html:not([data-theme="dark"]):not(.dark) a[href*="credly.com"]:hover,
+html:not([data-theme="dark"]):not(.dark) [class*="network"] a:hover,
+html:not([data-theme="dark"]):not(.dark) [class*="connect"] a:hover,
+html:not([data-theme="dark"]):not(.dark) [class*="gallery"] > div:hover,
+html:not([data-theme="dark"]):not(.dark) [class*="media"] > div:hover,
+html:not([data-theme="dark"]):not(.dark) header button:hover,
+html:not([data-theme="dark"]):not(.dark) nav button:hover,
+html:not([data-theme="dark"]):not(.dark) nav a:hover,
+html:not([data-theme="dark"]):not(.dark) .hero-btn:hover,
+html:not([data-theme="dark"]):not(.dark) a[href="#projects"]:hover,
+html:not([data-theme="dark"]):not(.dark) a[href="#connect"]:hover,
+html:not([data-theme="dark"]):not(.dark) footer > div > div:first-child:hover,
+html:not([data-theme="dark"]):not(.dark) footer [class*="pill"]:hover,
+html:not([data-theme="dark"]):not(.dark) footer .footer-badge:hover,
+html:not([data-theme="dark"]):not(.dark) button[title*="AI"]:hover,
 html:not([data-theme="dark"]):not(.dark) button[aria-label*="AI"]:hover,
-html:not([data-theme="dark"]):not(.dark) .ask-ai-btn:hover,
-html:not([data-theme="dark"]):not(.dark) #askAiBtn:hover,
-html:not([data-theme="dark"]):not(.dark) #aiFab:hover:hover {
-    transform: translateY(-2px) scale(1.02) !important;
-    border-color: #C8234C !important;
-    box-shadow:
-        0 12px 32px -2px rgba(158, 27, 59, 0.30),
-        0 0 0 1.5px #C8234C,
-        0 0 32px rgba(200, 35, 76, 0.38) !important;
+html:not([data-theme="dark"]):not(.dark) .ask-ai-fab:hover,
+html:not([data-theme="dark"]):not(.dark) [class*="ask-ai"]:hover {
+    transform: translateY(-2px) !important;
+    border-color: var(--border-active) !important;
+    box-shadow: var(--glow-hover) !important;
 }
 
-/* Consistent Thick-to-Light Luminous Halo Across All Cards & Pills on Hover */
-html:not([data-theme="dark"]):not(.dark) .tech-block-card:hover,
-html:not([data-theme="dark"]):not(.dark) .network-card:hover,
-html:not([data-theme="dark"]):not(.dark) .social-card:hover,
-html:not([data-theme="dark"]):not(.dark) .connect-card:hover,
-html:not([data-theme="dark"]):not(.dark) .feed-card:hover,
-html:not([data-theme="dark"]):not(.dark) .media-card:hover,
-html:not([data-theme="dark"]):not(.dark) .video-card:hover,
-html:not([data-theme="dark"]):not(.dark) .profile-card:hover,
-html:not([data-theme="dark"]):not(.dark) a[href*="credly.com"]:hover {
-    transform: translateY(-2px) !important;
-    border-color: #B81D43 !important;
-    box-shadow:
-        0 12px 30px -4px rgba(158, 27, 59, 0.24),
-        0 4px 14px -2px rgba(200, 35, 76, 0.18),
-        0 0 0 1.5px #B81D43,
-        0 0 28px rgba(200, 35, 76, 0.28) !important;
+/* Prevent inner card overlays (like video captions) from drawing internal hover lines */
+html:not([data-theme="dark"]):not(.dark) [class*="card"] *,
+html:not([data-theme="dark"]):not(.dark) [class*="gallery"] > div *,
+html:not([data-theme="dark"]):not(.dark) [class*="media"] > div * {
+    border-top: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+/* Capability Card Icon Highlight on Hover */
+html:not([data-theme="dark"]):not(.dark) .tech-block-card:hover .tech-icon-pill {
+    background: var(--brand-tint-bg) !important;
+    color: var(--brand-primary) !important;
+    box-shadow: var(--glow-rest) !important;
+}
+
+/* AI Assistant Send Button: Luminous Burgundy Fill + Crisp White Text */
+html:not([data-theme="dark"]):not(.dark) [id*="chat"] button[type="submit"],
+html:not([data-theme="dark"]):not(.dark) button[onclick*="sendMessage"],
+html:not([data-theme="dark"]):not(.dark) button[onclick*="askAI"] {
+    background: var(--brand-primary) !important;
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: var(--glow-rest) !important;
+}
+html:not([data-theme="dark"]):not(.dark) button[onclick*="sendMessage"]:hover,
+html:not([data-theme="dark"]):not(.dark) button[onclick*="askAI"]:hover {
+    background: var(--brand-radiant) !important;
+    color: #ffffff !important;
 }
 </style>
 
