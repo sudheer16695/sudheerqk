@@ -1434,6 +1434,8 @@ const techDetails = {
             return bestMatch || "Sudheer Kumar is an EDB Postgres® AI v18 Certified Database Specialist & Infrastructure Engineer specializing in <strong>SQL Server Always On AG</strong>, <strong>Nutanix NDB DBaaS</strong>, and <strong>PostgreSQL vector architectures</strong>. Try clicking one of the quick topic chips above or email <strong>contact@sudheerqk.com</strong>.";
         }
 
+        const chatHistory = [];
+
         async function sendChatMessage() {
             const input = document.getElementById("aiChatInput");
             const body = document.getElementById("aiChatBody");
@@ -1449,36 +1451,41 @@ const techDetails = {
 
             const botMsg = document.createElement("div");
             botMsg.className = "ai-msg ai-msg-bot";
-            botMsg.innerHTML = "<span style='opacity:0.75;'>Querying knowledge base & live context...</span>";
+            botMsg.innerHTML = "<span style='opacity:0.75;'>Thinking...</span>";
             body.appendChild(botMsg);
             requestAnimationFrame(() => { body.scrollTop = body.scrollHeight; });
 
-            // 1. Try Self-Hosted FastAPI + pg_vector + Live Web Search Backend first
             const endpoints = ["/api/ask", "https://sudheerqk.com/api/ask", "http://127.0.0.1:8008/ask"];
             for (const url of endpoints) {
                 try {
                     const res = await fetch(url, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ question: prompt }),
-                        signal: AbortSignal.timeout(4500)
+                        body: JSON.stringify({ question: prompt, history: chatHistory }),
+                        signal: AbortSignal.timeout(15000)
                     });
                     if (res.ok) {
                         const data = await res.json();
                         if (data && data.answer) {
                             botMsg.innerHTML = data.answer;
+                            chatHistory.push({ role: "user", content: prompt });
+                            chatHistory.push({ role: "assistant", content: botMsg.textContent });
                             requestAnimationFrame(() => { body.scrollTop = body.scrollHeight; });
                             return;
                         }
                     }
-                } catch (_) { /* Fall through to next endpoint or rich local KB */ }
+                } catch (_) {}
             }
 
-            // 2. Smart Local Architectural Knowledge Engine fallback (instant, zero latency)
             setTimeout(() => {
-                botMsg.innerHTML = resolveLocalArchitecture(prompt);
+                const low = prompt.toLowerCase().replace(/[^a-z\s]/g, "").trim();
+                if (/^(hi+|he+l+o+|hey+|good\s*(morning|afternoon|evening)|namaste)$/.test(low)) {
+                    botMsg.innerHTML = "Hey there! How can I help you today? Ask me anything about Sudheer's architecture or general topics.";
+                } else {
+                    botMsg.innerHTML = resolveLocalArchitecture(prompt);
+                }
                 requestAnimationFrame(() => { body.scrollTop = body.scrollHeight; });
-            }, 260);
+            }, 220);
         }
 
         function openModal(id) { const m = document.getElementById(id); if (m) { m.classList.add('active'); document.body.style.overflow = 'hidden'; } }
