@@ -391,16 +391,6 @@
 
 
 
-/* Fix Verified Credentials Card Surface in Dark Mode Only (Daylight Untouched) */
-html[data-theme="dark"] a[href*="credly.com"],
-html.dark a[href*="credly.com"] {
-    background: rgba(30, 41, 59, 0.85) !important;
-    border-color: rgba(148, 163, 184, 0.2) !important;
-}
-html[data-theme="dark"] a[href*="credly.com"] span:nth-child(2),
-html.dark a[href*="credly.com"] span:nth-child(2) {
-    color: #f8fafc !important;
-}
 </style>
 
 
@@ -584,6 +574,218 @@ html:not([data-theme="dark"]):not(.dark) button[onclick*="sendMessage"]:hover,
 html:not([data-theme="dark"]):not(.dark) button[onclick*="askAI"]:hover {
     background: var(--brand-radiant) !important;
     color: #ffffff !important;
+}
+</style>
+
+<style id="sudheerqk-dark-tokens">
+/* ==========================================================================
+   SINGLE-SOURCE-OF-TRUTH DARK MODE DESIGN SYSTEM (Daylight Mode 100% Untouched)
+   Change the variables below once -> updates every card, button & glow site-wide
+   ========================================================================== */
+html[data-theme="dark"],
+html.dark {
+    /* Master Shiny Rose Gold Tokens */
+    --dark-brand-primary: #E58F76;       /* Luminous Rose Gold */
+    --dark-brand-radiant: #F5A992;       /* Bright Outer Rose Gold Halo */
+    --dark-brand-tint-bg: rgba(229, 143, 118, 0.10);
+    --dark-grid-line: rgba(229, 143, 118, 0.055);
+    --dark-card-surface: rgba(17, 21, 33, 0.88);
+
+    /* Unified Border & Thick-to-Light Multi-Layered Rose Gold Glow */
+    --dark-border-rest: rgba(229, 143, 118, 0.24);
+    --dark-border-active: #F2A38B;
+    --dark-glow-rest:
+        0 4px 18px -2px rgba(229, 143, 118, 0.12),
+        0 0 16px rgba(245, 169, 146, 0.12);
+    --dark-glow-hover:
+        0 12px 32px -4px rgba(229, 143, 118, 0.28),
+        0 4px 16px -2px rgba(245, 169, 146, 0.22),
+        0 0 0 1.5px var(--dark-border-active),
+        0 0 28px rgba(245, 169, 146, 0.30);
+    --dark-transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                       border-color 0.25s ease,
+                       box-shadow 0.25s ease,
+                       background-color 0.25s ease;
+}
+
+/* 1. Seamless Full-Page 64px Rose-Gold Tinted Dark Grid */
+html[data-theme="dark"],
+html[data-theme="dark"] body,
+html.dark,
+html.dark body {
+    background-color: #080a10 !important;
+    background-image:
+        radial-gradient(ellipse 85% 45% at 50% 0%, rgba(229, 143, 118, 0.065) 0%, transparent 72%),
+        linear-gradient(to right, var(--dark-grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--dark-grid-line) 1px, transparent 1px) !important;
+    background-size: 100% 100%, 64px 64px, 64px 64px !important;
+    background-position: top center, top center, top center !important;
+}
+
+html[data-theme="dark"] main,
+html[data-theme="dark"] section,
+html[data-theme="dark"] footer,
+html[data-theme="dark"] footer > div,
+html.dark main,
+html.dark section,
+html.dark footer,
+html.dark footer > div {
+    background: transparent !important;
+    background-image: none !important;
+    border-top: none !important;
+    box-shadow: none !important;
+}
+
+/* 2. Typography & Rose Gold Accents */
+html[data-theme="dark"] .hero-subtitle,
+html[data-theme="dark"] .hero h2,
+html[data-theme="dark"] .tech-tap-hint,
+html[data-theme="dark"] .network-arrow,
+html[data-theme="dark"] .connect-arrow,
+html[data-theme="dark"] [id*="Modal"] h4,
+html.dark .hero-subtitle,
+html.dark .hero h2,
+html.dark .tech-tap-hint,
+html.dark .network-arrow,
+html.dark .connect-arrow,
+html.dark [id*="Modal"] h4 {
+    color: var(--dark-brand-primary) !important;
+}
+
+html[data-theme="dark"] .hero-badge,
+html[data-theme="dark"] [class*="badge"]:not([style*="#0f766e"]):not(footer *),
+html.dark .hero-badge,
+html.dark [class*="badge"]:not([style*="#0f766e"]):not(footer *) {
+    color: var(--dark-brand-primary) !important;
+    background: var(--dark-brand-tint-bg) !important;
+    border: 1px solid var(--dark-border-rest) !important;
+    box-shadow: var(--dark-glow-rest) !important;
+}
+
+/* 3. Fix Verified Credentials Card Surface & Contrast in Dark Mode */
+html[data-theme="dark"] a[href*="credly.com"],
+html.dark a[href*="credly.com"] {
+    background: var(--dark-card-surface) !important;
+    border: 1px solid var(--dark-border-rest) !important;
+    box-shadow: var(--dark-glow-rest) !important;
+}
+html[data-theme="dark"] a[href*="credly.com"] span:nth-child(2),
+html.dark a[href*="credly.com"] span:nth-child(2) {
+    color: #f8fafc !important;
+}
+
+/* 4. Universal Resting Rose Gold Glow on Navbar, Pills, Theme Toggle & Ask AI */
+html[data-theme="dark"] header nav,
+html[data-theme="dark"] .navbar,
+html[data-theme="dark"] [class*="nav-pill"],
+html[data-theme="dark"] header button,
+html[data-theme="dark"] nav button,
+html[data-theme="dark"] nav a,
+html[data-theme="dark"] footer > div > div:first-child,
+html[data-theme="dark"] footer [class*="pill"],
+html[data-theme="dark"] footer .footer-badge,
+html[data-theme="dark"] button[title*="AI"],
+html[data-theme="dark"] button[aria-label*="AI"],
+html[data-theme="dark"] .ask-ai-fab,
+html[data-theme="dark"] [class*="ask-ai"],
+html.dark header nav,
+html.dark .navbar,
+html.dark [class*="nav-pill"],
+html.dark header button,
+html.dark nav button,
+html.dark nav a,
+html.dark footer > div > div:first-child,
+html.dark footer [class*="pill"],
+html.dark footer .footer-badge,
+html.dark button[title*="AI"],
+html.dark button[aria-label*="AI"],
+html.dark .ask-ai-fab,
+html.dark [class*="ask-ai"] {
+    border: 1px solid var(--dark-border-rest) !important;
+    box-shadow: var(--dark-glow-rest) !important;
+    transition: var(--dark-transition) !important;
+}
+
+html[data-theme="dark"] footer > div > div:first-child,
+html[data-theme="dark"] footer [class*="pill"],
+html[data-theme="dark"] footer .footer-badge,
+html[data-theme="dark"] button[title*="AI"],
+html[data-theme="dark"] button[aria-label*="AI"],
+html[data-theme="dark"] .ask-ai-fab,
+html[data-theme="dark"] [class*="ask-ai"],
+html.dark footer > div > div:first-child,
+html.dark footer [class*="pill"],
+html.dark footer .footer-badge,
+html.dark button[title*="AI"],
+html.dark button[aria-label*="AI"],
+html.dark .ask-ai-fab,
+html.dark [class*="ask-ai"] {
+    background: var(--dark-card-surface) !important;
+    color: var(--dark-brand-primary) !important;
+}
+
+/* 5. Universal Thick-to-Light Shiny Rose Gold Halo on Hover Across EVERY Card & Button */
+html[data-theme="dark"] [class*="card"]:hover,
+html[data-theme="dark"] a[href*="credly.com"]:hover,
+html[data-theme="dark"] [class*="network"] a:hover,
+html[data-theme="dark"] [class*="connect"] a:hover,
+html[data-theme="dark"] [class*="gallery"] > div:hover,
+html[data-theme="dark"] [class*="media"] > div:hover,
+html[data-theme="dark"] header button:hover,
+html[data-theme="dark"] nav button:hover,
+html[data-theme="dark"] nav a:hover,
+html[data-theme="dark"] .hero-btn:hover,
+html[data-theme="dark"] a[href="#projects"]:hover,
+html[data-theme="dark"] a[href="#connect"]:hover,
+html[data-theme="dark"] footer > div > div:first-child:hover,
+html[data-theme="dark"] footer [class*="pill"]:hover,
+html[data-theme="dark"] footer .footer-badge:hover,
+html[data-theme="dark"] button[title*="AI"]:hover,
+html[data-theme="dark"] button[aria-label*="AI"]:hover,
+html[data-theme="dark"] .ask-ai-fab:hover,
+html[data-theme="dark"] [class*="ask-ai"]:hover,
+html.dark [class*="card"]:hover,
+html.dark a[href*="credly.com"]:hover,
+html.dark [class*="network"] a:hover,
+html.dark [class*="connect"] a:hover,
+html.dark [class*="gallery"] > div:hover,
+html.dark [class*="media"] > div:hover,
+html.dark header button:hover,
+html.dark nav button:hover,
+html.dark nav a:hover,
+html.dark .hero-btn:hover,
+html.dark a[href="#projects"]:hover,
+html.dark a[href="#connect"]:hover,
+html.dark footer > div > div:first-child:hover,
+html.dark footer [class*="pill"]:hover,
+html.dark footer .footer-badge:hover,
+html.dark button[title*="AI"]:hover,
+html.dark button[aria-label*="AI"]:hover,
+html.dark .ask-ai-fab:hover,
+html.dark [class*="ask-ai"]:hover {
+    transform: translateY(-2px) !important;
+    border-color: var(--dark-border-active) !important;
+    box-shadow: var(--dark-glow-hover) !important;
+}
+
+/* Prevent inner card overlays (like video captions) from drawing internal hover lines */
+html[data-theme="dark"] [class*="card"] *,
+html[data-theme="dark"] [class*="gallery"] > div *,
+html[data-theme="dark"] [class*="media"] > div *,
+html.dark [class*="card"] *,
+html.dark [class*="gallery"] > div *,
+html.dark [class*="media"] > div * {
+    border-top: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+/* Capability Card Icon Highlight on Hover */
+html[data-theme="dark"] .tech-block-card:hover .tech-icon-pill,
+html.dark .tech-block-card:hover .tech-icon-pill {
+    background: var(--dark-brand-tint-bg) !important;
+    color: var(--dark-brand-primary) !important;
+    box-shadow: var(--dark-glow-rest) !important;
 }
 </style>
 
