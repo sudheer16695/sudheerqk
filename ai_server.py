@@ -40,10 +40,18 @@ KNOWLEDGE_DOCS = [
 ]
 
 GREETINGS = {"hi", "hello", "hey", "greetings", "good morning", "good afternoon", "good evening", "hola", "namaste"}
+IDENTITY_PHRASES = {"your name", "who are you", "what are you", "introduce yourself", "what can you do", "help me"}
 STOP_WORDS = {"i", "want", "to", "know", "about", "what", "is", "are", "the", "a", "an", "tell", "me", "explain", "can", "you", "please", "how", "does", "work", "of", "in", "on", "for"}
 
 class AskRequest(BaseModel):
     question: str
+
+def trim_sentences(text: str, max_sentences: int = 2, max_chars: int = 340) -> str:
+    sentences = re.split(r'(?<=[.!?])\s+', text.strip())
+    short = " ".join(sentences[:max_sentences])
+    if len(short) > max_chars:
+        short = short[:max_chars].rsplit(" ", 1)[0] + "..."
+    return short
 
 def extract_search_topic(query: str) -> str:
     cleaned = re.sub(r"[^\w\s\-\.]", "", query.lower()).strip()
@@ -52,33 +60,31 @@ def extract_search_topic(query: str) -> str:
 
 def search_live_web(query: str) -> str:
     topic = extract_search_topic(query)
-    if not topic:
+    if not topic or len(topic) < 2:
         return ""
 
-    # 1. Try DuckDuckGo Instant Answer API with cleaned topic
+    # 1. Try DuckDuckGo Instant Answer API
     try:
         url = f"https://api.duckduckgo.com/?q={urllib.parse.quote(topic)}&format=json&no_html=1&skip_disambig=1"
-        req = urllib.request.Request(url, headers={"User-Agent": "SudheerQK-AI/2.0"})
+        req = urllib.request.Request(url, headers={"User-Agent": "SudheerQK-AI/2.1"})
         with urllib.request.urlopen(req, timeout=3) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             abstract = (data.get("AbstractText") or "").strip()
             if abstract:
-                return abstract
+                return trim_sentences(abstract)
     except Exception:
         pass
 
-    # 2. Fallback to Wikipedia REST Summary API (reliable for countries, tech concepts, protocols)
+    # 2. Fallback to Wikipedia REST Summary API
     try:
         wiki_slug = urllib.parse.quote(topic.title().replace(" ", "_"))
         wiki_url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{wiki_slug}"
-        req = urllib.request.Request(wiki_url, headers={"User-Agent": "SudheerQK-AI/2.0"})
+        req = urllib.request.Request(wiki_url, headers={"User-Agent": "SudheerQK-AI/2.1"})
         with urllib.request.urlopen(req, timeout=3) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             extract = (data.get("extract") or "").strip()
             if extract and data.get("type") != "disambiguation":
-                # Keep concise (first 2 sentences)
-                sentences = re.split(r'(?<=[.!?])\s+', extract)
-                return " ".join(sentences[:2])
+                return trim_sentences(extract)
     except Exception:
         pass
 
@@ -86,7 +92,7 @@ def search_live_web(query: str) -> str:
 
 @app.get("/health")
 def health():
-    return {"status": "online", "service": "SudheerQK Architecture AI v2"}
+    return {"status": "online", "service": "SudheerQK Architecture AI v2.1"}
 
 @app.post("/ask")
 @app.post("/api/ask")
@@ -95,14 +101,21 @@ async def ask_ai(payload: AskRequest):
     q_clean = re.sub(r"[^\w\s]", "", q.lower()).strip()
     words = set(q_clean.split())
 
-    # 1. Handle pure greetings cleanly without dumping random bio/dictionary text
+    # 1. Handle greetings
     if q_clean in GREETINGS or (len(words) <= 2 and words & GREETINGS):
         return {
-            "answer": "Hello! I'm Sudheer's Architecture AI Assistant. You can ask me about Sudheer's <strong>EDB Postgres® AI v18</strong> work, <strong>Nutanix NDB</strong> clusters, <strong>SQL Server AlwaysOn AG</strong>, or any general tech and world topic via live web lookup.",
+            "answer": "Hello! I'm <strong>Sudheer's Architecture AI Assistant</strong>. Ask me about Sudheer's <strong>EDB Postgres® AI v18</strong> work, <strong>Nutanix NDB</strong> clusters, <strong>SQL Server AlwaysOn AG</strong>, or any general tech and world topic.",
             "source": "assistant"
         }
 
-    # 2. Exact word-token matching against Sudheer's portfolio RAG knowledge base
+    # 2. Handle self-referential identity questions ("what is your name", "who are you")
+    if any(phrase in q_clean for phrase in IDENTITY_PHRASES):
+        return {
+            "answer": "I'm <strong>Sudheer's Architecture AI Assistant</strong>, a self-hosted RAG + live-search assistant built by <strong>Sudheer Kumar</strong> on Apple Silicon with FastAPI, Caddy, and PostgreSQL.",
+            "source": "assistant"
+        }
+
+    # 3. Portfolio RAG knowledge base matching
     matched = []
     for item in KNOWLEDGE_DOCS:
         score = sum(1 for tag in item["tags"] if (tag in words if " " not in tag else tag in q_clean))
@@ -111,13 +124,13 @@ async def ask_ai(payload: AskRequest):
     matched.sort(key=lambda x: x[0], reverse=True)
     rag_hits = [m[1] for m in matched]
 
-    # 3. Try local Ollama LLM if available on port 11434
+    # 4. Local Ollama LLM if running on port 11434
     web_snippet = "" if rag_hits else search_live_web(q)
     try:
         context = "\n".join(rag_hits[:2]) if rag_hits else (web_snippet or "\n".join(d["text"] for d in KNOWLEDGE_DOCS[:2]))
         ollama_payload = json.dumps({
             "model": os.getenv("OLLAMA_MODEL", "llama3.2"),
-            "prompt": f"You are Sudheer Kumar's helpful AI Assistant. Answer directly and concisely using HTML <strong> tags where appropriate.\nContext:\n{context}\n\nQuestion: {q}\nAnswer:",
+            "prompt": f"You are Sudheer Kumar's helpful AI Assistant. Answer directly in 2-3 concise sentences using HTML <strong> tags where appropriate.\nContext:\n{context}\n\nQuestion: {q}\nAnswer:",
             "stream": False
         }).encode("utf-8")
         req = urllib.request.Request("http://127.0.0.1:11434/api/generate", data=ollama_payload, headers={"Content-Type": "application/json"})
@@ -128,11 +141,9 @@ async def ask_ai(payload: AskRequest):
     except Exception:
         pass
 
-    # 4. Return Portfolio RAG hit if question is about Sudheer/databases
     if rag_hits:
         return {"answer": rag_hits[0], "source": "rag"}
 
-    # 5. Otherwise return Live Web Context for general queries (e.g., "I want to know about India")
     if web_snippet:
         return {"answer": f"<strong>Live Web Summary:</strong> {web_snippet}", "source": "web"}
 
