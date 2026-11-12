@@ -40,7 +40,7 @@ def get_embedding(text: str):
     with urllib.request.urlopen(req, timeout=8) as resp:
         return json.loads(resp.read().decode("utf-8"))["embedding"]
 
-def query_pgvector(question: str, top_k: int = 2) -> list[str]:
+def query_pgvector(question: str, top_k: int = 3) -> list[str]:
     try:
         vec = get_embedding(question)
         vec_str = "[" + ",".join(f"{x:.6f}" for x in vec) + "]"
@@ -53,7 +53,7 @@ def query_pgvector(question: str, top_k: int = 2) -> list[str]:
         rows = cur.fetchall()
         cur.close()
         conn.close()
-        return [f"{r[0]}: {r[1]}" for r in rows if r[2] < 0.62]
+        return [f"{r[0]}: {r[1]}" for r in rows if r[2] < 0.74]
     except Exception:
         return []
 
