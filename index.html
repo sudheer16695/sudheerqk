@@ -908,26 +908,28 @@ html.dark #aiModeBadge {
     
     
     
+    
     <style>
-    /* Full-width header banner layout matching markup */
+    /* Full-width header restoration with gorgeous glow and responsive scaling */
     header {
         width: 100% !important;
         max-width: 100% !important;
-        padding: 16px 24px !important;
-        box-sizing: border-box !important;
         display: flex !important;
         justify-content: center !important;
+        padding: 24px 20px !important;
+        box-sizing: border-box !important;
     }
     .nav-pill {
         width: 100% !important;
-        max-width: 1300px !important;
+        max-width: 1280px !important;
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: space-between !important;
         box-sizing: border-box !important;
-        padding: 10px 20px !important;
+        padding: 12px 24px !important;
         gap: 16px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05) !important;
     }
     .brand-badge, .logo-container, .sk-badge {
         border: none !important;
@@ -935,14 +937,24 @@ html.dark #aiModeBadge {
         box-shadow: none !important;
         background: transparent !important;
     }
-    
-    /* Responsive handling for iPads and mobile phones */
-    @media (max-width: 900px) {
+
+    /* Responsive scaling for iPads and Mobile Phones */
+    @media (max-width: 1024px) {
         .nav-pill {
+            max-width: 100% !important;
             flex-wrap: wrap !important;
             justify-content: center !important;
-            gap: 10px !important;
-            padding: 12px !important;
+            gap: 12px !important;
+            padding: 14px 16px !important;
+        }
+    }
+    @media (max-width: 640px) {
+        header {
+            padding: 12px 10px !important;
+        }
+        .nav-pill {
+            gap: 8px !important;
+            padding: 10px 12px !important;
         }
     }
     </style>
