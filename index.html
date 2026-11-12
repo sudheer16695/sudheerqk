@@ -599,6 +599,59 @@ html:not([data-theme="dark"]):not(.dark) button[onclick*="askAI"]:hover {
 
 
 
+<style id="daylight-luminous-final">
+/* Final High-Specificity Daylight Luminous Burgundy Halo (Dark Mode Untouched) */
+html:not([data-theme="dark"]):not(.dark) button[title*="Architecture AI"],
+html:not([data-theme="dark"]):not(.dark) button[aria-label*="AI"],
+html:not([data-theme="dark"]):not(.dark) [id*="ai" i][style*="fixed"],
+html:not([data-theme="dark"]):not(.dark) [class*="ai" i][style*="fixed"],
+html:not([data-theme="dark"]):not(.dark) button[style*="fixed"],
+html:not([data-theme="dark"]):not(.dark) .ask-ai-btn,
+html:not([data-theme="dark"]):not(.dark) #askAiBtn,
+html:not([data-theme="dark"]):not(.dark) #aiFab {
+    background: #ffffff !important;
+    color: #9E1B3B !important;
+    border: 1.5px solid rgba(184, 29, 67, 0.45) !important;
+    box-shadow:
+        0 8px 24px -2px rgba(158, 27, 59, 0.22),
+        0 0 0 1px rgba(200, 35, 76, 0.16),
+        0 0 24px rgba(200, 35, 76, 0.28) !important;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+html:not([data-theme="dark"]):not(.dark) button[title*="Architecture AI"]:hover,
+html:not([data-theme="dark"]):not(.dark) button[aria-label*="AI"]:hover,
+html:not([data-theme="dark"]):not(.dark) .ask-ai-btn:hover,
+html:not([data-theme="dark"]):not(.dark) #askAiBtn:hover,
+html:not([data-theme="dark"]):not(.dark) #aiFab:hover:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    border-color: #C8234C !important;
+    box-shadow:
+        0 12px 32px -2px rgba(158, 27, 59, 0.30),
+        0 0 0 1.5px #C8234C,
+        0 0 32px rgba(200, 35, 76, 0.38) !important;
+}
+
+/* Consistent Thick-to-Light Luminous Halo Across All Cards & Pills on Hover */
+html:not([data-theme="dark"]):not(.dark) .tech-block-card:hover,
+html:not([data-theme="dark"]):not(.dark) .network-card:hover,
+html:not([data-theme="dark"]):not(.dark) .social-card:hover,
+html:not([data-theme="dark"]):not(.dark) .connect-card:hover,
+html:not([data-theme="dark"]):not(.dark) .feed-card:hover,
+html:not([data-theme="dark"]):not(.dark) .media-card:hover,
+html:not([data-theme="dark"]):not(.dark) .video-card:hover,
+html:not([data-theme="dark"]):not(.dark) .profile-card:hover,
+html:not([data-theme="dark"]):not(.dark) a[href*="credly.com"]:hover {
+    transform: translateY(-2px) !important;
+    border-color: #B81D43 !important;
+    box-shadow:
+        0 12px 30px -4px rgba(158, 27, 59, 0.24),
+        0 4px 14px -2px rgba(200, 35, 76, 0.18),
+        0 0 0 1.5px #B81D43,
+        0 0 28px rgba(200, 35, 76, 0.28) !important;
+}
+</style>
+
 </head>
 <body>
     <div class="ambient-dark-glow glow-top-rose"></div>
