@@ -45,7 +45,7 @@ LEAK_REDACT_PATTERNS = [
     re.compile(r"/opt/homebrew/[^\s\"'<>]+", re.IGNORECASE),
     re.compile(r"/etc/cloudflared/[^\s\"'<>]+", re.IGNORECASE),
     re.compile(r"postgresql://[^\s\"'<>]+", re.IGNORECASE),
-    re.compile(r"readonly_sudheerqk_2026", re.IGNORECASE),
+    re.compile(re.escape(os.getenv("AI_READER_PASSWORD", "")), re.IGNORECASE),
     re.compile(r"cloud_storage", re.IGNORECASE),
     re.compile(r"com\.sudheerqk\.ai", re.IGNORECASE),
 ]
@@ -94,7 +94,7 @@ def query_pgvector(question: str, top_k: int = 3) -> list[str]:
         conn = psycopg2.connect(
             dbname="postgres",
             user="ai_reader",
-            password="readonly_sudheerqk_2026",
+            password=os.getenv("AI_READER_PASSWORD", ""),
             host="127.0.0.1",
             connect_timeout=2,
             options="-c default_transaction_read_only=on"
