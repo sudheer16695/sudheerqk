@@ -920,8 +920,9 @@ html.dark #aiModeBadge {
     
     
     
+    
     <style>
-    /* Sleek compact floating navigation island with dual-mode adaptive hover glow */
+    /* Sleek compact floating navigation island with smooth hover glow */
     header {
         position: sticky !important;
         top: 1rem !important;
@@ -947,22 +948,16 @@ html.dark #aiModeBadge {
         backdrop-filter: blur(28px) saturate(190%) !important;
         -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
         border: 1px solid var(--border-glass) !important;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), var(--glass-specular) !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06), var(--glass-specular) !important;
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
         box-sizing: border-box !important;
     }
 
-    /* Vibrant hover glow calibrated to be prominent in LIGHT mode */
+    /* Smooth glowing effect matching your video behavior */
     .nav-island:hover {
-        border-color: rgba(220, 38, 38, 0.5) !important;
-        box-shadow: 0 16px 45px rgba(220, 38, 38, 0.22), 0 0 30px rgba(220, 38, 38, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+        border-color: var(--accent-theme) !important;
+        box-shadow: 0 16px 45px rgba(235, 100, 100, 0.26), 0 0 30px rgba(235, 100, 100, 0.16), var(--glass-specular) !important;
         transform: translateY(-2px) !important;
-    }
-
-    /* Adjusted hover glow for DARK mode so it pops brilliantly against obsidian background */
-    [data-theme="dark"] .nav-island:hover {
-        border-color: rgba(248, 113, 113, 0.6) !important;
-        box-shadow: 0 18px 50px rgba(248, 113, 113, 0.35), 0 0 35px rgba(248, 113, 113, 0.25), var(--glass-specular) !important;
     }
 
     /* Clean brand logo link wrapper */
