@@ -913,76 +913,82 @@ html.dark #aiModeBadge {
     
     
     
+    
     <style>
-    /* HEADER_FIX_FINAL: Universal selectors targeting actual DOM structure */
-    header, nav, .navbar, .header, .top-nav, .nav-wrapper, body > div:first-of-type > header, body > header {
+    /* Clean, unified full-width floating header + hover glow + mobile/iPad responsive */
+    header {
         width: 100% !important;
         max-width: 1280px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
+        margin: 0 auto !important;
+        padding: 20px 24px !important;
         box-sizing: border-box !important;
     }
 
-    /* Target the floating pill directly using :has() so it works no matter what class name it has */
-    header > div, nav > div, div:has(> a[href*="sudheerqk"]), div:has(> .brand), header:has(a) {
+    /* Target the outer floating pill container */
+    header > div, header > nav, nav.nav-pill, .nav-pill {
         width: 100% !important;
-        max-width: 1240px !important;
+        max-width: 100% !important;
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: space-between !important;
-        margin: 0 auto !important;
+        flex-wrap: nowrap !important;
         padding: 12px 24px !important;
         border-radius: 9999px !important;
         box-sizing: border-box !important;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        overflow: visible !important;
+        transition: box-shadow 0.3s ease, transform 0.3s ease !important;
     }
 
-    /* Interactive glowing effect on the floating pill */
-    header > div:hover, nav > div:hover, div:has(> a[href*="sudheerqk"]):hover {
-        box-shadow: 0 14px 40px rgba(210, 50, 70, 0.16), 0 0 25px rgba(210, 50, 70, 0.12) !important;
-        transform: translateY(-2px) !important;
+    /* Smooth glow when hovering over the floating pill */
+    header > div:hover, header > nav:hover, nav.nav-pill:hover, .nav-pill:hover {
+        box-shadow: 0 12px 36px rgba(210, 50, 70, 0.16), 0 0 24px rgba(210, 50, 70, 0.12) !important;
+        transform: translateY(-1px) !important;
     }
 
-    /* Kill the ugly rectangular border & background box around SK + sudheerqk.com */
-    header a:first-of-type, nav a:first-of-type, a:has(> span), header a[href="/"], header a[href="#"], header a[href*="sudheerqk"] {
-        border: none !important;
-        outline: none !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        border-radius: 9999px !important;
-        padding: 2px 6px !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        gap: 10px !important;
-        text-decoration: none !important;
-    }
-
-    /* Push the right-side items (Available badge, theme toggle, Contact, Demo, Vault) neatly to the right */
-    header > div > div:last-child, nav > div > div:last-child {
+    /* Keep all right-side buttons (Available badge, theme toggle, Contact, Demo, Vault) grouped inside the pill */
+    header > div > div:last-child, header > nav > div:last-child {
         display: flex !important;
         align-items: center !important;
         gap: 10px !important;
-        margin-left: auto !important;
-        border: none !important;
-        background: transparent !important;
-        box-shadow: none !important;
+        flex-shrink: 0 !important;
     }
 
-    /* Responsive adjustments for iPad and iPhone */
+    /* Remove stray rectangular border/box around SK + sudheerqk.com on desktop & mobile */
+    header a:first-of-type, nav a:first-of-type, .brand-badge, .logo-container, .sk-badge {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        border-radius: 9999px !important;
+        padding: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* iPad & Mobile optimization */
     @media (max-width: 1024px) {
-        header > div, nav > div, div:has(> a[href*="sudheerqk"]) {
-            max-width: 96% !important;
-            padding: 10px 16px !important;
-            flex-wrap: wrap !important;
-            gap: 10px !important;
+        header {
+            padding: 12px 14px !important;
+        }
+        header > div, header > nav, nav.nav-pill, .nav-pill {
+            padding: 10px 14px !important;
+            gap: 8px !important;
         }
     }
-    @media (max-width: 640px) {
-        header > div, nav > div, div:has(> a[href*="sudheerqk"]) {
-            max-width: 98% !important;
+    @media (max-width: 768px) {
+        header {
+            padding: 10px 10px !important;
+        }
+        header > div, header > nav, nav.nav-pill, .nav-pill {
             padding: 8px 12px !important;
-            justify-content: space-between !important;
+            gap: 6px !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        header > div > div:last-child, header > nav > div:last-child {
             gap: 6px !important;
         }
     }
