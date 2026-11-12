@@ -1153,5 +1153,85 @@ const techDetails = {
 
     </script>
 
+
+    <!-- Skill Modals Overlay -->
+    <div id="skillModalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.6); backdrop-filter:blur(4px); z-index:9999; justify-content:center; align-items:center; padding:20px;">
+        <div id="skillModalContent" style="background:#fff; border-radius:16px; width:100%; max-width:500px; padding:32px; position:relative; box-shadow:0 20px 40px rgba(0,0,0,0.1); max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeSkillModal()" style="position:absolute; top:20px; right:20px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:50%; width:32px; height:32px; display:flex; justify-content:center; align-items:center; cursor:pointer; font-weight:bold; color:#64748b;">✕</button>
+            <div id="skillModalBody"></div>
+        </div>
+    </div>
+
+    <script>
+    const skillData = {
+        'sql': {
+            badge: 'Enterprise DBA',
+            title: 'SQL Server Architecture',
+            subtitle: 'High-availability cluster design, zero-downtime migrations, and enterprise-grade performance tuning.',
+            tools: ['SQL Server', 'AlwaysOn AG', 'WSFC', 'T-SQL', 'SSMS'],
+            scope: ['Multi-subnet cluster deployments', 'Quorum configuration & disaster recovery', 'Index fragmentation & query optimization', 'Zero-downtime rolling upgrades']
+        },
+        'postgres': {
+            badge: 'Relational AI',
+            title: 'Postgres DBA & Vector Engineering',
+            subtitle: 'Enterprise cluster architectures, connection pooling, and pg_vector similarity search pipelines.',
+            tools: ['PostgreSQL 14-16', 'pg_vector', 'PgBouncer', 'asyncpg', 'FastAPI'],
+            scope: ['Private cloud storage schemas', 'IVFFlat/HNSW vector indices', 'WAL performance tuning', 'Encrypted offsite replication']
+        },
+        'nutanix': {
+            badge: 'Cloud Infrastructure',
+            title: 'Nutanix DBaaS Engineering',
+            subtitle: 'Automated database provisioning, multi-datacenter SLA management, and infrastructure lifecycle operations.',
+            tools: ['Nutanix Era/NDB', 'Prism Central', 'AHV', 'Time Machine', 'REST API'],
+            scope: ['One-click database cloning & refreshes', 'Time Machine SLA architectures', 'Zero-byte database clones', 'Multi-cluster resource management']
+        },
+        'infra': {
+            badge: 'DevOps & SRE',
+            title: 'Infrastructure Automation',
+            subtitle: 'End-to-end PowerShell scripting, deployment pipelines, and proactive system monitoring.',
+            tools: ['PowerShell', 'Python', 'Bash', 'Cron', 'Monitoring'],
+            scope: ['Automated health-checks and alerting', 'Custom database provisioning scripts', 'Backup validation and restoration tests', 'Unattended server configuration']
+        }
+    };
+
+    function openSkillModal(skillId) {
+        const data = skillData[skillId];
+        if (!data) return;
+        
+        const toolsHtml = data.tools.map(t => `<span style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:4px 8px; font-size:0.75rem; font-family:monospace; color:#475569; display:inline-block;">${t}</span>`).join(' ');
+        
+        const scopeHtml = data.scope.map(s => `<li style="margin-bottom:12px; font-size:0.9rem; color:#475569; display:flex; align-items:center; gap:8px;"><span style="color:#ef4444; font-size:1.2rem; line-height:0;">•</span> ${s}</li>`).join('');
+
+        document.getElementById('skillModalBody').innerHTML = `
+            <span style="background:rgba(239,68,68,0.1); color:#ef4444; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:700; font-family:monospace; margin-bottom:16px; display:inline-block;">${data.badge}</span>
+            <h3 style="font-size:1.5rem; font-weight:800; color:#0f172a; margin-bottom:8px; line-height:1.2;">${data.title}</h3>
+            <p style="font-size:0.95rem; color:#475569; line-height:1.5; margin-bottom:24px;">${data.subtitle}</p>
+            
+            <h4 style="font-size:0.75rem; font-weight:700; color:#ef4444; letter-spacing:1px; margin-bottom:12px; text-transform:uppercase;">Production Tools</h4>
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;">${toolsHtml}</div>
+            
+            <h4 style="font-size:0.75rem; font-weight:700; color:#ef4444; letter-spacing:1px; margin-bottom:12px; text-transform:uppercase;">Architecture Scope</h4>
+            <ul style="list-style:none; padding:0; margin:0; margin-bottom:24px;">${scopeHtml}</ul>
+            
+            <div style="text-align:right;">
+                <button onclick="closeSkillModal()" style="background:#0f172a; color:#fff; padding:10px 20px; border:none; border-radius:8px; font-weight:600; font-size:0.9rem; cursor:pointer;">Close Preview</button>
+            </div>
+        `;
+        
+        document.getElementById('skillModalOverlay').style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    function closeSkillModal() {
+        document.getElementById('skillModalOverlay').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside the box
+    document.getElementById('skillModalOverlay').addEventListener('click', function(e) {
+        if (e.target === this) closeSkillModal();
+    });
+    </script>
+
 </body>
 </html>
