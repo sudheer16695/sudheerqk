@@ -72,6 +72,8 @@ class ChatTurn(BaseModel):
     content: str = Field(..., max_length=600)
 
 class AskRequest(BaseModel):
+    model_config = {"extra": "ignore"}
+
     question: str = Field(..., min_length=1, max_length=500)
     history: List[ChatTurn] = Field(default_factory=list, max_length=6)
 
@@ -201,3 +203,9 @@ async def ask_ai(payload: AskRequest, request: Request):
     if web_ctx:
         return {"answer": sanitize_output(web_ctx), "source": "web"}
     return {"answer": "Hey! How can I help you today? Ask me anything about Sudheer's public architecture or general tech topics.", "source": "fallback"}
+
+
+@app.exception_handler(422)
+async def validation_exception_handler(request: Request, exc):
+    print(f"Validation error: {exc}", flush=True)
+    return {"answer": "I received an invalid request format. Please try asking again!", "source": "error"}
