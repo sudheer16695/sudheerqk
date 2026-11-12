@@ -909,28 +909,38 @@ html.dark #aiModeBadge {
     
     
     
+    
     <style>
-    /* Full-width header restoration with gorgeous glow and responsive scaling */
+    /* Match exact website container width & restore interactive hover glow */
     header {
         width: 100% !important;
-        max-width: 100% !important;
         display: flex !important;
         justify-content: center !important;
         padding: 24px 20px !important;
         box-sizing: border-box !important;
     }
+    
     .nav-pill {
         width: 100% !important;
-        max-width: 1280px !important;
+        max-width: 1200px !important; /* matches website layout grid width */
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: space-between !important;
         box-sizing: border-box !important;
-        padding: 12px 24px !important;
+        padding: 14px 28px !important;
         gap: 16px !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        border-radius: 9999px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
+
+    .nav-pill:hover {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12), 0 0 20px rgba(235, 100, 100, 0.15) !important;
+        transform: translateY(-2px);
+    }
+
     .brand-badge, .logo-container, .sk-badge {
         border: none !important;
         outline: none !important;
@@ -938,14 +948,14 @@ html.dark #aiModeBadge {
         background: transparent !important;
     }
 
-    /* Responsive scaling for iPads and Mobile Phones */
+    /* Fully responsive scaling for iPads and Mobile Phones */
     @media (max-width: 1024px) {
         .nav-pill {
             max-width: 100% !important;
             flex-wrap: wrap !important;
             justify-content: center !important;
             gap: 12px !important;
-            padding: 14px 16px !important;
+            padding: 12px 16px !important;
         }
     }
     @media (max-width: 640px) {
@@ -955,6 +965,7 @@ html.dark #aiModeBadge {
         .nav-pill {
             gap: 8px !important;
             padding: 10px 12px !important;
+            border-radius: 20px !important;
         }
     }
     </style>
