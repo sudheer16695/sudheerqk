@@ -87,6 +87,7 @@ def sanitize_output(text: str) -> str:
     cleaned = text
     for pat in LEAK_REDACT_PATTERNS:
         cleaned = pat.sub("[REDACTED]", cleaned)
+    cleaned = re.sub(r"<(?!/?(?:strong|b|em|i|br|a|ul|ol|li|code)\b)[^>]+>", "", cleaned)
     return cleaned
 
 def get_embedding(text: str):
