@@ -42,6 +42,7 @@ def health():
     return {"status": "online", "service": "SudheerQK Architecture AI"}
 
 @app.post("/ask")
+@app.post("/api/ask")
 async def ask_ai(payload: AskRequest):
     q = payload.question.strip()
     q_low = q.lower()
